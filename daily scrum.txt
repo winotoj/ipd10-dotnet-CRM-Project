@@ -1,0 +1,10 @@
+Every day both team members write the following:
+
+date and name
+1. what have i done / not done sincce last scrum?
+2. what will i do from now until next scrum?
+3. where do i need help from my teammate, teacher, or internet?
+ex:
+2017/10/03 nanme
+1. i implemented x and didnt implement t
+2. i will implement abc and kkkkk

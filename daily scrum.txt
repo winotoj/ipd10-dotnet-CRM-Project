@@ -17,5 +17,9 @@ ex:
 5. Will search about closing second window will close main window
 
 2017/10/04 Vaji
-1.implement UI for opportunities, edit and add new company
-2.search about service login
+1.made some changes to proposal, compeleted mokup for proposal
+2.i will Create at least 6 user stories in trello and break them in todo items
+3.i will implement UI for opportunities
+4.i will implement UI for adding new customer and edit current customer
+5.I will search about login service
+

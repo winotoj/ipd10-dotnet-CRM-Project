@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfCRM.Properties
+namespace WpfCrmTest.Properties
 {
 
 

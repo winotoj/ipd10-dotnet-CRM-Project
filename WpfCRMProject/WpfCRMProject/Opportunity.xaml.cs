@@ -16,27 +16,13 @@ using System.Windows.Shapes;
 namespace WpfCRMProject
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Opportunity.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Opportunity : Page
     {
-        public MainWindow()
+        public Opportunity()
         {
             InitializeComponent();
         }
-
-        private void btnOpportunity_Click(object sender, RoutedEventArgs e)
-        {
-            frTest.Navigate(new System.Uri("Opportunity.xaml",
-UriKind.RelativeOrAbsolute));
-
-        }
-
-        private void btnAddressBook_Click(object sender, RoutedEventArgs e)
-        {
-            frTest.Navigate(new System.Uri("AddressBook.xaml",
-UriKind.RelativeOrAbsolute));
-        }
     }
 }
-

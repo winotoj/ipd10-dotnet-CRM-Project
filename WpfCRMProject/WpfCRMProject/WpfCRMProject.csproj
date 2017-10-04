@@ -55,7 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WorkDay.xaml.cs">
+      <DependentUpon>WorkDay.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddressBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -69,6 +76,9 @@
     </Page>
     <Compile Include="AddCustomer.xaml.cs">
       <DependentUpon>AddCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddressBook.xaml.cs">
+      <DependentUpon>AddressBook.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -85,10 +95,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Opportunity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Opportunities.xaml.cs">
       <DependentUpon>Opportunities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Opportunity.xaml.cs">
+      <DependentUpon>Opportunity.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

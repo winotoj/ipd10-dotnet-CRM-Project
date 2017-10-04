@@ -1,0 +1,8 @@
+vaji:
+ redesign opportunity and add customers
+move the db connection from ui
+
+winoto:
+collect some data
+change the main window to open work day
+

@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfCrmTest.Service;
 
-namespace WpfCRM
+namespace WpfCrmTest
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,5 +25,7 @@ namespace WpfCRM
         {
             InitializeComponent();
         }
+
+        
     }
 }

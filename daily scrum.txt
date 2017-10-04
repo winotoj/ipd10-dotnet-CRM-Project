@@ -8,3 +8,10 @@ ex:
 2017/10/03 nanme
 1. i implemented x and didnt implement t
 2. i will implement abc and kkkkk
+
+2017/10/04 Winoto
+1. implemented UI login windows, hid x button, solved cancel button (show main window)
+2. Completed with UI address book
+3. UI Search/query to be continued, missing custom query
+4. Will populate database
+5. Will search about closing second window will close main window

@@ -34,10 +34,10 @@ namespace WpfCRMProject
         //to be fixed because cannot open main window
         void Opportunities_Closing(object sender, CancelEventArgs e)
         {
-
             
+            e.Cancel = true;
             App.Current.MainWindow.Show();
-            this.Close();
+            //this.Close();
         }
     }
 }

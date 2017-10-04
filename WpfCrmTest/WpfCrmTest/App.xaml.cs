@@ -13,5 +13,17 @@ namespace WpfCrmTest
     /// </summary>
     public partial class App : Application
     {
+        
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            MainWindow myMainWindow = new MainWindow();
+            Login myDialogWindow = new Login();
+            //if user doesnt press cancel != null
+            myDialogWindow.ShowDialog();
+            if (Login.OpenApp)
+            {
+                myMainWindow.Show();
+            } 
+        }
     }
 }

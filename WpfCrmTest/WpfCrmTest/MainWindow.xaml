@@ -57,7 +57,34 @@
         <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible">
         <Grid>
             <ToolBarPanel HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="703">
-                <Button Height="36" Margin="10,0,656,0" >
+                    <Menu>
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel>
+                                    <Image Width="35" Height="35" Source="pack://siteoforigin:,,,/images/add.png" />
+                                   
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel>
+                                    <Image Width="35" Height="35" Source="pack://siteoforigin:,,,/images/search.png" />
+                                </StackPanel>
+                                
+                            </MenuItem.Header>
+                            <MenuItem Header="Search by:"/>
+                            <Separator/>
+                            <MenuItem Header="Company Name"/>
+                            <MenuItem Header="Contact"/>
+                            <MenuItem Header="Sales Rep"/>
+                            <MenuItem Header="City"/>
+                            <MenuItem Header="Last Purchase Date"/>
+                            <MenuItem Header="Status"/>
+                        </MenuItem>
+                    </Menu>
+                <!--
+                    <Button Height="36" Margin="10,0,656,0" >
                     <Button.Template>
                         <ControlTemplate>
                             <Canvas>
@@ -66,7 +93,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Height="36" Margin="60,-36,626,0">
+                <Button Height="36" Margin="60,-36,606,0" Click="Button_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Canvas>
@@ -75,7 +102,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-
+            -->
             </ToolBarPanel>
             <ListView Name="lvAddress" HorizontalAlignment="Left" Height="271" Margin="10,42,0,0" VerticalAlignment="Top" Width="703" >
                 <ListView.ContextMenu>
@@ -100,7 +127,7 @@
             <TabControl HorizontalAlignment="Left" Height="275" Margin="10,318,0,0" VerticalAlignment="Top" Width="755">
                 <TabItem Header="Details">
                     <Grid Background="#FFE5E5E5" Margin="0,0,-2,3">
-                        <TextBox HorizontalAlignment="Left" Height="167" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
+                        <TextBox Name="tbDetail" HorizontalAlignment="Left" Height="167" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
                         <TextBox HorizontalAlignment="Left" Height="167" Margin="246,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244"/>
                         <TextBox HorizontalAlignment="Left" Height="167" Margin="495,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="249"/>
                     </Grid>

@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:WpfCRMProject"
         xmlns:Properties="clr-namespace:WpfCRMProject.Properties" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="WpfCRMProject.Opportunities"
         mc:Ignorable="d"
+
         Title="Opportunities" HorizontalContentAlignment="Stretch" Height="693.751" Width="1037.507" >
+
+        
     <DockPanel>
 
         <ToolBarPanel  DockPanel.Dock="Top" Height="36" Background="#FFE0E1E4">

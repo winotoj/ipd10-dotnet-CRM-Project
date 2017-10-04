@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="741.927" Width="995.313">
+        Title="MainWindow" Height="741.927" Width="995.313" Closing="MainWindow_Closing">
     <DockPanel>
 
         <ToolBarPanel  DockPanel.Dock="Top" Height="36">
-            <Label Content="Label" HorizontalAlignment="Left" Width="155"/>
+            <Label Name="lbluserlogin" Content="" HorizontalAlignment="Left" Width="155"/>
         </ToolBarPanel>
 
         <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="586">

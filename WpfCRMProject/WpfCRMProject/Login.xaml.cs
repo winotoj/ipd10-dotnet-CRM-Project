@@ -70,9 +70,9 @@ namespace WpfCRMProject
             {
                 string username = tbUserName.Text;
                 string password = tbPassword.Password;
-                SqlConnection con = new SqlConnection("Data Source=BH210-09;Initial Catalog=CrmProject;User ID=sa;Password=root");
+                SqlConnection con = new SqlConnection("Server=tcp:vwdotnetproject.database.windows.net,1433;Initial Catalog=CrmProject;Persist Security Info=False;User ID=vajiwinoto;Password=VW@azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM USERS WHERE USERNAME = '" + username + "'  AND PASSWORD = '" + password + "'", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM SalesReps WHERE username = '" + username + "'  AND PASSWORD = '" + password + "'", con);
                 cmd.CommandType = CommandType.Text;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = cmd;

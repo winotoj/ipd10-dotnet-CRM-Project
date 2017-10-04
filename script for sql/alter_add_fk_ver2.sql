@@ -29,10 +29,6 @@ add
 ;
 go
 
-/* add foreign key into sales */
-
-
-
 
 /* add foreign key into Sales */
 alter table dbo.Sales

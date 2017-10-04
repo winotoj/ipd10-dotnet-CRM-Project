@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,22 @@ namespace WpfCRMProject
         {
             InitializeComponent();
         }
-
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you really want to exit?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                Login login = new Login();
+                login.Close();
+            }
+                
+        }
+        
+            
         private void btnOpportunity_Click(object sender, RoutedEventArgs e)
         {
             frTest.Navigate(new System.Uri("Opportunity.xaml",

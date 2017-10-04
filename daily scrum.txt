@@ -10,12 +10,16 @@ ex:
 2. i will implement abc and kkkkk
 
 2017/10/04 Winoto
+
 1. implemented UI login windows, hid x button, solved cancel button (show main window)
 2. Completed with UI address book
 3. UI Search/query to be continued, missing custom query
 4. Will populate database
 5. Will search about closing second window will close main window
+6. Create at least 6 user stories in trello and break them in todo items
 
 2017/10/04 Vaji
 1.implement UI for opportunities, edit and add new company
 2.search about service login
+
+

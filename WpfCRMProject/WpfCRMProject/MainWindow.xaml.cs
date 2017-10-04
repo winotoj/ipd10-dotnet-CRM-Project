@@ -27,6 +27,7 @@ namespace WpfCRMProject
 
         private void btnOpportunities_Click(object sender, RoutedEventArgs e)
         {
+            
             Opportunities opportunities = new Opportunities();
             opportunities.Show();
             this.Hide();

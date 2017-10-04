@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="Opportunities" HorizontalContentAlignment="Stretch" >
+        Title="Opportunities" Height="741.927" Width="995.313" >
     <DockPanel>
 
         <ToolBarPanel  DockPanel.Dock="Top" Height="36" Background="#FFE0E1E4">

@@ -8,9 +8,10 @@
        Title="Login" Height="256.809" Width="295.331" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closing="Login_Closing">
     <Grid>
         <Label Content="User Name" HorizontalAlignment="Left" Margin="34,70,0,0" VerticalAlignment="Top" Width="81"/>
-        <TextBox Name="tbName" HorizontalAlignment="Left" Height="23" Margin="115,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149"/>
+        <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="23" Margin="115,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="34,112,0,0" VerticalAlignment="Top" Width="81"/>
-        <PasswordBox Name="pbPassword" HorizontalAlignment="Left" Margin="115,112,0,0" VerticalAlignment="Top" Width="149" Height="26"/>
+        <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Margin="115,112,0,0" VerticalAlignment="Top" Width="149" Height="26"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247"   OpacityMask="Crimson" Foreground="#FFEA1313" Margin="23,24,0,0"  />
         <Button Name="btnOk" Content="Login" HorizontalAlignment="Left" Margin="53,177,0,0" VerticalAlignment="Top" Width="75" Click="btnOk_Click"/>
         <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="181,177,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
 

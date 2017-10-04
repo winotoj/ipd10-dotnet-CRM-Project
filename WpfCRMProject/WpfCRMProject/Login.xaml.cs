@@ -14,6 +14,8 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace WpfCRMProject
 {
@@ -32,6 +34,7 @@ namespace WpfCRMProject
         public Login()
         {
             InitializeComponent();
+            
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -57,8 +60,42 @@ namespace WpfCRMProject
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             //to do checking user name before close this window and open main
-            OpenApp = true;
-            this.Close();
+            if (tbUserName.Text.Length == 0)
+            {
+                errormessage.Text = "Pleasse Enter your Username.";
+                tbUserName.Focus();
+            }
+            
+            else
+            {
+                string username = tbUserName.Text;
+                string password = tbPassword.Password;
+                SqlConnection con = new SqlConnection("Data Source=BH210-09;Initial Catalog=CrmProject;User ID=sa;Password=root");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM USERS WHERE USERNAME = '" + username + "'  AND PASSWORD = '" + password + "'", con);
+                cmd.CommandType = CommandType.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                if (dataSet.Tables[0].Rows.Count > 0)
+                {
+                    MainWindow myworkday = new MainWindow();
+                    string welcome = dataSet.Tables[0].Rows[0]["FirstName"].ToString() + " " + dataSet.Tables[0].Rows[0]["LastName"].ToString();
+                    myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
+                    this.Hide();
+                    myworkday.Show();
+                    Application.Current.Resources.Add("UserName", username);
+                    Application.Current.Resources.Add("FirstName", dataSet.Tables[0].Rows[0]["FirstName"].ToString());
+                    Application.Current.Resources.Add("LastName", dataSet.Tables[0].Rows[0]["LastName"].ToString());
+
+                }
+                else
+                {
+                    errormessage.Text = "Sorry! Please enter existing Username And Password.";
+                }
+                con.Close();
+            }
         }
     }
 }

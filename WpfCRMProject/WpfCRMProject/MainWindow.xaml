@@ -9,7 +9,7 @@
     <DockPanel>
 
         <ToolBarPanel  DockPanel.Dock="Top" Height="36">
-            <Label Content="Label" HorizontalAlignment="Left" Width="155"/>
+            <Label x:Name="lbluserlogin" Content="" HorizontalAlignment="Left" Width="820"/>
         </ToolBarPanel>
 
         <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="586">

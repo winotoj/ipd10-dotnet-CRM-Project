@@ -34,14 +34,14 @@ namespace WpfCRMProject
                 MessageBox.Show(ex.Message);
             }
             DisplayAddressBook();
-            
+
 
         }
         private void DisplayAddressBook()
         {
             List<Customer> listCustomer = db.GetAllCustomers();
             lvAddress.Items.Clear();
-           
+
             foreach (Customer c in listCustomer)
             {
                 lvAddress.Items.Add(c);

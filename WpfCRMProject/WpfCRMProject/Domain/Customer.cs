@@ -103,13 +103,13 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 6 && value.Length < 11)
+                if (value.Length > 5 && value.Length <11)
                 {
                     _Postal = value;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 6 and 10 char", value);
+                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
                 }
             }
         }
@@ -194,10 +194,6 @@ namespace WpfCRMProject
             get
             {
                 return _SalesRepId;
-            }
-            set
-            {
-                _SalesRepId = value;
             }
         }
         public string Email

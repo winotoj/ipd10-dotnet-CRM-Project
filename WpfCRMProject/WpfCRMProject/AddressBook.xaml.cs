@@ -37,7 +37,7 @@ namespace WpfCRMProject
 
 
         }
-        public void DisplayAddressBook()
+        private void DisplayAddressBook()
         {
             List<Customer> listCustomer = db.GetAllCustomers();
             lvAddress.Items.Clear();

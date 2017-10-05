@@ -67,12 +67,6 @@ UriKind.RelativeOrAbsolute));
             frTest.Navigate(new System.Uri("AddressBook.xaml",
 UriKind.RelativeOrAbsolute));
         }
-
-        private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
-        {
-            AddCustomer windowAdd = new AddCustomer();
-            windowAdd.ShowDialog();
-        }
     }
 }
 

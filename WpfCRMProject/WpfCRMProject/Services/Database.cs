@@ -59,6 +59,7 @@ namespace WpfCRMProject
 
 
 
+
         public void AddPerson(Customer c)
         {
             String query = @"INSERT INTO CUSTOMERS (company_name, street, city 
@@ -95,5 +96,6 @@ namespace WpfCRMProject
             insertCommand.Parameters.Add(new SqlParameter("Country", c.Country));
             insertCommand.ExecuteNonQuery();
         }
+
     }
 }

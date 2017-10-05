@@ -20,9 +20,9 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Customer Name"/>
-                    <GridViewColumn Header="Cust No"/>
-                    <GridViewColumn Header="Category"/>
+                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}"/>
+                    <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=CustomerId}"/>
+                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Path=Status}"/>
                     <GridViewColumn Header="Status"/>
                     <GridViewColumn Header="Last Purch Date"/>
                     <GridViewColumn Header="Amount"/>
@@ -32,9 +32,22 @@
         <TabControl HorizontalAlignment="Left" Height="275" Margin="10,318,0,0" VerticalAlignment="Top" Width="755">
             <TabItem Header="Details">
                 <Grid Background="#FFE5E5E5" Margin="0,0,-2,3">
-                    <TextBox Name="tbDetail" HorizontalAlignment="Left" Height="167" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="231"/>
-                    <TextBox HorizontalAlignment="Left" Height="167" Margin="246,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244"/>
-                    <TextBox HorizontalAlignment="Left" Height="167" Margin="495,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="249"/>
+                    <Canvas HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="295">
+                        <Label Name="lblContactName" Content="" Canvas.Left="10" Canvas.Top="10" Height="25" Width="229"/>
+                        <Label Name="lblCompanyName" Content="" Canvas.Left="10" Canvas.Top="62" Height="25" Width="229"/>
+                        <Label Name="lblStreet" Content="" Canvas.Left="10" Canvas.Top="106" Height="25" Width="229"/>
+                        <Label Name="lblAddress" Content="" Canvas.Left="10" Canvas.Top="147" Height="25" Width="229"/>
+                    </Canvas>
+                    <Canvas HorizontalAlignment="Left" Height="162" Margin="300,0,0,0" VerticalAlignment="Top" Width="194">
+                        <Label Content="Phone Number" Canvas.Left="10" Canvas.Top="10" Width="174" Height="26"/>
+                        <Label Name="lblPhone1" Content="" Canvas.Left="10" Canvas.Top="70" Width="174" Height="26"/>
+                        <Label Name="lblPhone2" Content="" Canvas.Left="10" Canvas.Top="101" Width="174" Height="26"/>
+                    </Canvas>
+                    <Canvas HorizontalAlignment="Left" Height="170" Margin="494,0,0,0" VerticalAlignment="Top" Width="247">
+                        <Label Content="Email Address" Canvas.Left="10" Canvas.Top="10" Height="30" Width="227"/>
+                        <Label Name="lblEmail" Content="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227"/>
+                    </Canvas>
+
                 </Grid>
 
             </TabItem>

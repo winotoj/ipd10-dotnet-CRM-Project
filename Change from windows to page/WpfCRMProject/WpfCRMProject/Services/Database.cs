@@ -26,13 +26,13 @@ namespace WpfCRMProject
             //DataSet dataSet = new DataSet();
             List<Customer> listCustomer = new List<Customer>();
             //SqlCommand getCommand = new SqlCommand("SELECT * FROM Customers AS c LEFT JOIN Sales as s ON c.customer_id = s.customer_id WHERE c.salesrep_id = @salesrep_id ", conn);
-            SqlCommand getCommand = new SqlCommand("SELECT * fROM customers as c INNER JOIN v_Sales_LatestPurchase as v on c.customer_id = v.customer_id WHERE c.salesrep_id = @salesrep_id", conn);
+            SqlCommand getCommand = new SqlCommand("SELECT * fROM customers as c LEFT JOIN v_Sales_LatestPurchase as v on c.customer_id = v.customer_id WHERE c.salesrep_id = @salesrep_id", conn);
             getCommand.Parameters.Add(new SqlParameter("salesrep_id", Application.Current.Resources["UserName"]));
             using (SqlDataReader reader = getCommand.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    //MessageBox.Show("this is date" + reader["purchase_date"]);
+
                     Customer customer = new Customer
                     {
                         CustomerId = (int)reader["Customer_Id"],
@@ -46,9 +46,7 @@ namespace WpfCRMProject
                         ContactLastName = (string)reader["contact_lastname"],
                         CreateDate = (DateTime)reader["created_date"],
                         Status = (bool)reader["status"],
-                        Email = (string)reader["email"],
-                        LastPurchaseDate = (DateTime)reader["purchase_date"],
-                        Amount = (decimal)reader["amount"]
+                        Email = (string)reader["email"]
                     };
                     listCustomer.Add(customer);
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="741.927" Width="995.313" Closing="MainWindow_Closing">
+        Title="MainWindow" Height="741.927" Width="995.313" Closing="MainWindow_Closing" Loaded="Window_Loaded">
     <DockPanel>
 
         <ToolBarPanel  DockPanel.Dock="Top" Height="36">

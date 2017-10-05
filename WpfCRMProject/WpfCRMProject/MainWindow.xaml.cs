@@ -25,6 +25,20 @@ namespace WpfCRMProject
         {
             InitializeComponent();
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            //this.Hide();
+            //login.Show();
+            // this.Hide();
+            login.ShowDialog();
+           
+                //login.Close();
+               // this.Show();
+            
+           
+        }
+
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Do you really want to exit?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);

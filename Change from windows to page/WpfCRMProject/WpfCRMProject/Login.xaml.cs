@@ -14,6 +14,10 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
+using WpfCRMProject.Services;
+using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
@@ -32,6 +36,7 @@ namespace WpfCRMProject
         public Login()
         {
             InitializeComponent();
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -41,24 +46,68 @@ namespace WpfCRMProject
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            this.Close();
+            //System.Windows.Application.Current.Shutdown();
             System.Windows.Application.Current.MainWindow.Close();
         }
-        void Login_Closing(object sender, CancelEventArgs e)
-        {
-            //needed otherwise when click OK will not open main window
-            if (!OpenApp)
-            {
-                e.Cancel = true;
+        //void Login_Closing(object sender, CancelEventArgs e)
+        //{
+        //    //needed otherwise when click OK will not open main window
+        //    if (!OpenApp)
+        //    {
+        //        e.Cancel = true;
 
-            }
-        }
+        //    }
+        //}
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            //to do checking user name before close this window and open main
-            OpenApp = true;
-            this.Close();
+            if (tbUserName.Text.Length == 0)
+            {
+                errormessage.Text = "Pleasse Enter your Username.";
+                tbUserName.Focus();
+            }
+
+            else
+            {
+                string username = tbUserName.Text;
+                string password = tbPassword.Password;
+                User currentuser = null;
+
+                try
+                {
+                    LoginService loginService = new LoginService();
+                    currentuser = loginService.Login(username, password);
+                }
+                catch (SqlException)
+
+                {
+                    errormessage.Text = "Problem in connecting to database!!";
+                    return;
+                }
+
+                if (currentuser != null)
+                {
+                    //MainWindow myworkday = new MainWindow();
+                    DataSet dataSet = new DataSet();
+                    string welcome = "Welcome " + currentuser.FirstName + " " + currentuser.LastName;
+                    //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
+                    
+                    
+                    Application.Current.Resources.Add("UserName", username);
+                    Application.Current.Resources.Add("FirstName", currentuser.FirstName);
+                    Application.Current.Resources.Add("LastName", currentuser.LastName);
+                    //myworkday.Show();
+                    this.Close();
+                    
+
+                }
+                else
+                {
+                    errormessage.Text = "Sorry! Please enter existing Username And Password.";
+                }
+
+            }
         }
     }
 }

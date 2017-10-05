@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,32 @@ namespace WpfCRMProject
     /// </summary>
     public partial class AddressBook : Page
     {
+        Database db;
         public AddressBook()
         {
-            InitializeComponent();
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            DisplayAddressBook();
+            
+
+        }
+        private void DisplayAddressBook()
+        {
+            List<Customer> listCustomer = db.GetAllCustomers();
+            lvAddress.Items.Clear();
+           
+            foreach (Customer c in listCustomer)
+            {
+                lvAddress.Items.Add(c);
+
+            }
         }
     }
 }

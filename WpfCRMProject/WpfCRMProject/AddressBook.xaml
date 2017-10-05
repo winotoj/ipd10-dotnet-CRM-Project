@@ -20,8 +20,8 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompayName}"/>
-                    <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=Customer_Id}"/>
+                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}"/>
+                    <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=CustomerId}"/>
                     <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Path=Status}"/>
                     <GridViewColumn Header="Status"/>
                     <GridViewColumn Header="Last Purch Date"/>

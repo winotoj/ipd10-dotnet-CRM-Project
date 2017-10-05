@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="741.927" Width="995.313" Closing="MainWindow_Closing">
+   
     <DockPanel>
-
+        <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" />
         <ToolBarPanel  DockPanel.Dock="Top" Height="36">
             <Label Name="lbluserlogin" Content="" HorizontalAlignment="Left" Width="155"/>
         </ToolBarPanel>
@@ -62,7 +63,10 @@
                         <MenuItem>
                             <MenuItem.Header>
                                 <StackPanel>
-                                    <Image Width="35" Height="35" Source="pack://siteoforigin:,,,/images/add.png" />
+                                    <!--<Image Width="35" Height="35" Source="pack://siteoforigin:,,,/images/add.png" />-->
+                                    <Button Width="35">
+                                        <Button x:Name="btnAddCustomer"  Width="35" Height="30" Content="add" Click="btnAddCustomer_Click"/>
+                                    </Button>
 
                                 </StackPanel>
                             </MenuItem.Header>
@@ -83,6 +87,7 @@
                             <MenuItem Header="Last Purchase Date"/>
                             <MenuItem Header="Status"/>
                         </MenuItem>
+                        
                     </Menu>
 
                 </ToolBarPanel>

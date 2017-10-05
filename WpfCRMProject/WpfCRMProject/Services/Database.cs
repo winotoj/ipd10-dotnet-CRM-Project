@@ -54,5 +54,43 @@ namespace WpfCRMProject
             }
             return listCustomer;
         }
+
+
+        public void AddPerson(Customer c)
+        {
+            String query = @"INSERT INTO CUSTOMERS (company_name, street, city 
+                                                        , province, postal
+                                                        , phone
+                                                        , contact_firstname
+                                                        , contact_lastname
+                                                        , created_date
+                                                        , status
+                                                        , salesrep_id
+                                                        , email
+                                                        , country) 
+                                                        VALUES(@CompanyName, @Street, 
+                                                               @City, @Province, 
+                                                               @Postal, @Phone, 
+                                                               @FirstNAme, @LastName, 
+                                                               @CreatedDate, @Status,
+                                                               @Salesrep_id, @Email,
+                                                               @Country)";
+
+            SqlCommand insertCommand = new SqlCommand(query, conn);
+            insertCommand.Parameters.Add(new SqlParameter("CompanyName", c.CompanyName));
+            insertCommand.Parameters.Add(new SqlParameter("Street", c.Street));
+            insertCommand.Parameters.Add(new SqlParameter("City", c.City));
+            insertCommand.Parameters.Add(new SqlParameter("Province", c.Province));
+            insertCommand.Parameters.Add(new SqlParameter("Postal", c.Postal));
+            insertCommand.Parameters.Add(new SqlParameter("Phone", c.Phone));
+            insertCommand.Parameters.Add(new SqlParameter("FirstName", c.ContactFirstName));
+            insertCommand.Parameters.Add(new SqlParameter("LastName", c.ContactLastName));
+            insertCommand.Parameters.Add(new SqlParameter("CreatedDate", c.CreateDate));
+            insertCommand.Parameters.Add(new SqlParameter("Status", c.Status));
+            insertCommand.Parameters.Add(new SqlParameter("Salesrep_id", Application.Current.Resources["UserName"]));
+            insertCommand.Parameters.Add(new SqlParameter("Email", c.Email));
+            insertCommand.Parameters.Add(new SqlParameter("Country", c.Country));
+            insertCommand.ExecuteNonQuery();
+        }
     }
 }

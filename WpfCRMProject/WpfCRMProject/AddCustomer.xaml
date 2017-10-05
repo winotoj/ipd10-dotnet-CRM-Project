@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="AddCustomer" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="429.118" Width="605.815">
-    <Grid >
+        Title="AddCustomer" Height="434.858" Width="600">
+    <Grid>
         <Label Content="Basic Info" HorizontalAlignment="Left" Margin="6,8,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="116,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462"/>
         <Label Content="Company Name" HorizontalAlignment="Left" Margin="13,31,0,0" VerticalAlignment="Top"/>
@@ -35,8 +35,8 @@
         <TextBox x:Name="tbPostalCode" HorizontalAlignment="Left" Height="23" Margin="116,302,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="97"/>
         <Label Content="Country" HorizontalAlignment="Left" Margin="310,299,0,0" VerticalAlignment="Top" Width="66"/>
         <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="383,302,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="206,353,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="302,353,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
-
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="206,353,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="302,353,0,0" VerticalAlignment="Top" Width="75" />
+        
     </Grid>
 </Window>

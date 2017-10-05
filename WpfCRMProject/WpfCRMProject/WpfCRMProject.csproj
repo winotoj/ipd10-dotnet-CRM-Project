@@ -55,7 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddCustomer.xaml.cs">
+      <DependentUpon>AddCustomer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Customer.cs" />
+    <Compile Include="Services\AddCustomer.cs" />
     <Compile Include="Services\Database.cs" />
     <Compile Include="AddNewCustomer.xaml.cs">
       <DependentUpon>AddNewCustomer.xaml</DependentUpon>
@@ -81,9 +85,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddCustomer.xaml.cs">
-      <DependentUpon>AddCustomer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddressBook.xaml.cs">
       <DependentUpon>AddressBook.xaml</DependentUpon>
     </Compile>

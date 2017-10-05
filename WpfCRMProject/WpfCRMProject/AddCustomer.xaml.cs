@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +20,73 @@ namespace WpfCRMProject
     /// </summary>
     public partial class AddCustomer : Window
     {
+        Database db;
         public AddCustomer()
         {
-            InitializeComponent();
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }            
+
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            String companyName = tbCompanyName.Text;
+            String firstName = tbFirstName.Text;
+            String lastName = tbLastName.Text;
+            String phoneNum = tbPhoneNum.Text;
+            String fax = tbFax.Text;
+            String Email = tbEmail.Text;
+            String webSite = tbWebsite.Text;
+            String street = tbStreet.Text;
+            String city = tbcity.Text;
+            String postalCode = tbPostalCode.Text;
+            String province = tbProvince.Text;
+            String country = tbCountry.Text;
+
+            Customer newCustomer = new Customer
+            {
+                
+                CompanyName = companyName,
+                Street = street,
+                City = city,
+                Province = province,
+                Postal = postalCode,
+                Phone = phoneNum,
+                Fax = fax,
+                ContactFirstName = firstName,
+                ContactLastName = lastName,
+                Country = country,
+                CreateDate = DateTime.Today,
+                Status = true,
+                Email = Email
+            };
+
+            db.AddPerson(newCustomer);
+            
+            MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            AddressBook addressBook = new AddressBook();
+            addressBook.DisplayAddressBook();
+
+            //List<Customer> listCustomer = db.GetAllCustomers();
+            //addressBook.lvAddress.Items.Clear();
+
+            //foreach (Customer c in listCustomer)
+            //{
+            //    addressBook.lvAddress.Items.Add(c);
+
+            //}
+
             this.Close();
+
+
         }
     }
 }

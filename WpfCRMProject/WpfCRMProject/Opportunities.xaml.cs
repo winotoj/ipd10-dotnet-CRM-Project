@@ -47,9 +47,9 @@ namespace WpfCRMProject
         {
             AddCustomer windowAdd = new AddCustomer();
             windowAdd.ShowDialog();
-            
+
         }
 
-        
+
     }
 }

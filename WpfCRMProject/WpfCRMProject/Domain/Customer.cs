@@ -22,6 +22,8 @@ namespace WpfCRMProject
         private bool _Status;
         private int _SalesRepId;
         private string _Email;
+        private DateTime _LastPurchaseDate;
+        private decimal _Amount;
 
 
         //need to change validation using regex
@@ -169,6 +171,17 @@ namespace WpfCRMProject
                 }
             }
         }
+        public Decimal Amount
+        {
+            get
+            {
+                return _Amount;
+            }
+            set
+            {                
+                    _Amount = value;                
+            }
+        }
         public string ContactFirstName
         {
             get
@@ -213,7 +226,18 @@ namespace WpfCRMProject
             }
             set
             {
-                _CreatedDate = DateTime.Now;
+                _CreatedDate = value;
+            }
+        }
+        public DateTime LastPurchaseDate
+        {
+            get
+            {
+                return _LastPurchaseDate;
+            }
+            set
+            {
+                _LastPurchaseDate = value;
             }
         }
         public bool Status

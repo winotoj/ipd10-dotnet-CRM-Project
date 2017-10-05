@@ -93,16 +93,12 @@ namespace WpfCRMProject
                     myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
                     this.Hide();
                     myworkday.Show();
-                    Application.Current.Resources.Add("UserName", username);
-<<<<<<< HEAD
-                    Application.Current.Resources.Add("FirstName", dataSet.Tables[0].Rows[0]["FirstName"].ToString());
-                    Application.Current.Resources.Add("LastName", dataSet.Tables[0].Rows[0]["LastName"].ToString());
-                    Application.Current.Resources.Add("salesrep_id", dataSet.Tables[0].Rows[0]["salesrep_id"]);
-=======
+
+                    Application.Current.Resources.Add("UserName", username); 
                     Application.Current.Resources.Add("FirstName", currentuser.FirstName);
                     Application.Current.Resources.Add("LastName", currentuser.LastName);
 
->>>>>>> b816058eda0f8091970f3d185411827c8a4dcc59
+
                 }
                 else
                 {

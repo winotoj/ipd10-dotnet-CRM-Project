@@ -58,6 +58,7 @@ namespace WpfCRMProject
         }
 
 
+
         public void AddPerson(Customer c)
         {
             String query = @"INSERT INTO CUSTOMERS (company_name, street, city 

@@ -12,18 +12,14 @@ namespace WpfCRMProject
         private string _Street;
         private string _City;
         private string _Province;
-        private string _Country;
         private string _Postal;
         private string _Phone;
-        private string _Fax;
         private string _ContactFirstName;
         private string _ContactLastName;
         private DateTime _CreatedDate;
         private bool _Status;
         private int _SalesRepId;
         private string _Email;
-        private DateTime _LastPurchaseDate;
-        private decimal _Amount;
 
 
         //need to change validation using regex
@@ -99,24 +95,6 @@ namespace WpfCRMProject
                 }
             }
         }
-        public string Country
-        {
-            get
-            {
-                return _Country;
-            }
-            set
-            {
-                if (value.Length > 1)
-                {
-                    _Country = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
-                }
-            }
-        }
         public string Postal
         {
             get
@@ -146,24 +124,6 @@ namespace WpfCRMProject
                 if (value.Length > 9 && value.Length < 16)
                 {
                     _Phone = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
-                }
-            }
-        }
-        public string Fax
-        {
-            get
-            {
-                return _Fax;
-            }
-            set
-            {
-                if (value.Length > 9 && value.Length < 16)
-                {
-                    _Fax = value;
                 }
                 else
                 {
@@ -215,7 +175,7 @@ namespace WpfCRMProject
             }
             set
             {
-                _CreatedDate = value;
+                _CreatedDate = DateTime.Now;
             }
         }
         public bool Status
@@ -252,28 +212,6 @@ namespace WpfCRMProject
                 {
                     throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
                 }
-            }
-        }
-        public DateTime LastPurchaseDate
-        {
-            get
-            {
-                return _LastPurchaseDate;
-            }
-            set
-            {
-                _LastPurchaseDate = value;
-            }
-        }
-        public decimal Amount
-        {
-            get
-            {
-                return _Amount;
-            }
-            set
-            {
-                _Amount = value;
             }
         }
     }

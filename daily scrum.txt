@@ -27,5 +27,15 @@ ex:
 5.I will search about login service
 
 
+2017/10/05 Vaji
+
+1.I compeleted the UI for addNewCustomer and redesign UI for opportunities
+2.I serached about the service login and added class for login
+3.i will fix problem for login
+4.i will make query to add Newcustomer to database
+5.i will work on page workday
+
+
+
 
 

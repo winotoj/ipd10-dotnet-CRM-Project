@@ -22,10 +22,10 @@
                 <GridView>
                     <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}"/>
                     <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=CustomerId}"/>
-                    <GridViewColumn Header="Created date" DisplayMemberBinding="{Binding Path=CreateDate}"/>
-                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}"/>
-                    <GridViewColumn Header="Last Purch Date" DisplayMemberBinding="{Binding Path=LastPurchaseDate}"/>
-                    <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Path=Amount}"/>
+                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Path=Status}"/>
+                    <GridViewColumn Header="Status"/>
+                    <GridViewColumn Header="Last Purch Date"/>
+                    <GridViewColumn Header="Amount"/>
                 </GridView>
             </ListView.View>
         </ListView>

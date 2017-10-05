@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="741.927" Width="995.313">
+        Title="MainWindow" Height="741.927" Width="995.313" Loaded="Window_Loaded" Closing="MainWindow_Closing">
     <DockPanel>
 
         <ToolBarPanel  DockPanel.Dock="Top" Height="36">
-            <Label Content="Label" HorizontalAlignment="Left" Width="155"/>
+            <Label Name="lbluserlogin" Content="" HorizontalAlignment="Left" Width="155"/>
         </ToolBarPanel>
 
         <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="586">
-            <Button Height="50" Width="150" Click="Button_Click" >
+            <Button Name="btnAddressBook" Height="50" Width="150" Click="btnAddressBook_Click" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
@@ -33,7 +33,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="150" Click="btnOpportunities_Click" >
+            <Button Height="50" Width="150" Click="btnOpportunity_Click" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
@@ -84,10 +84,11 @@
                             <MenuItem Header="Status"/>
                         </MenuItem>
                     </Menu>
-                    
+
                 </ToolBarPanel>
-                
+
             </Grid>
         </ScrollViewer>
     </DockPanel>
 </Window>
+

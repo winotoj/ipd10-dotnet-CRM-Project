@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-       Title="Login" Height="256.809" Width="295.331" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closing="Login_Closing">
+       Title="Login" Height="256.809" Width="295.331" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
     <Grid>
         <Label Content="User Name" HorizontalAlignment="Left" Margin="34,70,0,0" VerticalAlignment="Top" Width="81"/>
         <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="23" Margin="115,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149"/>

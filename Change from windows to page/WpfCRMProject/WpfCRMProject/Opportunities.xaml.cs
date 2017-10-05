@@ -20,11 +20,14 @@ namespace WpfCRMProject
     /// </summary>
     public partial class Opportunities : Window
     {
+        
         public Opportunities()
         {
             InitializeComponent();
+            lblwelcome.Content = Application.Current.Resources["FirstName"];
         }
 
+        
         private void btnAddressBook_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -39,5 +42,14 @@ namespace WpfCRMProject
             App.Current.MainWindow.Show();
             //this.Close();
         }
+
+        private void btnAddnewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            AddCustomer windowAdd = new AddCustomer();
+            windowAdd.ShowDialog();
+            
+        }
+
+        
     }
 }

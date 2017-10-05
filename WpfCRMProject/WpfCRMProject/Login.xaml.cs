@@ -46,18 +46,19 @@ namespace WpfCRMProject
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            this.Close();
+            //System.Windows.Application.Current.Shutdown();
             System.Windows.Application.Current.MainWindow.Close();
         }
-        void Login_Closing(object sender, CancelEventArgs e)
-        {
-            //needed otherwise when click OK will not open main window
-            if (!OpenApp)
-            {
-                e.Cancel = true;
+        //void Login_Closing(object sender, CancelEventArgs e)
+        //{
+        //    //needed otherwise when click OK will not open main window
+        //    if (!OpenApp)
+        //    {
+        //        e.Cancel = true;
 
-            }
-        }
+        //    }
+        //}
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
@@ -87,17 +88,18 @@ namespace WpfCRMProject
 
                 if (currentuser != null)
                 {
-                    MainWindow myworkday = new MainWindow();
+                    //MainWindow myworkday = new MainWindow();
                     DataSet dataSet = new DataSet();
                     string welcome = "Welcome " + currentuser.FirstName + " " + currentuser.LastName;
-                    myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
-                    this.Hide();
-                    myworkday.Show();
-
+                    //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
+                    
+                    
                     Application.Current.Resources.Add("UserName", username);
                     Application.Current.Resources.Add("FirstName", currentuser.FirstName);
                     Application.Current.Resources.Add("LastName", currentuser.LastName);
-
+                    //myworkday.Show();
+                    this.Close();
+                    
 
                 }
                 else

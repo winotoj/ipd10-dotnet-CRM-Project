@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using WpfCRMProject.Services;
+using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
@@ -34,7 +36,7 @@ namespace WpfCRMProject
         public Login()
         {
             InitializeComponent();
-            
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -59,42 +61,48 @@ namespace WpfCRMProject
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            //to do checking user name before close this window and open main
             if (tbUserName.Text.Length == 0)
             {
                 errormessage.Text = "Pleasse Enter your Username.";
                 tbUserName.Focus();
             }
-            
+
             else
             {
                 string username = tbUserName.Text;
                 string password = tbPassword.Password;
-                SqlConnection con = new SqlConnection("Server=tcp:vwdotnetproject.database.windows.net,1433;Initial Catalog=CrmProject;Persist Security Info=False;User ID=vajiwinoto;Password=VW@azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM SalesReps WHERE username = '" + username + "'  AND PASSWORD = '" + password + "'", con);
-                cmd.CommandType = CommandType.Text;
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet);
-                if (dataSet.Tables[0].Rows.Count > 0)
+                User currentuser = null;
+
+                try
+                {
+                    LoginService loginService = new LoginService();
+                    currentuser = loginService.Login(username, password);
+                }
+                catch (SqlException)
+
+                {
+                    errormessage.Text = "Problem in connecting to database!!";
+                    return;
+                }
+
+                if (currentuser != null)
                 {
                     MainWindow myworkday = new MainWindow();
-                    string welcome = dataSet.Tables[0].Rows[0]["FirstName"].ToString() + " " + dataSet.Tables[0].Rows[0]["LastName"].ToString();
+
+                    string welcome = "Welcome " + currentuser.FirstName + " " + currentuser.LastName;
                     myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
                     this.Hide();
                     myworkday.Show();
                     Application.Current.Resources.Add("UserName", username);
-                    Application.Current.Resources.Add("FirstName", dataSet.Tables[0].Rows[0]["FirstName"].ToString());
-                    Application.Current.Resources.Add("LastName", dataSet.Tables[0].Rows[0]["LastName"].ToString());
+                    Application.Current.Resources.Add("FirstName", currentuser.FirstName);
+                    Application.Current.Resources.Add("LastName", currentuser.LastName);
 
                 }
                 else
                 {
                     errormessage.Text = "Sorry! Please enter existing Username And Password.";
                 }
-                con.Close();
+
             }
         }
     }

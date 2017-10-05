@@ -36,6 +36,12 @@ ex:
 5.i will work on page workday
 
 
+2017/10/05 Winoto
+1. Completed load address book
+2. Completed setup DB and populate
+3. Will continue populate detail for each customer
+4. Will create edit Customer
+
 
 
 

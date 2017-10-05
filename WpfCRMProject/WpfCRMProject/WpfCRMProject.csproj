@@ -55,16 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-
-    <Compile Include="Customer.cs" />
-    <Compile Include="Database.cs" />
-
+    <Compile Include="Domain\Customer.cs" />
+    <Compile Include="Services\Database.cs" />
     <Compile Include="AddNewCustomer.xaml.cs">
       <DependentUpon>AddNewCustomer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Domain\User.cs" />
     <Compile Include="Services\LoginService.cs" />
-
     <Compile Include="WorkDay.xaml.cs">
       <DependentUpon>WorkDay.xaml</DependentUpon>
     </Compile>

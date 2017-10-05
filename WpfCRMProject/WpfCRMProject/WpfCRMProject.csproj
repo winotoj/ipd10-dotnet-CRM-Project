@@ -55,8 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="Customer.cs" />
     <Compile Include="Database.cs" />
+=======
+    <Compile Include="AddNewCustomer.xaml.cs">
+      <DependentUpon>AddNewCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Services\LoginService.cs" />
+>>>>>>> b816058eda0f8091970f3d185411827c8a4dcc59
     <Compile Include="WorkDay.xaml.cs">
       <DependentUpon>WorkDay.xaml</DependentUpon>
     </Compile>
@@ -98,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Opportunity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewCustomer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,5 +170,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

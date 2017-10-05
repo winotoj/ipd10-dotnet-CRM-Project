@@ -88,7 +88,7 @@ namespace WpfCRMProject
                     Application.Current.Resources.Add("UserName", username);
                     Application.Current.Resources.Add("FirstName", dataSet.Tables[0].Rows[0]["FirstName"].ToString());
                     Application.Current.Resources.Add("LastName", dataSet.Tables[0].Rows[0]["LastName"].ToString());
-
+                    Application.Current.Resources.Add("salesrep_id", dataSet.Tables[0].Rows[0]["salesrep_id"]);
                 }
                 else
                 {

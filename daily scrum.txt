@@ -42,6 +42,9 @@ ex:
 3. Will continue populate detail for each customer
 4. Will create edit Customer
 
-
+2017/10/06 Winoto
+1. Solved refresh frame and null data from sql
+2. Had problem with github, some of jobs from yesterday at school are gone
+3. Will continue number 3&4 above
 
 

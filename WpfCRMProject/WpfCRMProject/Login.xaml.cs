@@ -91,8 +91,7 @@ namespace WpfCRMProject
                     //MainWindow myworkday = new MainWindow();
                     DataSet dataSet = new DataSet();
                     string welcome = "Welcome " + currentuser.FirstName + " " + currentuser.LastName;
-                    //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
-                    
+                    //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.                   
                     
                     Application.Current.Resources.Add("UserName", username);
                     Application.Current.Resources.Add("FirstName", currentuser.FirstName);

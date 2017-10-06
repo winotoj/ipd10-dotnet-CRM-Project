@@ -164,5 +164,20 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\addNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\SearchCustomer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\multimedia %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\multimedia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\unlock-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

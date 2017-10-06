@@ -129,5 +129,36 @@ namespace WpfCRMProject
             insertCommand.ExecuteNonQuery();
         }
 
+        public List<Customer> GetOpportunities()
+        {
+            List<Customer> listOpportunities = new List<Customer>();
+            SqlCommand getCommand = new SqlCommand("SELECT * FROM CUSTOMERS WHERE STATUS = 0 AND SALESREP_ID = @SALESREP_ID", conn);
+            getCommand.Parameters.Add(new SqlParameter("SALESREP_ID", Application.Current.Resources["UserName"]));
+            using (SqlDataReader reader = getCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Customer customer = new Customer
+                    {
+                        CustomerId = (int)reader["Customer_Id"],
+                        CompanyName = (string)reader["company_name"],
+                        Street = (string)reader["street"],
+                        City = (string)reader["city"],
+                        Province = (string)reader["province"],
+                        Postal = (string)reader["postal"],
+                        Phone = (string)reader["phone"],
+                        ContactFirstName = (string)reader["contact_firstname"],
+                        ContactLastName = (string)reader["contact_lastname"],
+                        CreateDate = (DateTime)reader["created_date"],
+                        Status = (bool)reader["status"],
+                        Email = (string)reader["email"],
+                    };
+                    listOpportunities.Add(customer);
+                }
+
+            }
+            return listOpportunities;
+
+        }
     }
 }

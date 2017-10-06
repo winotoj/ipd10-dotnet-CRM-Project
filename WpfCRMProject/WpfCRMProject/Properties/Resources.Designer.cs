@@ -63,6 +63,16 @@ namespace WpfCRMProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap addNew {
+            get {
+                object obj = ResourceManager.GetObject("addNew", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddressBook {
             get {
                 object obj = ResourceManager.GetObject("AddressBook", resourceCulture);
@@ -93,9 +103,49 @@ namespace WpfCRMProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap multimedia {
+            get {
+                object obj = ResourceManager.GetObject("multimedia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap multimedia__1_ {
+            get {
+                object obj = ResourceManager.GetObject("multimedia__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Opportunities {
             get {
                 object obj = ResourceManager.GetObject("Opportunities", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SearchCustomer {
+            get {
+                object obj = ResourceManager.GetObject("SearchCustomer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unlock_icon {
+            get {
+                object obj = ResourceManager.GetObject("unlock_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

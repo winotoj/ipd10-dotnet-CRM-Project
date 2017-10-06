@@ -1,0 +1,73 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCRMProject"
+        xmlns:Properties="clr-namespace:WpfCRMProject.Properties" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="WpfCRMProject.Opportunities"
+        mc:Ignorable="d"
+
+        Title="Opportunities" HorizontalContentAlignment="Stretch" Height="693.751" Width="1037.507" >
+
+        
+    <DockPanel>
+
+        <ToolBarPanel  DockPanel.Dock="Top" Height="36" Background="#FFE0E1E4">
+            <Label Content="" HorizontalAlignment="Left" Width="155">
+                
+            </Label>
+        </ToolBarPanel>
+
+        <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="475" Margin="0,0,0,-3">
+            <ToolBarPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE0E1E4" Offset="0"/>
+                    <GradientStop Color="#FFEBEBED" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBarPanel.Background>
+
+            <Button Height="32" Width="150" HorizontalAlignment="Left" Margin="5,20,0,0" FontFamily="Georgia" Click="btnAddressBook_Click" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <Canvas>
+                            <Image Source="pack://siteoforigin:,,,/images/addressbook.jpg" Height="30" Width="30" Stretch="Fill"/>
+                            <TextBlock Canvas.Left="40" Canvas.Top="8" Text="AddressBook" FontFamily="Calibri" FontSize="17"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Height="32" Margin="5,20,0,0" FontSize="11" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <Canvas>
+                            <Image Source="images/calendar.png" Height="30" Width="30"/>
+                            <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Calendar" FontFamily="Calibri" FontSize="17"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Height="35" Margin="5,20,0,0" FontWeight="Bold" Foreground="#FF0A3D6F" FontSize="10"  >
+                <Button.Template>
+                    <ControlTemplate>
+                        <Canvas>
+                            <Image Source="pack://siteoforigin:,,,/images/money.png" Height="40" Width="36"/>
+                            <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Opportunites" FontFamily="Calibri" FontSize="17"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Height="35" Margin="5,20,0,0" FontSize="11" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <Canvas>
+                            <Image Source="pack://siteoforigin:,,,/images/reports.png" Height="40" Width="36"/>
+                            <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Reports" FontFamily="Calibri" FontSize="17"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label x:Name="lblwelcome" Content="Label" HorizontalAlignment="Left" Width="188"/>
+        </ToolBarPanel>
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" BorderBrush="#FFD3D8DB" BorderThickness="1" Margin="0,3,0,-3"/>
+    </DockPanel>
+</Window>

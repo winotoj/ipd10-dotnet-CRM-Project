@@ -46,5 +46,6 @@ ex:
 1. Solved refresh frame and null data from sql
 2. Had problem with github, some of jobs from yesterday at school are gone
 3. Will continue number 3&4 above
+4. Vaji pls merge from my temporary folder into your code and push it so i can have the fresh one
 
 

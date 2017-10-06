@@ -1,0 +1,93 @@
+﻿<Page x:Class="WpfCRMProject.AddressBook"
+
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+
+      xmlns:local="clr-namespace:WpfCRMProject"
+
+      mc:Ignorable="d" 
+
+      d:DesignHeight="300" d:DesignWidth="300"
+
+      Title="AddressBook">
+
+    <Grid Margin="0,0,-494,-307">
+        <ListView Name="lvAddress" HorizontalAlignment="Left" Height="271" Margin="10,42,0,0" VerticalAlignment="Top" Width="755" SelectionChanged="lvAddress_SelectionChanged" SelectionMode="Single">
+            <ListView.ContextMenu>
+                <ContextMenu Name="ZoneIformationList" StaysOpen="true" Background="WhiteSmoke">
+                    <ContextMenu.BitmapEffect>
+                        <BitmapEffectGroup/>
+                    </ContextMenu.BitmapEffect>                    
+                    <MenuItem Header="Delete" Name="cmDelete"/>               
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}"/>
+                    <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=CustomerId}"/>
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}"/>
+                    <GridViewColumn Header="Created on" DisplayMemberBinding="{Binding Path=CreateDate}"/>
+                    <GridViewColumn Header="Last Purch Date" DisplayMemberBinding="{Binding Path=LastPurchaseDate}"/>
+                    <GridViewColumn Header="Last Purch Amount">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Amount}" TextAlignment="Right" Width="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TabControl HorizontalAlignment="Left" Height="275" Margin="10,318,0,0" VerticalAlignment="Top" Width="755">
+            <TabItem Header="Details">
+                <Grid Background="#FFE5E5E5" Margin="0,0,-2,3">
+                    <Canvas HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="295">
+                        <Label Name="lblContactName" Content="" Canvas.Left="10" Canvas.Top="10" Height="25" Width="229"/>
+                        <Label Name="lblCompanyName" Content="" Canvas.Left="10" Canvas.Top="62" Height="25" Width="229"/>
+                        <Label Name="lblStreet" Content="" Canvas.Left="10" Canvas.Top="106" Height="25" Width="229"/>
+                        <Label Name="lblAddress" Content="" Canvas.Left="10" Canvas.Top="147" Height="25" Width="229"/>
+                    </Canvas>
+                    <Canvas HorizontalAlignment="Left" Height="209" Margin="300,0,0,0" VerticalAlignment="Top" Width="194">
+                        <Label Content="Phone Number" Canvas.Left="10" Canvas.Top="10" Width="174" Height="26"/>
+                        <Label Name="lblPhone1" Content="" Canvas.Left="10" Canvas.Top="70" Width="174" Height="26"/>
+                        <Label Name="lblPhone2" Content="" Canvas.Left="10" Canvas.Top="101" Width="174" Height="26"/>
+                        <Button Name="btnCompanyEditDetail" Content="Edit" Canvas.Left="56" Canvas.Top="179" Width="74" RenderTransformOrigin="-0.027,0.775" Click="btnCompanyEditDetail_Click"/>
+                    </Canvas>
+                    <Canvas HorizontalAlignment="Left" Height="170" Margin="494,0,0,0" VerticalAlignment="Top" Width="247">
+                        <Label Content="Email Address" Canvas.Left="10" Canvas.Top="10" Height="30" Width="227"/>
+                        <Label Name="lblEmail" Content="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227"/>
+                    </Canvas>
+                </Grid>
+            </TabItem>
+            <TabItem Header="History">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="677*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Note">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="677*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Purchase">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="677*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

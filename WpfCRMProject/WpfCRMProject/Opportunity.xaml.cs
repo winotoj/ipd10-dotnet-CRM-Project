@@ -23,6 +23,25 @@ namespace WpfCRMProject
         public Opportunity()
         {
             InitializeComponent();
+            //lblwelcome.Content = Application.Current.Resources["FirstName"];
         }
+
+
+       
+        //to be fixed because cannot open main window
+        //void Opportunities_Closing(object sender, CancelEventArgs e)
+        //{
+
+        //    e.Cancel = true;
+        //    App.Current.MainWindow.Show();
+        //    //this.Close();
+        //}
+
+        //private void btnAddnewCustomer_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AddCustomer windowAdd = new AddCustomer();
+        //    windowAdd.ShowDialog();
+
+        //}
     }
 }

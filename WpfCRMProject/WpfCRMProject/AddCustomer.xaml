@@ -7,36 +7,40 @@
         mc:Ignorable="d"
         Title="AddCustomer" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="429.118" Width="605.815">
     <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="447*"/>
+            <ColumnDefinition Width="155*"/>
+        </Grid.ColumnDefinitions>
         <Label Content="Basic Info" HorizontalAlignment="Left" Margin="6,8,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="116,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462"/>
+        <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="116,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462" Grid.ColumnSpan="2"/>
         <Label Content="Company Name" HorizontalAlignment="Left" Margin="13,31,0,0" VerticalAlignment="Top"/>
         <Label Content="First Name" HorizontalAlignment="Left" Margin="13,61,0,0" VerticalAlignment="Top"/>
         <Label Content="Last Name" HorizontalAlignment="Left" Margin="310,63,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="116,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167"/>
-        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="380,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198"/>
+        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="380,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Grid.ColumnSpan="2"/>
         <Label Content="Phone Number" HorizontalAlignment="Left" Margin="7,110,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Main" HorizontalAlignment="Left" Margin="13,137,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbPhoneNum" HorizontalAlignment="Left" Height="23" Margin="116,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167"/>
         <Label Content="Fax" HorizontalAlignment="Left" Margin="13,169,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbFax" HorizontalAlignment="Left" Height="23" Margin="116,172,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167"/>
-        <Label Content="Email Address and WebSite" HorizontalAlignment="Left" Margin="304,110,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Email Address and WebSite" HorizontalAlignment="Left" Margin="304,110,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2"/>
         <Label Content="Email" HorizontalAlignment="Left" Margin="308,137,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Height="23" Margin="380,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Grid.ColumnSpan="2"/>
         <Label Content="WebSite" HorizontalAlignment="Left" Margin="308,169,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbWebsite" HorizontalAlignment="Left" Height="23" Margin="380,172,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Grid.ColumnSpan="2"/>
         <Label Content="Address" HorizontalAlignment="Left" Margin="13,216,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Street" HorizontalAlignment="Left" Margin="13,243,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbStreet" HorizontalAlignment="Left" Height="23" Margin="116,246,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365"/>
+        <TextBox x:Name="tbStreet" HorizontalAlignment="Left" Height="23" Margin="116,246,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Grid.ColumnSpan="2"/>
         <Label Content="City" HorizontalAlignment="Left" Margin="13,271,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbcity" HorizontalAlignment="Left" Height="23" Margin="116,274,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167"/>
         <Label Content="Province" HorizontalAlignment="Left" Margin="310,271,0,0" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="tbProvince" HorizontalAlignment="Left" Height="23" Margin="383,274,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="70"/>
+        <TextBox x:Name="tbProvince" HorizontalAlignment="Left" Height="23" Margin="383,274,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2"/>
         <Label Content="Postal Code" HorizontalAlignment="Left" Margin="13,299,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbPostalCode" HorizontalAlignment="Left" Height="23" Margin="116,302,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="97"/>
         <Label Content="Country" HorizontalAlignment="Left" Margin="310,299,0,0" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="383,302,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="206,353,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="302,353,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
+        <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="383,302,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="206,353,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="302,353,0,0" VerticalAlignment="Top" Width="75" />
 
     </Grid>
 </Window>

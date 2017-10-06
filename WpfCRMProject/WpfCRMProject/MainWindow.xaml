@@ -5,64 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="741.927" Width="995.313" Closing="MainWindow_Closing" Loaded="Window_Loaded">
-    <DockPanel>
+        Title="MainWindow" Height="740" Width="1000" Closing="MainWindow_Closing" Loaded="Window_Loaded">
+    <DockPanel Background="#FFEDF4F4">
 
-        <ToolBarPanel  DockPanel.Dock="Top" Height="36">
+        <ToolBarPanel  DockPanel.Dock="Top" Height="80" Margin="0,0,0.4,0" Background="#FF444545">
             <Label Name="lbluserlogin" Content="" HorizontalAlignment="Left" Width="155"/>
         </ToolBarPanel>
 
-        <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="586">
-            <Button Name="btnAddressBook" Height="50" Width="150" Click="btnAddressBook_Click" >
+        <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="633" Background="#FFEDF4F4" Margin="0,0,0,-0.2">
+            <Button Name="btnAddressBook" Height="50" Width="150" Click="btnAddressBook_Click" Margin="0,40,0,0" BorderThickness="1" BorderBrush="#FF707070" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
-                            <Image Source="pack://siteoforigin:,,,/images/addressbook.jpg" Height="40" Width="36"/>
+                            <Image Source="pack://siteoforigin:,,,/Images/AddressBook.png" Height="40" Width="36"/>
                             <TextBlock Canvas.Left="40" Canvas.Top="8" Text="AddressBook" FontFamily="Arial" FontSize="18"/>
                         </Canvas>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="150" >
+            <Button Height="50" Width="150" Margin="0,15,0,0" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
-                            <Image Source="pack://siteoforigin:,,,/images/calendar.png" Height="40" Width="36"/>
+                            <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
                             <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Calendar" FontFamily="Arial" FontSize="18"/>
                         </Canvas>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="150" Click="btnOpportunity_Click" >
+            <Button Height="50" Width="150" Click="btnOpportunity_Click" Margin="0,15,0,0" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
-                            <Image Source="pack://siteoforigin:,,,/images/money.png" Height="40" Width="36"/>
+                            <Image Source="pack://siteoforigin:,,,/Images/Opportunities.png" Height="40" Width="36"/>
                             <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Opportunites" FontFamily="Arial" FontSize="18"/>
                         </Canvas>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="150" >
+            <Button Height="50" Width="150" Margin="0,15,0,0" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
-                            <Image Source="pack://siteoforigin:,,,/images/reports.png" Height="40" Width="36"/>
+                            <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
                             <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Reports" FontFamily="Arial" FontSize="18"/>
                         </Canvas>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
         </ToolBarPanel>
-        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" Background="#FFEDF4F4">
             <Grid>
-                <Frame Name="frTest" Margin="0,42,10,10"></Frame>
+                <Frame Name="frTest" Margin="0,42,10,-18.4" Background="#FFEDF4F4"></Frame>
                 <ToolBarPanel HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="703">
-                    <Menu>
+                    <Menu Background="#FFEDF4F4">
                         <MenuItem>
                             <MenuItem.Header>
                                 <StackPanel>
-                                    <Image Width="35" Height="35" Source="pack://siteoforigin:,,,/images/add.png" />
+                                    <Button Content="Add" Width="32" Height="32" Click="btnAddCustomer_Click"/>
 
                                 </StackPanel>
                             </MenuItem.Header>
@@ -71,6 +71,7 @@
                             <MenuItem.Header>
                                 <StackPanel>
                                     <Image Width="35" Height="35" Source="pack://siteoforigin:,,,/images/search.png" />
+
                                 </StackPanel>
 
                             </MenuItem.Header>
@@ -83,6 +84,7 @@
                             <MenuItem Header="Last Purchase Date"/>
                             <MenuItem Header="Status"/>
                         </MenuItem>
+
                     </Menu>
 
                 </ToolBarPanel>

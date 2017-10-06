@@ -22,9 +22,8 @@ namespace WpfCRMProject
         private bool _Status;
         private int _SalesRepId;
         private string _Email;
-        private DateTime _LastPurchaseDate;
-        private decimal _Amount;
-
+        private string _LastPurchaseDate;
+        private string _Amount;
 
         //need to change validation using regex
         //combobox for province?
@@ -125,7 +124,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 5 && value.Length <11)
+                if (value.Length > 5 && value.Length < 11)
                 {
                     _Postal = value;
                 }
@@ -171,15 +170,17 @@ namespace WpfCRMProject
                 }
             }
         }
-        public Decimal Amount
+        public string Amount
         {
             get
             {
                 return _Amount;
             }
             set
-            {                
-                    _Amount = value;                
+            {
+                _Amount = value;
+
+
             }
         }
         public string ContactFirstName
@@ -229,7 +230,7 @@ namespace WpfCRMProject
                 _CreatedDate = value;
             }
         }
-        public DateTime LastPurchaseDate
+        public string LastPurchaseDate
         {
             get
             {

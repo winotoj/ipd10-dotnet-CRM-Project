@@ -52,21 +52,65 @@ namespace WpfCRMProject
         {
             if(lvAddress.SelectedItem != null)
             {
+                DisableEnableTextBox(false);
                 Customer customerSelected = (Customer)lvAddress.SelectedItem;
-                lblContactName.Content = customerSelected.ContactFirstName + " " + customerSelected.ContactLastName;
-                lblCompanyName.Content = customerSelected.CompanyName;
-                lblStreet.Content = customerSelected.Street;
-                lblAddress.Content = customerSelected.City + "\n" + customerSelected.Province + ", " + customerSelected.Postal + " " + customerSelected.Country;
-                lblPhone1.Content = customerSelected.Phone;
-                lblPhone2.Content = customerSelected.Fax;
-                lblEmail.Content = customerSelected.Email;
-
+                tbContactName.Text = customerSelected.ContactFirstName + " " + customerSelected.ContactLastName;
+                tbCompanyName.Text = customerSelected.CompanyName;
+                tbStreet.Text = customerSelected.Street;
+                tbCity.Text = customerSelected.City;
+                tbProvince.Text = customerSelected.Province;
+                tbPostal.Text = customerSelected.Postal;
+                tbCountry.Text = customerSelected.Country;
+                tbPhone1.Text = customerSelected.Phone;
+                tbPhone2.Text = customerSelected.Fax;
+                tbEmail.Text = customerSelected.Email;
+                lblSalesRep.Content = customerSelected.SalesRepId;
             }
         }
 
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
+            if(lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString())
+            {
 
+
+                MessageBox.Show(lblSalesRep.Content + "---" + Application.Current.Resources["UserName"]);
+            }
+            else
+            {
+                DisableEnableTextBox(true);
+
+            }
+        }
+
+        private void DisableEnableTextBox(bool toggle)
+        {
+            tbCity.IsEnabled = toggle;
+            tbProvince.IsEnabled = toggle;
+            tbPostal.IsEnabled = toggle;
+            tbCountry.IsEnabled = toggle;
+            tbCompanyName.IsEnabled = toggle;
+            tbContactName.IsEnabled = toggle;
+            tbEmail.IsEnabled = toggle;
+            tbPhone1.IsEnabled = toggle;
+            tbPhone2.IsEnabled = toggle;
+            tbStreet.IsEnabled = toggle;
         }
     }
 }
+
+ 
+
+//foreach (Control ctl in containerCanvas.Children)
+//            {
+//                if (ctl.GetType() == typeof(RadioButton))
+//                    ((RadioButton) ctl).IsChecked = false;
+//                if (ctl.GetType() == typeof(ComboBox))
+//                    ((ComboBox) ctl).Text = String.Empty;
+//                if (ctl.GetType() == typeof(CheckBox))
+//                    ((CheckBox) ctl).IsChecked = false;
+//                if (ctl.GetType() == typeof(TextBox))
+//                    ((TextBox) ctl).Text = String.Empty;
+//                if (ctl.GetType() == typeof(Slider))
+//                    ((Slider) ctl).Value=0;
+//            }

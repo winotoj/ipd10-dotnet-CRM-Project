@@ -26,7 +26,7 @@
                     <MenuItem Header="Delete" Name="cmDelete"/>               
                 </ContextMenu>
             </ListView.ContextMenu>
-            
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}" />
@@ -41,7 +41,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    
+
                 </GridView>
             </ListView.View>
         </ListView>
@@ -61,13 +61,16 @@
                         <Label Content="Phone Number" Canvas.Left="10" Canvas.Top="10" Width="174" Height="26"/>
                         <TextBox Name="tbPhone1" Text="-" Canvas.Left="10" Canvas.Top="70" Width="174" Height="26"/>
                         <TextBox Name="tbPhone2" Text="-" Canvas.Left="10" Canvas.Top="101" Width="174" Height="26"/>
-                        <Button Name="btnCompanyEditDetail" Content="Edit" Canvas.Left="56" Canvas.Top="179" Width="74" RenderTransformOrigin="-0.027,0.775" Click="btnCompanyEditDetail_Click"/>
+                        
                     </Canvas>
                     <Canvas HorizontalAlignment="Left" Height="170" Margin="494,0,0,0" VerticalAlignment="Top" Width="247">
                         <Label Content="Email Address" Canvas.Left="10" Canvas.Top="10" Height="30" Width="227"/>
                         <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227"/>
                     </Canvas>
-                    <Label Name="lblSalesRep" Content="-" Margin="613,191,70,27"/>
+                    <Label Name="lblSalesRep" Content="-" Margin="639,179,44,39"/>
+                    <Button Name="btnCompanyEditDetail" Content="Edit" HorizontalAlignment="Left" Margin="350,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyEditDetail_Click"/>
+                    <Button Name="btnCompanySaveDetail" Content="Save" HorizontalAlignment="Left" Margin="450,179,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Name="btnCompanyCancelDetail" Content="Cancel" HorizontalAlignment="Left" Margin="550,179,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
             </TabItem>
             <TabItem Header="History">

@@ -68,18 +68,15 @@ namespace WpfCRMProject
             }
         }
 
-        private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
+        public void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
             if(lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString())
             {
-
-
-                MessageBox.Show(lblSalesRep.Content + "---" + Application.Current.Resources["UserName"]);
+                btnCompanyEditDetail.IsEnabled = false;
             }
             else
             {
                 DisableEnableTextBox(true);
-
             }
         }
 
@@ -97,6 +94,7 @@ namespace WpfCRMProject
             tbStreet.IsEnabled = toggle;
         }
     }
+
 }
 
  

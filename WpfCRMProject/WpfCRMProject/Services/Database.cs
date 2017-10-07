@@ -192,6 +192,39 @@ namespace WpfCRMProject
             insertCommand.Parameters.Add(new SqlParameter("Country", c.Country));
             insertCommand.ExecuteNonQuery();
         }
+        //to be added: try catch
+        public List<Customer> SearchCompanyName(String c)
+        {
+            List<Customer> listCompany = new List<Customer>();
+            string searchCN = "SELECT * FROM Customers WHERE salesrep_id=@Id AND company_name=@company";
+            SqlCommand searchCommand = new SqlCommand(searchCN, conn);
+            searchCommand.Parameters.Add(new SqlParameter("Id", Application.Current.Resources["UserName"]));
+            searchCommand.Parameters.Add(new SqlParameter("company", c));
+            using (SqlDataReader reader = searchCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Customer customer = new Customer
+                    {
+                        CustomerId = (int)reader["Customer_Id"],
+                        CompanyName = (string)reader["company_name"],
+                        Street = (string)reader["street"],
+                        City = (string)reader["city"],
+                        Province = (string)reader["province"],
+                        Postal = (string)reader["postal"],
+                        Phone = (string)reader["phone"],
+                        ContactFirstName = (string)reader["contact_firstname"],
+                        ContactLastName = (string)reader["contact_lastname"],
+                        CreateDate = (DateTime)reader["created_date"],
+                        Status = (bool)reader["status"],
+                        Email = (string)reader["email"],
+                    };
+                    listCompany.Add(customer);
+                }
+
+            }
+            return listCompany;
+        }
 
     }
 }

@@ -22,6 +22,52 @@ namespace WpfCRMProject
     public partial class AddressBook : Page
     {
         Database db;
+        string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
+
+        private void btnCompanyCancelDetail_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayDetail();
+        }
+
+        private void btnCompanySaveDetail_Click(object sender, RoutedEventArgs e)
+        {
+            if( (tbFirstName.IsEnabled ==true) &&(
+                firstName != tbFirstName.Text ||
+                lastName != tbLastName.Text ||
+                company != tbCompanyName.Text ||
+                street != tbStreet.Text ||
+                city != tbCity.Text ||
+                province != tbProvince.Text ||
+                postalCode != tbPostal.Text ||
+                country != tbCountry.Text ||
+                phone1 != tbPhone1.Text ||
+                phone2 != tbPhone2.Text ||
+                email != tbEmail.Text)
+                )
+            {
+                Customer customer = new Customer
+                {
+                    ContactFirstName = tbFirstName.Text,
+                    ContactLastName = tbLastName.Text,
+                    CompanyName = tbCompanyName.Text,
+                    Street = tbStreet.Text,
+                    City = tbCity.Text,
+                    Province = tbProvince.Text,
+                    Postal = tbPostal.Text,
+                    Country = tbCountry.Text,
+                    Phone = tbPhone1.Text,
+                    Fax = tbPhone2.Text,
+                    Email = tbEmail.Text
+                };
+                
+                db.UpdateCustomer(customer);
+            }
+            else
+            {
+                MessageBox.Show("test, nothing change");
+            }
+        }
+
         public AddressBook()
         {
             try
@@ -49,23 +95,69 @@ namespace WpfCRMProject
         }
         private void lvAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DisplayDetail();
+        }
+
+        public void DisplayDetail()
+        {
             if (lvAddress.SelectedItem != null)
             {
+                DisableEnableTextBox(false);
                 Customer customerSelected = (Customer)lvAddress.SelectedItem;
-                lblContactName.Content = customerSelected.ContactFirstName + " " + customerSelected.ContactLastName;
-                lblCompanyName.Content = customerSelected.CompanyName;
-                lblStreet.Content = customerSelected.Street;
-                lblAddress.Content = customerSelected.City + "\n" + customerSelected.Province + ", " + customerSelected.Postal + " " + customerSelected.Country;
-                lblPhone1.Content = customerSelected.Phone;
-                lblPhone2.Content = customerSelected.Fax;
-                lblEmail.Content = customerSelected.Email;
+                tbFirstName.Text = customerSelected.ContactFirstName;
+                tbLastName.Text = customerSelected.ContactLastName;
+                tbCompanyName.Text = customerSelected.CompanyName;
+                tbStreet.Text = customerSelected.Street;
+                tbCity.Text = customerSelected.City;
+                tbProvince.Text = customerSelected.Province;
+                tbPostal.Text = customerSelected.Postal;
+                tbCountry.Text = customerSelected.Country;
+                tbPhone1.Text = customerSelected.Phone;
+                tbPhone2.Text = customerSelected.Fax;
+                tbEmail.Text = customerSelected.Email;
+                lblSalesRep.Content = customerSelected.SalesRepId;
 
             }
         }
 
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
+            if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString())
+            {
+                btnCompanyEditDetail.IsEnabled = false;
+                btnCompanySaveDetail.IsEnabled = false;
+            }
+            else
+            {
+                DisableEnableTextBox(true);
+                firstName = tbFirstName.Text;
+                lastName = tbLastName.Text;
+                company = tbCompanyName.Text;
+                city = tbCity.Text;
+                street = tbStreet.Text;
+                city = tbCity.Text;
+                province = tbProvince.Text;
+                postalCode = tbPostal.Text;
+                country = tbCountry.Text;
+                phone1 = tbPhone1.Text;
+                phone2 = tbPhone2.Text;
+                email = tbEmail.Text;
+            }
+        }
 
+        private void DisableEnableTextBox(bool toggle)
+        {
+            tbCity.IsEnabled = toggle;
+            tbProvince.IsEnabled = toggle;
+            tbPostal.IsEnabled = toggle;
+            tbCountry.IsEnabled = toggle;
+            tbCompanyName.IsEnabled = toggle;
+            tbFirstName.IsEnabled = toggle;
+            tbLastName.IsEnabled = toggle;
+            tbEmail.IsEnabled = toggle;
+            tbPhone1.IsEnabled = toggle;
+            tbPhone2.IsEnabled = toggle;
+            tbStreet.IsEnabled = toggle;
         }
     }
 }

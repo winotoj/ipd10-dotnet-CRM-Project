@@ -258,6 +258,10 @@ namespace WpfCRMProject
             {
                 return _SalesRepId;
             }
+            set
+            {
+                _SalesRepId = value;
+            }
         }
         public string Email
         {

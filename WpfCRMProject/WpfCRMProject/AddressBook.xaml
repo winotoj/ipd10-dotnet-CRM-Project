@@ -39,21 +39,30 @@
             <TabItem Header="Details">
                 <Grid Background="#FFE5E5E5" Margin="0,0,-2,3">
                     <Canvas HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="295">
-                        <Label Name="lblContactName" Content="" Canvas.Left="10" Canvas.Top="10" Height="25" Width="229"/>
-                        <Label Name="lblCompanyName" Content="" Canvas.Left="10" Canvas.Top="62" Height="25" Width="229"/>
-                        <Label Name="lblStreet" Content="" Canvas.Left="10" Canvas.Top="106" Height="25" Width="229"/>
-                        <Label Name="lblAddress" Content="" Canvas.Left="10" Canvas.Top="147" Height="25" Width="229"/>
+                        <TextBox Name="tbFirstName" Text="-" Canvas.Left="10" Canvas.Top="10" Height="25" Width="121"/>
+                        <TextBox x:Name="tbLastName" Text="-" Canvas.Left="140" Canvas.Top="10" Height="25" Width="121"/>
+                        <TextBox Name="tbCompanyName" Text="-" Canvas.Left="10" Canvas.Top="62" Height="25" Width="229"/>
+                        <TextBox Name="tbStreet" Text="" Canvas.Left="10" Canvas.Top="92" Height="25" Width="229"/>
+                        <TextBox Name="tbCity" Text="" Canvas.Left="10" Canvas.Top="122" Height="25" Width="229"/>
+                        <TextBox Name="tbProvince" Text="" Canvas.Left="10" Canvas.Top="152" Height="28" Width="50"/>
+                        <TextBox Name="tbCountry" Text="" Canvas.Left="151" Canvas.Top="152" Height="28" Width="88"/>
+                        <TextBox x:Name="tbPostal" Text="" Canvas.Left="81" Canvas.Top="152" Height="28" Width="50"/>
                     </Canvas>
                     <Canvas HorizontalAlignment="Left" Height="209" Margin="300,0,0,0" VerticalAlignment="Top" Width="194">
                         <Label Content="Phone Number" Canvas.Left="10" Canvas.Top="10" Width="174" Height="26"/>
-                        <Label Name="lblPhone1" Content="" Canvas.Left="10" Canvas.Top="70" Width="174" Height="26"/>
-                        <Label Name="lblPhone2" Content="" Canvas.Left="10" Canvas.Top="101" Width="174" Height="26"/>
-                        <Button Name="btnCompanyEditDetail" Content="Edit" Canvas.Left="56" Canvas.Top="179" Width="74" RenderTransformOrigin="-0.027,0.775" Click="btnCompanyEditDetail_Click"/>
+                        <TextBox Name="tbPhone1" Text="-" Canvas.Left="10" Canvas.Top="70" Width="174" Height="26"/>
+                        <TextBox Name="tbPhone2" Text="-" Canvas.Left="10" Canvas.Top="101" Width="174" Height="26"/>
+
                     </Canvas>
                     <Canvas HorizontalAlignment="Left" Height="170" Margin="494,0,0,0" VerticalAlignment="Top" Width="247">
                         <Label Content="Email Address" Canvas.Left="10" Canvas.Top="10" Height="30" Width="227"/>
-                        <Label Name="lblEmail" Content="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227"/>
+                        <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227"/>
                     </Canvas>
+                    <Label Name="lblSalesRep" Content="-" Margin="639,179,44,39"/>
+                    <Button Name="btnCompanyEditDetail" Content="Edit" HorizontalAlignment="Left" Margin="350,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyEditDetail_Click"/>
+                    <Button Name="btnCompanySaveDetail" Content="Save" HorizontalAlignment="Left" Margin="450,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanySaveDetail_Click"/>
+                    <Button Name="btnCompanyCancelDetail" Content="Cancel" HorizontalAlignment="Left" Margin="550,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyCancelDetail_Click"/>
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="History">

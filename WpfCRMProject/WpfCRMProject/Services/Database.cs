@@ -83,6 +83,7 @@ namespace WpfCRMProject
                         CreateDate = (DateTime)reader["created_date"],
                         Status = (bool)reader["status"],
                         Email = (string)reader["email"],
+                        SalesRepId = (int)reader["salesrep_Id"],
                         LastPurchaseDate = pd,
                         Amount = amt
                     };
@@ -107,7 +108,7 @@ namespace WpfCRMProject
                                                         VALUES(@CompanyName, @Street, 
                                                                @City, @Province, 
                                                                @Postal, @Phone, 
-                                                               @FirstNAme, @LastName, 
+                                                               @FirstName, @LastName, 
                                                                @CreatedDate, @Status,
                                                                @Salesrep_id, @Email,
                                                                @Country)";
@@ -160,5 +161,37 @@ namespace WpfCRMProject
             return listOpportunities;
 
         }
+
+        public void UpdateCustomer(Customer c)
+        {
+            String update = @"UPDATE CUSTOMERS  SET company_name =@CompanyName,
+                                                street = @Street,
+                                                city = @City,
+                                                province = @Province, 
+                                                postal = @Postal,
+                                                phone = @Phone,
+                                                contact_firstname = @FirstName,
+                                                contact_lastname = @LastName,
+                                                status = @Status,
+                                                email = @Email,
+                                                country = @Country
+                                            WHERE salesrep_id = @Salesrep_id";
+ 
+            SqlCommand insertCommand = new SqlCommand(update, conn);
+            insertCommand.Parameters.Add(new SqlParameter("CompanyName", c.CompanyName));
+            insertCommand.Parameters.Add(new SqlParameter("Street", c.Street));
+            insertCommand.Parameters.Add(new SqlParameter("City", c.City));
+            insertCommand.Parameters.Add(new SqlParameter("Province", c.Province));
+            insertCommand.Parameters.Add(new SqlParameter("Postal", c.Postal));
+            insertCommand.Parameters.Add(new SqlParameter("Phone", c.Phone));
+            insertCommand.Parameters.Add(new SqlParameter("FirstName", c.ContactFirstName));
+            insertCommand.Parameters.Add(new SqlParameter("LastName", c.ContactLastName));
+            insertCommand.Parameters.Add(new SqlParameter("Status", c.Status));
+            insertCommand.Parameters.Add(new SqlParameter("Salesrep_id", Application.Current.Resources["UserName"]));
+            insertCommand.Parameters.Add(new SqlParameter("Email", c.Email));
+            insertCommand.Parameters.Add(new SqlParameter("Country", c.Country));
+            insertCommand.ExecuteNonQuery();
+        }
+
     }
 }

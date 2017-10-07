@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-       Title="Login" Height="256.809" Width="295.331" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
-    <Grid>
-        <Label Content="User Name" HorizontalAlignment="Left" Margin="34,70,0,0" VerticalAlignment="Top" Width="81"/>
-        <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="23" Margin="115,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="34,112,0,0" VerticalAlignment="Top" Width="81"/>
-        <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Margin="115,112,0,0" VerticalAlignment="Top" Width="149" Height="26"/>
+       Title="Login" Height="263.171" Width="519.27" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+    <Grid Background="#FFBEC6C6" Margin="0,0,-6.2,-3.6">
+        <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="pack://siteoforigin:,,,/Images/unlock-icon.png" Margin="25,57,0,0"/>
+
+        <Label Content="User Name" HorizontalAlignment="Left" Margin="176,70,0,0" VerticalAlignment="Top" Width="81"/>
+        <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="23" Margin="257,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="176,112,0,0" VerticalAlignment="Top" Width="81"/>
+        <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Margin="257,112,0,0" VerticalAlignment="Top" Width="209" Height="26"/>
         <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="errormessage" VerticalAlignment="Top" Width="247"   OpacityMask="Crimson" Foreground="#FFEA1313" Margin="23,24,0,0"  />
-        <Button Name="btnOk" Content="Login" HorizontalAlignment="Left" Margin="53,177,0,0" VerticalAlignment="Top" Width="75" Click="btnOk_Click"/>
-        <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="181,177,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
+        <Button Name="btnOk" Content="Login" HorizontalAlignment="Left" Margin="257,177,0,0" VerticalAlignment="Top" Width="97" Click="btnOk_Click" RenderTransformOrigin="1.189,0.303" Background="#FF7F8282" Foreground="#FFF5F4F4"/>
+        <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="369,177,0,0" VerticalAlignment="Top" Width="97" Click="btnCancel_Click" Foreground="#FFF9F3F3" Background="#FF848787"/>
 
     </Grid>
 </Window>

@@ -77,8 +77,8 @@ namespace WpfCRMProject
             AddressBook addressBook = new AddressBook();
             addressBook.DisplayAddressBook();
             mainWin.frTest.Refresh();
-
-
+            
         }
-}
+        
+    }
 }

@@ -46,6 +46,9 @@ namespace WpfCRMProject
                 lvAddress.Items.Add(c);
 
             }
+            DisableEnableTextBox(false);
+            btnCompanyEditDetail.IsEnabled = false;
+            ScrollToLastItem();
         }
 
         private void lvAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,6 +68,7 @@ namespace WpfCRMProject
                 tbPhone2.Text = customerSelected.Fax;
                 tbEmail.Text = customerSelected.Email;
                 lblSalesRep.Content = customerSelected.SalesRepId;
+                btnCompanyEditDetail.IsEnabled = true;
             }
         }
 
@@ -72,14 +76,11 @@ namespace WpfCRMProject
         {
             if(lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString())
             {
-
-
-                MessageBox.Show(lblSalesRep.Content + "---" + Application.Current.Resources["UserName"]);
+                MessageBox.Show(lblSalesRep.Content + "---" + Application.Current.Resources["UserName"] + "\n You cannot edit");
             }
             else
             {
                 DisableEnableTextBox(true);
-
             }
         }
 
@@ -95,6 +96,17 @@ namespace WpfCRMProject
             tbPhone1.IsEnabled = toggle;
             tbPhone2.IsEnabled = toggle;
             tbStreet.IsEnabled = toggle;
+        }
+        public void ScrollToLastItem()
+        {
+            if (lvAddress.Items.Count > 0)
+            {
+                var listView = lvAddress;
+                listView.SelectedItem = listView.Items.GetItemAt(lvAddress.Items.Count -1);
+                //listView.ScrollIntoView(listView.Items[0]);
+                listView.ScrollIntoView(listView.SelectedItem);
+                listView.Focus();
+            }
         }
     }
 }

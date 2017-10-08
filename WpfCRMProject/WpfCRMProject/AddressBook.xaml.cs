@@ -26,20 +26,18 @@ namespace WpfCRMProject
 
         private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            SendEmail sendEmail = new SendEmail();           
-            sendEmail.recipient = tbEmail.Text;
-            sendEmail.companyId = (int)lblCustomerId.Content;
-            sendEmail.ShowDialog();
-        }
-
-        private void btnCompanyCancelDetail_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayDetail();
+            if (tbEmail.Text != "")
+            {
+                SendEmail sendEmail = new SendEmail();
+                sendEmail.recipient = tbEmail.Text;
+                sendEmail.companyId = (int)lblCustomerId.Content;
+                sendEmail.ShowDialog();
+            }
         }
 
         private void btnCompanySaveDetail_Click(object sender, RoutedEventArgs e)
         {
-            if( (tbFirstName.IsEnabled ==true) &&(
+            if ((tbFirstName.IsEnabled == true) && (
                 firstName != tbFirstName.Text ||
                 lastName != tbLastName.Text ||
                 company != tbCompanyName.Text ||
@@ -53,23 +51,29 @@ namespace WpfCRMProject
                 email != tbEmail.Text)
                 )
             {
-                Customer customer = new Customer
+                try {
+                    Customer customer = new Customer
+                    {
+                        ContactFirstName = tbFirstName.Text,
+                        ContactLastName = tbLastName.Text,
+                        CompanyName = tbCompanyName.Text,
+                        Street = tbStreet.Text,
+                        City = tbCity.Text,
+                        Province = tbProvince.Text,
+                        Postal = tbPostal.Text,
+                        Country = tbCountry.Text,
+                        Phone = tbPhone1.Text,
+                        Fax = tbPhone2.Text,
+                        Email = tbEmail.Text
+                    };
+
+                    db.UpdateCustomer(customer);
+                }catch(ArgumentOutOfRangeException ex)
                 {
-                    ContactFirstName = tbFirstName.Text,
-                    ContactLastName = tbLastName.Text,
-                    CompanyName = tbCompanyName.Text,
-                    Street = tbStreet.Text,
-                    City = tbCity.Text,
-                    Province = tbProvince.Text,
-                    Postal = tbPostal.Text,
-                    Country = tbCountry.Text,
-                    Phone = tbPhone1.Text,
-                    Fax = tbPhone2.Text,
-                    Email = tbEmail.Text
-                };
-                
-                db.UpdateCustomer(customer);
-            }
+                    MessageBox.Show("Error inputing data" + ex.Message, "Error Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+             }
+         
             else
             {
                 MessageBox.Show("test, nothing change");
@@ -131,7 +135,7 @@ namespace WpfCRMProject
 
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString())
+            if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString() || Application.Current.Resources["role"].ToString() != "manager")
             {
                 btnCompanyEditDetail.IsEnabled = false;
                 btnCompanySaveDetail.IsEnabled = false;
@@ -163,7 +167,8 @@ namespace WpfCRMProject
             tbCompanyName.IsEnabled = toggle;
             tbFirstName.IsEnabled = toggle;
             tbLastName.IsEnabled = toggle;
-            tbEmail.IsEnabled = toggle;
+            tbEmail.IsReadOnly = toggle;
+            MessageBox.Show(tbEmail.IsReadOnly.ToString());
             tbPhone1.IsEnabled = toggle;
             tbPhone2.IsEnabled = toggle;
             tbStreet.IsEnabled = toggle;

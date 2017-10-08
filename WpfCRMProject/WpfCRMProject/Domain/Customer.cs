@@ -41,7 +41,9 @@ namespace WpfCRMProject
                     _CompanyName = value;
                 }
                 else
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    
+                    throw new ArgumentOutOfRangeException("Company Name must be between 2 and 80 char", value);
+
             }
         }
         public string Street
@@ -58,7 +60,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Street must be between 2 and 50 char", value);
                 }
             }
         }
@@ -76,7 +78,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("City must be between 2 and 50 char", value);
                 }
             }
         }
@@ -94,7 +96,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Province must be 2 char", value);
                 }
             }
         }
@@ -106,13 +108,13 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 1)
+                if (value.Length > 1 && value.Length < 51)
                 {
                     _Country = value;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Country must be between 2 and 50 char", value);
                 }
             }
         }
@@ -130,7 +132,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Postal Code must be between 6 and 10 char", value);
                 }
             }
         }
@@ -148,7 +150,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Phone must be between 9 and 16 char", value);
                 }
             }
         }
@@ -166,7 +168,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Fax must be between 9 and 16 char", value);
                 }
             }
         }
@@ -197,7 +199,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("First name must be between 2 and 40 char", value);
                 }
             }
         }
@@ -215,7 +217,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Last name must be between 2 and 40 char", value);
                 }
             }
         }
@@ -277,7 +279,7 @@ namespace WpfCRMProject
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("String must be between 2 and 50 char", value);
+                    throw new ArgumentOutOfRangeException("Email must be between 2 and 80 char", value);
                 }
             }
         }

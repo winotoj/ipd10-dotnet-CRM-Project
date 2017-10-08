@@ -30,22 +30,12 @@ namespace WpfCRMProject
         {
             Login login = new Login();
             login.ShowDialog();
-
-            lblDate.Content = DateTime.Now.ToLongDateString();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
-
-            if (Application.Current.FindResource("UserName") == null)
-            {
-                return;
-            }
-            else
-            {
-                String name = Application.Current.FindResource("FirstName").ToString() + " " + Application.Current.FindResource("LastName").ToString();
-                lbluserlogin.Content = name;
-            }
+                Login logs = new Login();
+                lblDate.Content = DateTime.Now.ToLongDateString();
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += timer_Tick;
+                timer.Start();
 
         }
 
@@ -62,13 +52,8 @@ namespace WpfCRMProject
                 e.Cancel = true;
             }
             else
-            {
-                Login login = new Login();
-                login.Close();
-            }
-
+                Environment.Exit(0);
         }
-
 
         private void btnOpportunity_Click(object sender, RoutedEventArgs e)
         {

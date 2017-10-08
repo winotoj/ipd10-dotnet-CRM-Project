@@ -56,13 +56,16 @@
                     </Canvas>
                     <Canvas HorizontalAlignment="Left" Height="170" Margin="494,0,0,0" VerticalAlignment="Top" Width="247">
                         <Label Content="Email Address" Canvas.Left="10" Canvas.Top="10" Height="30" Width="227"/>
-                        <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227"/>
+                        <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227" TextDecorations="Underline" Foreground="#FF2775C3" MouseDoubleClick="tbEmail_MouseDoubleClick">
+                        </TextBox>
                     </Canvas>
                     <Label Name="lblSalesRep" Content="-" Margin="639,179,44,39"/>
                     <Button Name="btnCompanyEditDetail" Content="Edit" HorizontalAlignment="Left" Margin="350,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyEditDetail_Click"/>
                     <Button Name="btnCompanySaveDetail" Content="Save" HorizontalAlignment="Left" Margin="450,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanySaveDetail_Click"/>
                     <Button Name="btnCompanyCancelDetail" Content="Cancel" HorizontalAlignment="Left" Margin="550,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyCancelDetail_Click"/>
+                    <Label Name="lblCustomerId" Content="" HorizontalAlignment="Left" Margin="29,209,0,0" VerticalAlignment="Top" Height="25" Width="85" Visibility="Hidden"/>
                     
+
                 </Grid>
             </TabItem>
             <TabItem Header="History">

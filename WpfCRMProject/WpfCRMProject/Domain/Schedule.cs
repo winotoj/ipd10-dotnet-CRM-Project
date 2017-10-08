@@ -18,6 +18,6 @@ namespace WpfCRMProject.Domain
         private DateTime _CreatedDate;
         private string _Subject;
         private int _SalesRepId;
-        private int _CompanyId
+        private int _CompanyId;
     }
 }

@@ -13,7 +13,7 @@ namespace WpfCRMProject.Services
     {
         public User Login(string username, string password)
         {
-
+// WJ-SQL COMMAND HAS TO BE CHANGED, IF YOU ENTER 'OR''=' FOR USER NAME N PASS WILL BYPASS
             SqlConnection con = new SqlConnection(@"Server=tcp:vwdotnetproject.database.windows.net,1433;Initial Catalog=CrmProject;Persist Security Info=False;User ID=vajiwinoto;Password=VW@azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             con.Open();
             SqlCommand cmd = new SqlCommand("SELECT * FROM SalesReps WHERE username = '" + username + "'  AND PASSWORD = '" + password + "'", con);

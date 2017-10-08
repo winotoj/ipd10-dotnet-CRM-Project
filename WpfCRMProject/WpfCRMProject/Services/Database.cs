@@ -175,7 +175,7 @@ namespace WpfCRMProject
                                                 status = @Status,
                                                 email = @Email,
                                                 country = @Country
-                                            WHERE salesrep_id = @Salesrep_id";
+                                            WHERE salesrep_id = @Salesrep_id & company_id = @companyId" ;
  
             SqlCommand insertCommand = new SqlCommand(update, conn);
             insertCommand.Parameters.Add(new SqlParameter("CompanyName", c.CompanyName));
@@ -190,6 +190,7 @@ namespace WpfCRMProject
             insertCommand.Parameters.Add(new SqlParameter("Salesrep_id", Application.Current.Resources["UserName"]));
             insertCommand.Parameters.Add(new SqlParameter("Email", c.Email));
             insertCommand.Parameters.Add(new SqlParameter("Country", c.Country));
+            insertCommand.Parameters.Add(new SqlParameter("Customer_id", c.CustomerId));
             insertCommand.ExecuteNonQuery();
         }
         //to be added: try catch

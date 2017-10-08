@@ -24,6 +24,14 @@ namespace WpfCRMProject
         Database db;
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
 
+        private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SendEmail sendEmail = new SendEmail();           
+            sendEmail.recipient = tbEmail.Text;
+            sendEmail.companyId = (int)lblCustomerId.Content;
+            sendEmail.ShowDialog();
+        }
+
         private void btnCompanyCancelDetail_Click(object sender, RoutedEventArgs e)
         {
             DisplayDetail();
@@ -116,6 +124,7 @@ namespace WpfCRMProject
                 tbPhone2.Text = customerSelected.Fax;
                 tbEmail.Text = customerSelected.Email;
                 lblSalesRep.Content = customerSelected.SalesRepId;
+                lblCustomerId.Content = customerSelected.CustomerId;
 
             }
         }

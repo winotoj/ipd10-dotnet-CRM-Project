@@ -48,4 +48,11 @@ ex:
 3. Will continue number 3&4 above
 4. Vaji pls merge from my temporary folder into your code and push it so i can have the fresh one
 
+2017/10-08
+1. Added working send email
+2. Edit details: clr and model are done
+3. Started to work on adding schedule (model and clr)
+4. will continue on schedule (model)
+5. Will do query
+
 

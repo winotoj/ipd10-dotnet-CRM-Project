@@ -77,8 +77,12 @@ UriKind.RelativeOrAbsolute));
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            //frTest.Navigate(new System.Uri("AddressBook.xaml", UriKind.RelativeOrAbsolute));
+            
             SearchCompany searchCompany = new SearchCompany();
             searchCompany.ShowDialog();
+            // frTest.Refresh();
+            frTest.Navigate(new System.Uri("AddressBook.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

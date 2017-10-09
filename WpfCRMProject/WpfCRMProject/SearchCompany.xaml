@@ -42,7 +42,7 @@
         <RadioButton x:Name="rbCustomer" GroupName="type"  Content="Real Customer" Grid.Column="1" HorizontalAlignment="Left" Margin="24,101,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" IsChecked="True"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="13,95,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rbOpportunity" GroupName="type" Content="Opportunity" Grid.Column="2" HorizontalAlignment="Left" Margin="116,101,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="cbSalesRep" ItemsSource="{Binding Path=Users}" DisplayMemberPath="UserId"  Grid.Column="1" HorizontalAlignment="Left" Margin="24,299,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"  SelectedValuePath="Content"/>
+        <ComboBox Name="cbSalesRep" ItemsSource="{Binding Path=Users}" DisplayMemberPath="UserId"  Grid.Column="1" HorizontalAlignment="Left" Margin="24,299,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" />
         <Label Content="Sales Rep" HorizontalAlignment="Left" Margin="13,296,0,0" VerticalAlignment="Top" Width="64"/>
         <Label Content="Last Purchase date before " HorizontalAlignment="Left" Margin="186,299,0,0" VerticalAlignment="Top" Width="153" Grid.Column="2"/>
         <DatePicker Name="dpLastPurchaseDate" Grid.Column="2" HorizontalAlignment="Left" Margin="352,302,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>

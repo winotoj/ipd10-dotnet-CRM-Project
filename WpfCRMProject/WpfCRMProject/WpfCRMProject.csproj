@@ -84,6 +84,9 @@
     <Compile Include="SearchCompany.xaml.cs">
       <DependentUpon>SearchCompany.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchResultCompany.xaml.cs">
+      <DependentUpon>SearchResultCompany.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SendEmail.xaml.cs">
       <DependentUpon>SendEmail.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SearchCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchResultCompany.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -195,6 +195,8 @@ namespace WpfCRMProject
             insertCommand.ExecuteNonQuery();
         }
         //to be added: try catch
+
+        // used for scheduled
         public List<Customer> SearchCompanyName(String c)
         {
             List<Customer> listCompany = new List<Customer>();
@@ -246,6 +248,44 @@ namespace WpfCRMProject
                 }
             }
             return listUser;
+        }
+
+        public List<Customer> SearchCompanyCustom(string s)
+        {
+            List<Customer> listCustomer = new List<Customer>();
+            string commandString = "select * from customers where company_name like '%Dixie%'";
+            //string commandString = "SELECT * fROM (salesreps AS s LEFT JOIN customers AS c On s.username = c.salesrep_Id) LEFT JOIN v_Sales_LatestPurchase AS v ON c.customer_id = v.customer_id WHERE" + s;
+            SqlCommand searchCommand = new SqlCommand(commandString, conn);
+            using (SqlDataReader reader = searchCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    //string amt = (reader["amount"] == DBNull.Value ? "" : ((decimal)reader["amount"]).ToString("F02", CultureInfo.InvariantCulture));
+                    //string pd = reader["purchase_date"].ToString();
+                    Customer customer = new Customer
+                    {
+                        CustomerId = (int)reader["Customer_Id"],
+                        CompanyName = (string)reader["company_name"],
+                        Street = (string)reader["street"],
+                        City = (string)reader["city"],
+                        Province = (string)reader["province"],
+                        Postal = (string)reader["postal"],
+                        Phone = (string)reader["phone"],
+                        ContactFirstName = (string)reader["contact_firstname"],
+                        ContactLastName = (string)reader["contact_lastname"],
+                        CreateDate = (DateTime)reader["created_date"],
+                        Status = (bool)reader["status"],
+                        Email = (string)reader["email"],
+                        SalesRepId = (int)reader["salesrep_Id"],
+                       // LastPurchaseDate = pd,
+                       // Amount = amt
+                    };
+                    listCustomer.Add(customer);
+                    MessageBox.Show("from db" + customer.CompanyName);
+                }
+            }
+            
+            return listCustomer;
         }
 
     }

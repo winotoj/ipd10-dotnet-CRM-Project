@@ -31,6 +31,7 @@ namespace WpfCRMProject
             Login login = new Login();
             login.ShowDialog();
                 Login logs = new Login();
+                lbluserlogin.Content = Application.Current.Resources["FirstName"] + " " + Application.Current.Resources["LastName"];
                 lblDate.Content = DateTime.Now.ToLongDateString();
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = TimeSpan.FromSeconds(1);
@@ -74,6 +75,11 @@ UriKind.RelativeOrAbsolute));
             windowAdd.ShowDialog();
         }
 
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchCompany searchCompany = new SearchCompany();
+            searchCompany.ShowDialog();
+        }
     }
 }
 

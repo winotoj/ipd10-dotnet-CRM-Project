@@ -105,5 +105,17 @@ namespace WpfCRMProject
 
             this.Close();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result;
+            if ((result = MessageBox.Show("Are you sure want to cancel ?", "message", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
+}
+           
+    
+    

@@ -81,6 +81,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SearchCompany.xaml.cs">
+      <DependentUpon>SearchCompany.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SendEmail.xaml.cs">
       <DependentUpon>SendEmail.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Opportunity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchCompany.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -44,7 +44,7 @@
         <Label Content="Country" HorizontalAlignment="Left" Margin="186,319,0,0" VerticalAlignment="Top" Width="66" Grid.Column="2"/>
         <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="259,322,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98" Grid.ColumnSpan="2" Grid.Column="2"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="82,373,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click" Grid.Column="2"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="178,373,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" />
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="178,373,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Click="btnCancel_Click" />
         <RadioButton x:Name="rbCustomer" GroupName="type"  Content="Real Customer" Grid.Column="1" HorizontalAlignment="Left" Margin="24,101,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="13,95,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rbOpportunity" GroupName="type" Content="Opportunity" Grid.Column="2" HorizontalAlignment="Left" Margin="116,101,0,0" VerticalAlignment="Top"/>

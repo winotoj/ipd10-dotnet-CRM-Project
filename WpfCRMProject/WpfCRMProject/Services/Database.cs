@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
@@ -225,6 +226,26 @@ namespace WpfCRMProject
 
             }
             return listCompany;
+        }
+        public List<User> GetAllUsers()
+        {
+            List<User> listUser = new List<User>();
+            SqlCommand getCommand = new SqlCommand("SELECT * FROM Salesreps", conn);
+            using (SqlDataReader reader = getCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    User user = new User
+                    {
+                        FirstName = (string)reader["firstname"],
+                        LastName = (string)reader["lastname"],
+                        UserId = (int)reader["username"],
+                        Role = (string)reader["role"]
+                    };
+                    listUser.Add(user);
+                }
+            }
+            return listUser;
         }
 
     }

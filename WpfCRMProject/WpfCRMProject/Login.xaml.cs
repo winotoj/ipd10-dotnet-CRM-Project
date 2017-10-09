@@ -90,6 +90,7 @@ namespace WpfCRMProject
                     Application.Current.Resources.Add("UserName", username);
                     Application.Current.Resources.Add("FirstName", currentuser.FirstName);
                     Application.Current.Resources.Add("LastName", currentuser.LastName);
+                    Application.Current.Resources.Add("Role", currentuser.Role);
                     //myworkday.Show();
                     this.Close();
                 }

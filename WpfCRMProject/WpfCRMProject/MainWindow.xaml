@@ -8,12 +8,17 @@
         Title="MainWindow" Height="740" Width="1000" Closing="MainWindow_Closing" Loaded="Window_Loaded">
     <DockPanel Background="#FFEDF4F4">
 
-        <ToolBarPanel  DockPanel.Dock="Top" Height="80" Margin="0,0,0.4,0" Background="#FF444545">
-            <Label Name="lbluserlogin" Content="" HorizontalAlignment="Left" Width="155"/>
+        <ToolBarPanel  DockPanel.Dock="Top" Height="80" Margin="0,0,0.4,0" Background="#FF444545" Orientation="Horizontal">
+            <Image Source="pack://siteoforigin:,,,/Images/man.png" Height="55" Width="55" Margin="10,0,10,0"/>
+
+            <Label x:Name="lbluserlogin" Content="" HorizontalAlignment="Left" Width="155" Foreground="#FFD5D7D7" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14"/>
+            <Label x:Name="lblDate" Content="" HorizontalAlignment="Right" Width="120" Margin="520, 0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFD5D7D7" FontSize="14"/>
+            <Label x:Name="lblTime" Content="" HorizontalAlignment="Right" Width="100" Margin="0, 0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FFD5D7D7" FontSize="14"/>
+
         </ToolBarPanel>
 
-        <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="633" Background="#FFEDF4F4" Margin="0,0,0,-0.2">
-            <Button Name="btnAddressBook" Height="50" Width="150" Click="btnAddressBook_Click" Margin="0,40,0,0" BorderThickness="1" BorderBrush="#FF707070" >
+        <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="633" Background="#FFBEC6C6" Margin="0,0,0,-0.2">
+            <Button Name="btnAddressBook" Height="50" Width="150" Click="btnAddressBook_Click" Margin="0,55,0,0" BorderThickness="1" BorderBrush="#FF707070" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
@@ -56,13 +61,31 @@
         </ToolBarPanel>
         <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Visible" Background="#FFEDF4F4">
             <Grid>
-                <Frame Name="frTest" Margin="0,42,10,-18.4" Background="#FFEDF4F4"></Frame>
-                <ToolBarPanel HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="703">
-                    <Menu Background="#FFEDF4F4">
+                <Frame Name="frTest" Margin="0,55,10,-18.4" Background="#FFEDF4F4"></Frame>
+                <ToolBarPanel HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="790" Orientation="Horizontal" Background="#FFBEC6C6">
+                    <Button Name="btnAddNewCustomer" Height="40" Width="36" Margin="10,10,10,0" Click="btnAddNewCustomer_Click" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Canvas>
+                                    <Image Source="pack://siteoforigin:,,,/Images/addNew.png" Height="40" Width="36"/>
+                                </Canvas>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Name="btnSearch" Width="36" Margin="0,10,10,5" HorizontalAlignment="Right" Click="btnSearch_Click" >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Canvas>
+                                    <Image Source="pack://siteoforigin:,,,/Images/SearchCustomer.png" Height="40" Width="36"/>
+                                </Canvas>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <!--<Menu Background="#FFEDF4F4">
                         <MenuItem>
                             <MenuItem.Header>
                                 <StackPanel>
-                                    <Button Content="Add" Width="32" Height="32" Click="btnAddCustomer_Click"/>
+                                    <Button Content="Add" Width="40" Height="40" Click="btnAddCustomer_Click"/>
 
                                 </StackPanel>
                             </MenuItem.Header>
@@ -70,7 +93,7 @@
                         <MenuItem>
                             <MenuItem.Header>
                                 <StackPanel>
-                                    <Image Width="35" Height="35" Source="pack://siteoforigin:,,,/images/search.png" />
+                                    <Image Width="40" Height="40" Source="pack://siteoforigin:,,,/Images/document.png" />
 
                                 </StackPanel>
 
@@ -85,7 +108,7 @@
                             <MenuItem Header="Status"/>
                         </MenuItem>
 
-                    </Menu>
+                    </Menu>-->
 
                 </ToolBarPanel>
 

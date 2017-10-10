@@ -11,19 +11,47 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfCRMProject
 {
     /// <summary>
-    /// Interaction logic for AddressBook.xaml
+    /// Interaction logic for SearchResultCompany1.xaml
     /// </summary>
-    public partial class AddressBook : Page
+    public partial class SearchResultCompany1 : Window
     {
         Database db;
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
+        public SearchResultCompany1()
+        {
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            // DisplayAddressBook(s);
+            InitializeComponent();
 
+        }
+        //public SearchResultCompany(string s)
+        //{
+        //    try
+        //    {
+        //        db = new Database();
+        //        InitializeComponent();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    DisplayAddressBook(s);
+
+
+        //}
         private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (tbEmail.Text != "")
@@ -51,7 +79,8 @@ namespace WpfCRMProject
                 email != tbEmail.Text)
                 )
             {
-                try {
+                try
+                {
                     Customer customer = new Customer
                     {
                         ContactFirstName = tbFirstName.Text,
@@ -68,44 +97,37 @@ namespace WpfCRMProject
                     };
 
                     db.UpdateCustomer(customer);
-                }catch(ArgumentOutOfRangeException ex)
+                }
+                catch (ArgumentOutOfRangeException ex)
                 {
                     MessageBox.Show("Error inputing data" + ex.Message, "Error Message", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-             }
-         
+            }
+
             else
             {
                 MessageBox.Show("test, nothing change");
             }
         }
 
-        public AddressBook()
-        {
-            try
-            {
-                db = new Database();
-                InitializeComponent();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            DisplayAddressBook();
-        }
+
         public void ClearItem()
         {
             lvAddress.Items.Clear();
         }
-        public void DisplayAddressBook()
+        public void DisplayAddressBook(string s)
         {
-            List<Customer> listCustomer = db.GetAllCustomers();
+            List<Customer> listCustomer = db.SearchCompanyCustom(s);
+
             lvAddress.Items.Clear();
             foreach (Customer c in listCustomer)
             {
                 lvAddress.Items.Add(c);
 
             }
+            var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+            mainWin.frTest.Refresh();
+            mainWin.frTest.NavigationService.Refresh();
         }
         private void lvAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -177,3 +199,4 @@ namespace WpfCRMProject
         }
     }
 }
+

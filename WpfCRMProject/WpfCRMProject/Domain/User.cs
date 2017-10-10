@@ -8,30 +8,46 @@ namespace WpfCRMProject.Domain
 {
     public class User
     {
-        private string firstName;
-        private string lastName;
-        private string username;
+        private string _FirstName;
+        private string _LastName;
+        private string _Username;
+        private string _Email;
+        private string _Role;
+        private int _UserId;
 
-        public User(string firstName, string lastName, string username )
+        public User()
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.username = username;
+
+        }
+        public User(string firstName, string lastName, string username, string role )
+        {
+            _FirstName = firstName;
+            _LastName = lastName;
+            _Username = username;
+            _Role = role;
         }
 
         public string FirstName
         {
             get
             {
-                return firstName;
-            }        
+                return _FirstName;
+            }
+            set
+            {
+                _FirstName = value;
+            }
         }
 
         public string LastName
         {
             get
             {
-                return lastName;
+                return _LastName;
+            }
+            set
+            {
+                _LastName = value;
             }
         }
 
@@ -39,7 +55,46 @@ namespace WpfCRMProject.Domain
         {
             get
             {
-                return username;
+                return _Username;
+            }
+            set
+            {
+                _Username = value;
+            }
+        }
+        public string Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                _Email = value;
+            }
+        }
+
+        public string Role
+        {
+            get
+            {
+                return _Role;
+            }
+            set
+            {
+                _Role = value;
+            }
+        }
+
+        public int UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                _UserId = value;
             }
         }
 

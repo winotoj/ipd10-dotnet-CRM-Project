@@ -12,7 +12,7 @@
             <ColumnDefinition Width="36*"/>
             <ColumnDefinition Width="131*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="lvAddress" HorizontalAlignment="Left" Height="271" Margin="10,42,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" Width="755">
+        <ListView Name="lvAddress" HorizontalAlignment="Left" Height="271" Margin="10,42,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2" Width="755" >
             <ListView.ContextMenu>
                 <ContextMenu Name="ZoneIformationList" StaysOpen="true" Background="WhiteSmoke">
                     <ContextMenu.BitmapEffect>
@@ -23,12 +23,10 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Prospect Name"/>
-                    <GridViewColumn Header="Prospect No"/>
-                    <GridViewColumn Header="Category"/>
-                    <GridViewColumn Header="Status"/>
-                    <GridViewColumn Header="Last Purch Date"/>
-                    <GridViewColumn Header="Amount"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=CompanyName}"/>                    
+                    <GridViewColumn Header="Phone Number" DisplayMemberBinding="{Binding Path=Phone}"/>
+                    <GridViewColumn Header="Created on" DisplayMemberBinding="{Binding Path=CreateDate}"/>
+                   
                 </GridView>
             </ListView.View>
         </ListView>
@@ -57,14 +55,7 @@
                     </Grid.ColumnDefinitions>
                 </Grid>
             </TabItem>
-            <TabItem Header="Purchase">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="677*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-            </TabItem>
+            
         </TabControl>
 
     </Grid>

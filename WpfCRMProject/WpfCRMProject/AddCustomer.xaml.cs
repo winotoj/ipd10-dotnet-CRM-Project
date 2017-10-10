@@ -49,6 +49,12 @@ namespace WpfCRMProject
             String postalCode = tbPostalCode.Text;
             String province = tbProvince.Text;
             String country = tbCountry.Text;
+            Boolean status;
+            if (rbCustomer.IsChecked == true)
+            {
+                status = true;
+            }
+            else status = false;
 
             Customer newCustomer = new Customer
             {
@@ -64,7 +70,7 @@ namespace WpfCRMProject
                 ContactLastName = lastName,
                 Country = country,
                 CreateDate = DateTime.Today,
-                Status = false,
+                Status = status,
                 Email = Email
             };
 
@@ -99,5 +105,17 @@ namespace WpfCRMProject
 
             this.Close();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result;
+            if ((result = MessageBox.Show("Are you sure want to cancel ?", "message", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
+}
+           
+    
+    

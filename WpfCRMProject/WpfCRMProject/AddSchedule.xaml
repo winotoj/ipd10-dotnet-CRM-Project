@@ -1,0 +1,17 @@
+﻿<Window x:Class="WpfCRMProject.AddSchedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCRMProject"
+        mc:Ignorable="d"
+        Title="AddSchedule" Height="300" Width="300">
+    <Grid>
+        <Label Content="Company Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="97"/>
+        <TextBox Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="112,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120">
+
+        </TextBox>
+        <Button Name="tbSearch" Content="Search" HorizontalAlignment="Left" Margin="237,13,0,0" VerticalAlignment="Top" Width="45" Click="tbSearch_Click"/>
+
+    </Grid>
+</Window>

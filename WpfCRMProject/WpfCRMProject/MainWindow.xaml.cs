@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfCRMProject
 {
@@ -28,15 +29,20 @@ namespace WpfCRMProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Login login = new Login();
-            //this.Hide();
-            //login.Show();
-            // this.Hide();
             login.ShowDialog();
-           
-                //login.Close();
-               // this.Show();
-            
-           
+                Login logs = new Login();
+                lbluserlogin.Content = Application.Current.Resources["FirstName"] + " " + Application.Current.Resources["LastName"];
+                lblDate.Content = DateTime.Now.ToLongDateString();
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += timer_Tick;
+                timer.Start();
+
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            lblTime.Content = DateTime.Now.ToLongTimeString();
         }
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -47,14 +53,9 @@ namespace WpfCRMProject
                 e.Cancel = true;
             }
             else
-            {
-                Login login = new Login();
-                login.Close();
-            }
-                
+                Environment.Exit(0);
         }
-        
-            
+
         private void btnOpportunity_Click(object sender, RoutedEventArgs e)
         {
             frTest.Navigate(new System.Uri("Opportunity.xaml",
@@ -68,12 +69,20 @@ UriKind.RelativeOrAbsolute));
 UriKind.RelativeOrAbsolute));
         }
 
-        private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
+        private void btnAddNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             AddCustomer windowAdd = new AddCustomer();
             windowAdd.ShowDialog();
         }
 
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            frTest.Navigate(new System.Uri("SearchResultCompany.xaml", UriKind.RelativeOrAbsolute));
+            SearchCompany searchCompany = new SearchCompany();
+            searchCompany.ShowDialog();
+            frTest.Refresh();
+            
+        }
     }
 }
 

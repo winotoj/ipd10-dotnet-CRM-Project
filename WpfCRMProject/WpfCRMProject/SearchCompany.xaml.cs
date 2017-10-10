@@ -112,28 +112,17 @@ namespace WpfCRMProject
             {
                 strquery += " and v.purchase_date < " + dpLastPurchaseDate.SelectedDate.Value.ToShortDateString();
             }
-            //string inMyString;
            
-            //    inMyString = dpLastPurchaseDate.SelectedDate.Value.ToShortDateString();
-         
             User cbUser = (User)cbSalesRep.SelectedItem;
             strquery += " and c.salesrep_Id = " + cbUser.UserId.ToString();
             MessageBox.Show(strquery);
-            AddressBook addressBook = new AddressBook(strquery);
-            //addressBook.lvAddress.Items.Clear();
-            //List<Customer> listCustomer = db.SearchCompanyCustom(strquery);
-            //foreach(Customer c in listCustomer)
-            //{
-            //    addressBook.lvAddress.Items.Add(c);
-            //}
+
+            SearchResultCompany searchResult = new SearchResultCompany();
+            
+            searchResult.DisplayAddressBook(strquery);
             this.Close();
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
             mainWin.frTest.Refresh();
-            MessageBox.Show(addressBook.lvAddress.Items.Count.ToString());
-           
-            //SearchResultCompany addressBook = new SearchResultCompany();
-            //addressBook.DisplayAddressBook(strquery);
-            
         }
     }
 }

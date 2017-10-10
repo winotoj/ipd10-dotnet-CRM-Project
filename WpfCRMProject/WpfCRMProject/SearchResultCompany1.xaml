@@ -1,0 +1,94 @@
+﻿<Window x:Class="WpfCRMProject.SearchResultCompany1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCRMProject"
+        mc:Ignorable="d"
+        Title="SearchResultCompany1" Height="633" Width="777">
+    <Grid Margin="0,0,-494,-307">
+        <ListView Name="lvAddress" HorizontalAlignment="Left" Height="271" Margin="10,42,0,0" VerticalAlignment="Top" Width="755" SelectionChanged="lvAddress_SelectionChanged" SelectionMode="Single">
+            <ListView.ContextMenu>
+                <ContextMenu Name="ZoneIformationList" StaysOpen="true" Background="WhiteSmoke">
+                    <ContextMenu.BitmapEffect>
+                        <BitmapEffectGroup/>
+                    </ContextMenu.BitmapEffect>                    
+                    <MenuItem Header="Delete" Name="cmDelete"/>               
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}"/>
+                    <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=CustomerId}"/>
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}"/>
+                    <GridViewColumn Header="Created on" DisplayMemberBinding="{Binding Path=CreateDate}"/>
+                    <GridViewColumn Header="Last Purch Date" DisplayMemberBinding="{Binding Path=LastPurchaseDate}"/>
+                    <GridViewColumn Header="Last Purch Amount">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Amount}" TextAlignment="Right" Width="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TabControl HorizontalAlignment="Left" Height="275" Margin="10,318,0,0" VerticalAlignment="Top" Width="755">
+            <TabItem Header="Details">
+                <Grid Background="#FFE5E5E5" Margin="0,0,-2,3">
+                    <Canvas HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="295">
+                        <TextBox Name="tbFirstName" Text="-" Canvas.Left="10" Canvas.Top="10" Height="25" Width="121"/>
+                        <TextBox x:Name="tbLastName" Text="-" Canvas.Left="140" Canvas.Top="10" Height="25" Width="121"/>
+                        <TextBox Name="tbCompanyName" Text="-" Canvas.Left="10" Canvas.Top="62" Height="25" Width="229"/>
+                        <TextBox Name="tbStreet" Text="" Canvas.Left="10" Canvas.Top="92" Height="25" Width="229"/>
+                        <TextBox Name="tbCity" Text="" Canvas.Left="10" Canvas.Top="122" Height="25" Width="229"/>
+                        <TextBox Name="tbProvince" Text="" Canvas.Left="10" Canvas.Top="152" Height="28" Width="50"/>
+                        <TextBox Name="tbCountry" Text="" Canvas.Left="151" Canvas.Top="152" Height="28" Width="88"/>
+                        <TextBox x:Name="tbPostal" Text="" Canvas.Left="81" Canvas.Top="152" Height="28" Width="50"/>
+                    </Canvas>
+                    <Canvas HorizontalAlignment="Left" Height="209" Margin="300,0,0,0" VerticalAlignment="Top" Width="194">
+                        <Label Content="Phone Number" Canvas.Left="10" Canvas.Top="10" Width="174" Height="26"/>
+                        <TextBox Name="tbPhone1" Text="-" Canvas.Left="10" Canvas.Top="70" Width="174" Height="26"/>
+                        <TextBox Name="tbPhone2" Text="-" Canvas.Left="10" Canvas.Top="101" Width="174" Height="26"/>
+
+                    </Canvas>
+                    <Canvas HorizontalAlignment="Left" Height="170" Margin="494,0,0,0" VerticalAlignment="Top" Width="247">
+                        <Label Content="Email Address" Canvas.Left="10" Canvas.Top="10" Height="30" Width="227"/>
+                        <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227" TextDecorations="Underline" Foreground="#FF2775C3" MouseDoubleClick="tbEmail_MouseDoubleClick">
+                        </TextBox>
+                    </Canvas>
+                    <Label Name="lblSalesRep" Content="-" Margin="639,179,44,39"/>
+                    <Button Name="btnCompanyEditDetail" Content="Edit" HorizontalAlignment="Left" Margin="350,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyEditDetail_Click"/>
+                    <Button Name="btnCompanySaveDetail" Content="Save" HorizontalAlignment="Left" Margin="450,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanySaveDetail_Click"/>
+                    <Label Name="lblCustomerId" Content="" HorizontalAlignment="Left" Margin="29,209,0,0" VerticalAlignment="Top" Height="25" Width="85" Visibility="Hidden"/>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="History">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="677*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Note">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="677*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Purchase">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="677*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

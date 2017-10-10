@@ -92,34 +92,6 @@ namespace WpfCRMProject
                 MessageBox.Show(ex.Message);
             }
             DisplayAddressBook();
-
-
-        }
-        public AddressBook(string s)
-        {
-            try
-            {
-                db = new Database();
-                InitializeComponent();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            DisplaySearchAddressBook(s);
-        }
-        public void DisplaySearchAddressBook(string s)
-        {
-            List<Customer> listCustomer = db.SearchCompanyCustom(s);
-            lvAddress.Items.Clear();
-            foreach (Customer c in listCustomer)
-            {
-                lvAddress.Items.Add(c);
-            }
-            var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mainWin.frTest.Refresh();
-            mainWin.frTest.Navigate(new System.Uri("AddressBook.xaml",
-UriKind.RelativeOrAbsolute));
         }
         public void ClearItem()
         {

@@ -11,20 +11,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfCRMProject
 {
     /// <summary>
-    /// Interaction logic for SearchResultCompany.xaml
+    /// Interaction logic for SearchResultCompany1.xaml
     /// </summary>
-    public partial class SearchResultCompany : Page
+    public partial class SearchResultCompany1 : Window
     {
         Database db;
-        
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
-        public SearchResultCompany()
+        public SearchResultCompany1()
         {
             try
             {
@@ -35,8 +33,7 @@ namespace WpfCRMProject
             {
                 MessageBox.Show(ex.Message);
             }
-            
-            //DisplayAddressBook();
+            // DisplayAddressBook(s);
             InitializeComponent();
 
         }
@@ -113,7 +110,7 @@ namespace WpfCRMProject
             }
         }
 
-        
+
         public void ClearItem()
         {
             lvAddress.Items.Clear();
@@ -121,13 +118,16 @@ namespace WpfCRMProject
         public void DisplayAddressBook(string s)
         {
             List<Customer> listCustomer = db.SearchCompanyCustom(s);
+
             lvAddress.Items.Clear();
             foreach (Customer c in listCustomer)
             {
                 lvAddress.Items.Add(c);
+
             }
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
             mainWin.frTest.Refresh();
+            mainWin.frTest.NavigationService.Refresh();
         }
         private void lvAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -199,3 +199,4 @@ namespace WpfCRMProject
         }
     }
 }
+

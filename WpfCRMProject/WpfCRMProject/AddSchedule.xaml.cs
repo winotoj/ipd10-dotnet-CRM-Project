@@ -27,10 +27,10 @@ namespace WpfCRMProject
 
         private void tbSearch_Click(object sender, RoutedEventArgs e)
         {
-            Database db;
+            Repors db;
             try
             {
-                db = new Database();
+                db = new Repors();
                 db.SearchCompanyName("'%" + tbCompanyName.Text + "%'");
                 //todo display result
             }

@@ -69,11 +69,24 @@ UriKind.RelativeOrAbsolute));
 UriKind.RelativeOrAbsolute));
         }
 
+        private void btnCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            frTest.Navigate(new System.Uri("Calendar.xaml",
+UriKind.RelativeOrAbsolute));
+        }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            frTest.Navigate(new System.Uri("ReportsList.xaml",
+UriKind.RelativeOrAbsolute));
+        }
+
         private void btnAddNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             AddCustomer windowAdd = new AddCustomer();
             windowAdd.ShowDialog();
         }
+        
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {

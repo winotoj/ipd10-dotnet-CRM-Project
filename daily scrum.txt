@@ -49,6 +49,13 @@ ex:
 4. Vaji pls merge from my temporary folder into your code and push it so i can have the fresh one
 5. Work on Detail and edit CTRl and model, view need to be redone
 
+2017/10/06 Vaji
+1. Chaned Desing of main page, login and address book , opportunities
+2. I worke on show user name in main page after login + data and time
+3. I will change the queries for opportunities to show the specific customer for every user Id
+4. I will research about the schedule and calendar
+
+
 2017/10-08
 1. Added working send email
 2. Edit details: clr and model are done
@@ -56,6 +63,7 @@ ex:
 4. will continue on schedule (model)
 5. Will do query
 
+<<<<<<< HEAD
 2017/10/10
 1. what have i done / not done sincce last scrum?
 * Completed send email and show in messages
@@ -64,4 +72,13 @@ ex:
 * will do sales in address book
 3. where do i need help from my teammate, teacher, or internet?
 * search company wont show in window (frame not refreshing?)
+=======
+2017/10/10 Vaji
+
+1.I made a mini project to work on export to excel
+2.I serached about print to pdf
+3.I Will add UI for reports
+4.I will add export to excel to project
+
+>>>>>>> 6c523018cd37dd7d70a2a04634be8e4e38a75e57
 

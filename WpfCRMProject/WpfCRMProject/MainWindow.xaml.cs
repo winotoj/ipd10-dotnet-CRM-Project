@@ -78,7 +78,7 @@ UriKind.RelativeOrAbsolute));
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             frTest.Navigate(new System.Uri("SearchResultCompany.xaml", UriKind.RelativeOrAbsolute));
-            SearchCompany searchCompany = new SearchCompany();
+            SearchCompany searchCompany = new SearchCompany(this);
             searchCompany.ShowDialog();
             frTest.Refresh();
             

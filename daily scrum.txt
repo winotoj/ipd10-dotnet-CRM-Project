@@ -56,4 +56,12 @@ ex:
 4. will continue on schedule (model)
 5. Will do query
 
+2017/10/10
+1. what have i done / not done sincce last scrum?
+* Completed send email and show in messages
+2. what will i do from now until next scrum?
+* Try to sort on the column
+* will do sales in address book
+3. where do i need help from my teammate, teacher, or internet?
+* search company wont show in window (frame not refreshing?)
 

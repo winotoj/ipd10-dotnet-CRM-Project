@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -23,9 +24,18 @@ namespace WpfCRMProject
     {
         private string _Recipient;
         private int _CompanyId;
+        Database db;
         public SendEmail()
         {
-            InitializeComponent();
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             tbFrom.Text = Application.Current.Resources["UserName"].ToString();
            // tbTo.Text = _Recipient;
         }
@@ -62,63 +72,47 @@ namespace WpfCRMProject
             }
             else
             {
-                {
-                    //try
-                    //{
-                    //    Outlook._Application _app = new Outlook.Application();
-                    //    Outlook.MailItem mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
-                    //    mail.To = _Recipient;
-                    //    mail.Subject = tbSubject.Text;
-                    //    mail.Body = tbBody.Text;
-                    //    mail.Importance = Outlook.OlImportance.olImportanceNormal;
-                    //    ((Outlook._MailItem)mail).Send();
-                    //    MessageBox.Show("Your message has been successfully sent", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //    this.Close();
-                    //}
-                    //catch (System.Runtime.InteropServices.COMException ex)
-                    //{
-                    //    MessageBox.Show("fail " + ex.Message, "Message", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //}
-
-                    //NEED TO FIX THE TRY CATCH AND NEED TO ADD TIME
+            
+                   
                     Outlook._Application _app;
+                   
+
                     try
                     {
-                        //outook has to be opened by admin
                         _app = (Outlook.Application)Marshal.GetActiveObject("Outlook.Application");
+                    }
+                   // catch (System.Runtime.InteropServices.COMException ex)
+                   catch(Exception)
+                    {
+                     //MessageBox.Show("Outlook is not opened under Administrator, close OUtlook and click OK." + ex.Message, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                        _app = new Outlook.Application();
+                    }
+                    try
+                    {
                         Outlook.MailItem mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
                         mail.To = _Recipient;
                         mail.Subject = tbSubject.Text;
                         mail.Body = tbBody.Text;
                         mail.Importance = Outlook.OlImportance.olImportanceNormal;
                         ((Outlook._MailItem)mail).Send();
+
                         MessageBox.Show("Your message has been successfully sent", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                        db.RecordMessage(tbSubject.Text, tbBody.Text, "Email", _CompanyId);
                         this.Close();
-
-                    }
-                    catch (System.Runtime.InteropServices.COMException ex)
-                    {
-                        MessageBox.Show("Outlook is not opened, click OK to try again" + ex.Message, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-         
-                            _app = new Outlook.Application();
-                            Outlook.MailItem mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
-                            mail.To = _Recipient;
-                            mail.Subject = tbSubject.Text;
-                            mail.Body = tbBody.Text;
-                            mail.Importance = Outlook.OlImportance.olImportanceNormal;
-                            ((Outlook._MailItem)mail).Send();
-                            MessageBox.Show("Your message has been successfully sent", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                            this.Close();
                         
+                        
+                    }catch (System.Runtime.InteropServices.COMException ex)
+                    {
+                        MessageBox.Show("Error sending email" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
-
-                }
+                
+                
 
 
             }
             
             
         }
+       
     }
 }

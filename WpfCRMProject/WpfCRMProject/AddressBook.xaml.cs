@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
@@ -51,7 +53,8 @@ namespace WpfCRMProject
                 email != tbEmail.Text)
                 )
             {
-                try {
+                try
+                {
                     Customer customer = new Customer
                     {
                         ContactFirstName = tbFirstName.Text,
@@ -68,12 +71,13 @@ namespace WpfCRMProject
                     };
 
                     db.UpdateCustomer(customer);
-                }catch(ArgumentOutOfRangeException ex)
+                }
+                catch (ArgumentOutOfRangeException ex)
                 {
                     MessageBox.Show("Error inputing data" + ex.Message, "Error Message", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-             }
-         
+            }
+
             else
             {
                 MessageBox.Show("test, nothing change");
@@ -86,6 +90,7 @@ namespace WpfCRMProject
             {
                 db = new Database();
                 InitializeComponent();
+                
             }
             catch (SqlException ex)
             {
@@ -107,9 +112,11 @@ namespace WpfCRMProject
 
             }
         }
+
         private void lvAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DisplayDetail();
+            DisplayHistory();
         }
 
         public void DisplayDetail()
@@ -131,6 +138,22 @@ namespace WpfCRMProject
                 tbEmail.Text = customerSelected.Email;
                 lblSalesRep.Content = customerSelected.SalesRepId;
                 lblCustomerId.Content = customerSelected.CustomerId;
+
+            }
+        }
+
+        public void DisplayHistory()
+        {
+            lvHistory.Items.Clear();
+            if (lvAddress.SelectedItem != null)
+            {
+                Customer customerSelected = (Customer)lvAddress.SelectedItem;
+
+                List<Messages> messages = db.getMessages((int)customerSelected.CustomerId);
+                foreach (Messages m in messages)
+                {
+                    lvHistory.Items.Add(m);
+                }
 
             }
         }
@@ -170,10 +193,11 @@ namespace WpfCRMProject
             tbFirstName.IsEnabled = toggle;
             tbLastName.IsEnabled = toggle;
             tbEmail.IsReadOnly = toggle;
-            MessageBox.Show(tbEmail.IsReadOnly.ToString());
             tbPhone1.IsEnabled = toggle;
             tbPhone2.IsEnabled = toggle;
             tbStreet.IsEnabled = toggle;
         }
+
+       
     }
 }

@@ -21,8 +21,9 @@ namespace WpfCRMProject
     /// </summary>
     public partial class SearchCompany : Window
     {
+        MainWindow mainWindowRef;
         Database db;
-        public SearchCompany()
+        public SearchCompany(MainWindow main)
         {
             try
             {
@@ -33,6 +34,7 @@ namespace WpfCRMProject
             {
                 MessageBox.Show(ex.Message);
             }
+            this.mainWindowRef = main;
             List<User> listUser = db.GetAllUsers();
             cbSalesRep.Items.Clear();
             int count = 0;
@@ -121,8 +123,9 @@ namespace WpfCRMProject
             
             searchResult.DisplayAddressBook(strquery);
             this.Close();
-            var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mainWin.frTest.Refresh();
+            this.mainWindowRef.frTest.Refresh();
+            //var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+            //mainWin.frTest.Refresh();
         }
     }
 }

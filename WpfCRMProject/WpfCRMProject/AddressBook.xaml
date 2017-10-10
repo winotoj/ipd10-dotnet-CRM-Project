@@ -20,7 +20,7 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}"/>
+                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}" />
                     <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=CustomerId}"/>
                     <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}"/>
                     <GridViewColumn Header="Created on" DisplayMemberBinding="{Binding Path=CreateDate}"/>
@@ -38,7 +38,11 @@
         <TabControl HorizontalAlignment="Left" Height="275" Margin="10,318,0,0" VerticalAlignment="Top" Width="755">
             <TabItem Header="Details">
                 <Grid Background="#FFE5E5E5" Margin="0,0,-2,3">
-                    <Canvas HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="295">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="22*"/>
+                        <ColumnDefinition Width="729*"/>
+                    </Grid.ColumnDefinitions>
+                    <Canvas HorizontalAlignment="Left" Height="209" VerticalAlignment="Top" Width="295" Grid.ColumnSpan="2">
                         <TextBox Name="tbFirstName" Text="-" Canvas.Left="10" Canvas.Top="10" Height="25" Width="121"/>
                         <TextBox x:Name="tbLastName" Text="-" Canvas.Left="140" Canvas.Top="10" Height="25" Width="121"/>
                         <TextBox Name="tbCompanyName" Text="-" Canvas.Left="10" Canvas.Top="62" Height="25" Width="229"/>
@@ -48,22 +52,22 @@
                         <TextBox Name="tbCountry" Text="" Canvas.Left="151" Canvas.Top="152" Height="28" Width="88"/>
                         <TextBox x:Name="tbPostal" Text="" Canvas.Left="81" Canvas.Top="152" Height="28" Width="50"/>
                     </Canvas>
-                    <Canvas HorizontalAlignment="Left" Height="209" Margin="300,0,0,0" VerticalAlignment="Top" Width="194">
+                    <Canvas HorizontalAlignment="Left" Height="209" Margin="278,0,0,0" VerticalAlignment="Top" Width="194" Grid.Column="1">
                         <Label Content="Phone Number" Canvas.Left="10" Canvas.Top="10" Width="174" Height="26"/>
                         <TextBox Name="tbPhone1" Text="-" Canvas.Left="10" Canvas.Top="70" Width="174" Height="26"/>
                         <TextBox Name="tbPhone2" Text="-" Canvas.Left="10" Canvas.Top="101" Width="174" Height="26"/>
 
                     </Canvas>
-                    <Canvas HorizontalAlignment="Left" Height="170" Margin="494,0,0,0" VerticalAlignment="Top" Width="247">
+                    <Canvas HorizontalAlignment="Left" Height="170" Margin="472,0,0,0" VerticalAlignment="Top" Width="247" Grid.Column="1">
                         <Label Content="Email Address" Canvas.Left="10" Canvas.Top="10" Height="30" Width="227"/>
                         <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="68" Height="56" Width="227" TextDecorations="Underline" Foreground="#FF2775C3" MouseDoubleClick="tbEmail_MouseDoubleClick">
                         </TextBox>
                     </Canvas>
-                    <Label Name="lblSalesRep" Content="-" Margin="639,179,44,39"/>
-                    <Button Name="btnCompanyEditDetail" Content="Edit" HorizontalAlignment="Left" Margin="350,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyEditDetail_Click"/>
-                    <Button Name="btnCompanySaveDetail" Content="Save" HorizontalAlignment="Left" Margin="450,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanySaveDetail_Click"/>
-                    <Label Name="lblCustomerId" Content="" HorizontalAlignment="Left" Margin="29,209,0,0" VerticalAlignment="Top" Height="25" Width="85" Visibility="Hidden"/>
-                    
+                    <Label Name="lblSalesRep" Content="-" Margin="617,179,44,39" Grid.Column="1"/>
+                    <Button Name="btnCompanyEditDetail" Content="Edit" HorizontalAlignment="Left" Margin="328,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanyEditDetail_Click" Grid.Column="1"/>
+                    <Button Name="btnCompanySaveDetail" Content="Save" HorizontalAlignment="Left" Margin="428,179,0,0" VerticalAlignment="Top" Width="75" Click="btnCompanySaveDetail_Click" Grid.Column="1"/>
+                    <Label Name="lblCustomerId" Content="" HorizontalAlignment="Left" Margin="7,209,0,0" VerticalAlignment="Top" Height="25" Width="85" Visibility="Hidden" Grid.Column="1"/>
+
 
                 </Grid>
             </TabItem>
@@ -73,6 +77,16 @@
                         <ColumnDefinition Width="20*"/>
                         <ColumnDefinition Width="677*"/>
                     </Grid.ColumnDefinitions>
+                    <ListView Name="lvHistory" HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="749" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=CreatedDate}"/>
+                                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=Type}"/>
+                                <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=Subject}"/>
+                                <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Path=Note}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
             <TabItem Header="Note">

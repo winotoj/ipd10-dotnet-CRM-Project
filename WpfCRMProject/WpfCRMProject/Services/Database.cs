@@ -288,5 +288,53 @@ namespace WpfCRMProject
             return listCustomer;
         }
 
+        public void RecordMessage(string subject, string note, string type, int customerId)
+        {
+            string strRecord = @"INSERT INTO Messages (subject,  note, type, msg_date, customer_id) VALUES (@subject, @note, @type, @msg_date, @customerId)";
+            try
+            {
+            SqlCommand recordMsg = new SqlCommand(strRecord, conn);
+            recordMsg.Parameters.Add(new SqlParameter("subject", subject));
+            recordMsg.Parameters.Add(new SqlParameter("note", note));
+            recordMsg.Parameters.Add(new SqlParameter("type", type));
+            recordMsg.Parameters.Add(new SqlParameter("msg_date", DateTime.Now));
+            recordMsg.Parameters.Add(new SqlParameter("customerId", customerId));
+            recordMsg.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Message Sent but error record data" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public List<Messages> getMessages(int customerId)
+        {
+            List<Messages> list = new List<Messages>();
+            string strGet = @"SELECT * FROM Messages WHERE customer_id = @customerId ORDER BY msg_date";
+
+            SqlCommand searchCommand = new SqlCommand(strGet, conn);
+            searchCommand.Parameters.Add(new SqlParameter("customerId", customerId));
+            using (SqlDataReader reader = searchCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    
+                    Messages messages = new Messages
+                    {
+                        CustomerID = (int)reader["Customer_Id"],
+                        CreatedDate = (DateTime)reader["msg_date"],
+                        Type = (string)reader["type"],
+                        Subject = (string)reader["subject"],
+                        Note = (string)reader["note"]                       
+                    };
+                    list.Add(messages);
+                   
+                }
+            }
+
+            return list;
+        }
+
     }
 }

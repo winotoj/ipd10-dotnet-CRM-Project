@@ -21,7 +21,7 @@ namespace WpfCRMProject
     /// </summary>
     public partial class AddressBook : Page
     {
-        Database db;
+        Repors db;
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
 
         private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -84,7 +84,7 @@ namespace WpfCRMProject
         {
             try
             {
-                db = new Database();
+                db = new Repors();
                 InitializeComponent();
             }
             catch (SqlException ex)

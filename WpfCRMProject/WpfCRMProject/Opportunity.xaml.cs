@@ -21,12 +21,12 @@ namespace WpfCRMProject
     /// </summary>
     public partial class Opportunity : Page
     {
-        Database db;
+        Repors db;
         public Opportunity()
         {
             try
             {
-                db = new Database();
+                db = new Repors();
                 InitializeComponent();
             }
             catch (SqlException ex)

@@ -28,7 +28,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="150" Margin="0,15,0,0" >
+            <Button Height="50" Width="150" Margin="0,15,0,0" Click="btnCalendar_Click" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
@@ -48,7 +48,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="150" Margin="0,15,0,0" >
+            <Button Height="50" Width="150" Margin="0,15,0,0" Click="btnReport_Click" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>

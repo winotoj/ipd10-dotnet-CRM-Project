@@ -21,12 +21,12 @@ namespace WpfCRMProject
     /// </summary>
     public partial class SearchCompany : Window
     {
-        Database db;
+        Repors db;
         public SearchCompany()
         {
             try
             {
-                db = new Database();
+                db = new Repors();
                 InitializeComponent();
             }
             catch (SqlException ex)

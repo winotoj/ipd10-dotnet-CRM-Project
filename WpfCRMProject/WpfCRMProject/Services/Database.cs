@@ -11,12 +11,12 @@ using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
-    class Database
+    class Repors
     {
         private string connString = @"Server=tcp:vwdotnetproject.database.windows.net,1433;Initial Catalog=CrmProject;Persist Security Info=False;User ID=vajiwinoto;Password=VW@azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private SqlConnection conn;
 
-        public Database()
+        public Repors()
         {
             conn = new SqlConnection();
             conn.ConnectionString = connString;

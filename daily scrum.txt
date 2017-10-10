@@ -47,6 +47,7 @@ ex:
 2. Had problem with github, some of jobs from yesterday at school are gone
 3. Will continue number 3&4 above
 4. Vaji pls merge from my temporary folder into your code and push it so i can have the fresh one
+5. Work on Detail and edit CTRl and model, view need to be redone
 
 2017/10-08
 1. Added working send email

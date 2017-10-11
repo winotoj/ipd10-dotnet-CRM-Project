@@ -104,3 +104,13 @@ ex:
 
 
 
+2017/10/11 Winoto
+1.Done/not done
+* sort column address book and query result done
+* display the result in the frame done
+* Sales in address book is not done
+2. will do? 
+* Continue query sales
+* add UI and code for adding messages manually
+3. Help?
+* Found in internet about passing parameter to display frame  

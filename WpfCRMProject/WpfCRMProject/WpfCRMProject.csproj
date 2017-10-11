@@ -87,6 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddMessage.xaml.cs">
+      <DependentUpon>AddMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddSchedule.xaml.cs">
       <DependentUpon>AddSchedule.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <DependentUpon>WorkDay.xaml</DependentUpon>
     </Compile>
     <Page Include="AddCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

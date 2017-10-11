@@ -31,13 +31,41 @@ namespace WpfCRMProject
 
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
 
+        public AddressBook()
+        {
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            DisplayAddressBook();
+        }
+
+        private void btnAddMessage_Click(object sender, RoutedEventArgs e)
+        {
+            Customer customerSelected = (Customer)lvAddress.SelectedItem;
+            AddMessage addMessage = new AddMessage((int)customerSelected.CustomerId, (int)customerSelected.SalesRepId);
+            addMessage.ShowDialog();
+            DisplayHistory();
+        }
+
         private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (tbEmail.Text != "")
             {
+                Customer customerSelected = (Customer)lvAddress.SelectedItem;
                 SendEmail sendEmail = new SendEmail();
-                sendEmail.recipient = tbEmail.Text;
-                sendEmail.companyId = (int)lblCustomerId.Content;
+                sendEmail.recipient = customerSelected.Email;
+                sendEmail.companyId = (int)customerSelected.CustomerId;
+                sendEmail.sender = customerSelected.SalesRepId.ToString();
+                string email = sendEmail.GetEmail();
+                sendEmail.tbTo.Text = customerSelected.Email;
+                sendEmail.tbFrom.Text = email;
                 sendEmail.ShowDialog();
             }
         }
@@ -89,20 +117,7 @@ namespace WpfCRMProject
             }
         }
 
-        public AddressBook()
-        {
-            try
-            {
-                db = new Database();
-                InitializeComponent();
-
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            DisplayAddressBook();
-        }
+        
         public void ClearItem()
         {
             lvAddress.Items.Clear();
@@ -153,13 +168,12 @@ namespace WpfCRMProject
             if (lvAddress.SelectedItem != null)
             {
                 Customer customerSelected = (Customer)lvAddress.SelectedItem;
-
-                List<Messages> messages = db.getMessages((int)customerSelected.CustomerId);
+                List<Messages> messages = db.GetMessages((int)customerSelected.CustomerId);
                 foreach (Messages m in messages)
                 {
                     lvHistory.Items.Add(m);
                 }
-
+                
             }
         }
 
@@ -232,6 +246,7 @@ namespace WpfCRMProject
                     default:
                         return;
                 }
+                lastHeaderAddress = string.Empty;
             }
             else
             {

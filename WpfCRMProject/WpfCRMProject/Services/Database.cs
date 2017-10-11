@@ -332,10 +332,24 @@ namespace WpfCRMProject
 
             return listCustomer;
         }
-
-        public void RecordMessage(string subject, string note, string type, int customerId)
+        public string GetUserEmail(string userId)
         {
-            string strRecord = @"INSERT INTO Messages (subject,  note, type, msg_date, customer_id) VALUES (@subject, @note, @type, @msg_date, @customerId)";
+            string email = string.Empty;
+            SqlCommand getCommand = new SqlCommand("SELECT email FROM Salesreps WHERE username = @userId", conn);
+            getCommand.Parameters.Add(new SqlParameter("userId", userId));
+            using (SqlDataReader reader = getCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    email = (string)reader["email"];  
+                }
+            }
+            return email;
+        }
+
+        public void RecordMessage(string subject, string note, string type, int customerId, int userId)
+        {
+            string strRecord = @"INSERT INTO Messages (subject,  note, type, msg_date, customer_id, user_id) VALUES (@subject, @note, @type, @msg_date, @customerId, @user_id)";
             try
             {
                 SqlCommand recordMsg = new SqlCommand(strRecord, conn);
@@ -344,6 +358,7 @@ namespace WpfCRMProject
                 recordMsg.Parameters.Add(new SqlParameter("type", type));
                 recordMsg.Parameters.Add(new SqlParameter("msg_date", DateTime.Now));
                 recordMsg.Parameters.Add(new SqlParameter("customerId", customerId));
+                recordMsg.Parameters.Add(new SqlParameter("user_id", userId));
                 recordMsg.ExecuteNonQuery();
 
             }
@@ -353,7 +368,7 @@ namespace WpfCRMProject
             }
         }
 
-        public List<Messages> getMessages(int customerId)
+        public List<Messages> GetMessages(int customerId)
         {
             List<Messages> list = new List<Messages>();
             string strGet = @"SELECT * FROM Messages WHERE customer_id = @customerId ORDER BY msg_date";
@@ -371,7 +386,8 @@ namespace WpfCRMProject
                         CreatedDate = (DateTime)reader["msg_date"],
                         Type = (string)reader["type"],
                         Subject = (string)reader["subject"],
-                        Note = (string)reader["note"]
+                        Note = (string)reader["note"],
+                        UserId = (int)reader["user_id"]
                     };
                     list.Add(messages);
 
@@ -379,6 +395,26 @@ namespace WpfCRMProject
             }
 
             return list;
+        }
+        public void AddMessage(int customer_id, string subject, string note, string type, int user_id)
+        {
+
+            string add = @"INSERT INTO Messages (customer_id, subject, note, type, msg_date, user_id) VALUES (@customer_id, @subject, @note, @type, @msg_date, @user_id)";
+            try
+            {
+                SqlCommand addCommand = new SqlCommand(add, conn);
+                addCommand.Parameters.Add(new SqlParameter("customer_id", customer_id));
+                addCommand.Parameters.Add(new SqlParameter("subject", subject));
+                addCommand.Parameters.Add(new SqlParameter("note", note));
+                addCommand.Parameters.Add(new SqlParameter("type", type));
+                addCommand.Parameters.Add(new SqlParameter("msg_date", DateTime.Now));
+                addCommand.Parameters.Add(new SqlParameter("user_id", user_id));
+                addCommand.ExecuteNonQuery();
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show("Error adding message: " + ex.Message);
+            }
         }
 
     }

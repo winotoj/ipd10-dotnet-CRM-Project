@@ -152,29 +152,32 @@ namespace WpfCRMProject
 
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User();
-            MessageBox.Show("user role " + user.Role + " first" + Application.Current.Resources["UserName"]);
-            if (lblSalesRep.Content.ToString() != user.UserId.ToString() || user.Role.ToString() != "manager")
-            //if ((lblSalesRep.Content != (string)Application.Current.Resources["UserName"]) || ((string)Application.Current.Resources["Role"] != "manager"))
+     
+            MessageBox.Show("user id from lable " + lblSalesRep.Content.ToString() + " from ap " + Application.Current.Resources["UserName"] + "role " + Application.Current.Resources["Role"].ToString());
+           
+            firstName = tbFirstName.Text;
+            lastName = tbLastName.Text;
+            company = tbCompanyName.Text;
+            city = tbCity.Text;
+            street = tbStreet.Text;
+            city = tbCity.Text;
+            province = tbProvince.Text;
+            postalCode = tbPostal.Text;
+            country = tbCountry.Text;
+            phone1 = tbPhone1.Text;
+            phone2 = tbPhone2.Text;
+            email = tbEmail.Text;
+            if (Application.Current.Resources["Role"].ToString() == "manager" || lblSalesRep.Content.ToString() == Application.Current.Resources["UserName"].ToString())
+            {
+                btnCompanyEditDetail.IsEnabled = true;
+                btnCompanySaveDetail.IsEnabled = true;
+                DisableEnableTextBox(true);
+            }
+            else 
             {
                 btnCompanyEditDetail.IsEnabled = false;
                 btnCompanySaveDetail.IsEnabled = false;
-            }
-            else
-            {
-                DisableEnableTextBox(true);
-                firstName = tbFirstName.Text;
-                lastName = tbLastName.Text;
-                company = tbCompanyName.Text;
-                city = tbCity.Text;
-                street = tbStreet.Text;
-                city = tbCity.Text;
-                province = tbProvince.Text;
-                postalCode = tbPostal.Text;
-                country = tbCountry.Text;
-                phone1 = tbPhone1.Text;
-                phone2 = tbPhone2.Text;
-                email = tbEmail.Text;
+                DisableEnableTextBox(false);
             }
         }
 
@@ -221,6 +224,7 @@ namespace WpfCRMProject
                     default:
                         return;
                 }
+                lastHeaderAddress = string.Empty;
             }
             else
             {

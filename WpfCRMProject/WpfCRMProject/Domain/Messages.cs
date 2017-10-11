@@ -14,8 +14,20 @@ namespace WpfCRMProject.Domain
         private DateTime _CreatedDate;
         private string _Type;
         private int _CustomerId;
+        private int _UserId;
         
         public int MessageId { get; set; }
+        public int UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                _UserId = value;
+            }
+        }
         public int CustomerID
         {
             get

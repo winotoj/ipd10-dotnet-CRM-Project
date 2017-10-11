@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCRMProject.Domain;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace WpfCRMProject
@@ -24,19 +25,20 @@ namespace WpfCRMProject
     {
         private string _Recipient;
         private int _CompanyId;
-        Database db;
+        Repors db;
         public SendEmail()
         {
             try
             {
-                db = new Database();
+                db = new Repors();
                 InitializeComponent();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            tbFrom.Text = Application.Current.Resources["UserName"].ToString();
+            User user = new User();
+            tbFrom.Text = user.Email.ToString();
            // tbTo.Text = _Recipient;
         }
         public string recipient{

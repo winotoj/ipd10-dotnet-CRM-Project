@@ -27,8 +27,9 @@ namespace WpfCRMProject.Services
             {
                 string firstName = dataSet.Tables[0].Rows[0]["FirstName"].ToString();
                 string lastName = dataSet.Tables[0].Rows[0]["LastName"].ToString();
-                string role = dataSet.Tables[0].Rows[0]["Role"].ToString();
-                User user = new User(firstName, lastName, username, role);
+                string role = dataSet.Tables[0].Rows[0]["role"].ToString();
+                string email = dataSet.Tables[0].Rows[0]["email"].ToString();
+                User user = new User(firstName, lastName, username, role, email);
 
                 return user;
             }

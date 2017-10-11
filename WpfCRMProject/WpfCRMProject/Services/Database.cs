@@ -23,7 +23,7 @@ namespace WpfCRMProject
             conn.Open();
         }
 
-       
+
 
         public List<Customer> GetAllCustomers()
         {
@@ -142,8 +142,8 @@ namespace WpfCRMProject
                                                 status = @Status,
                                                 email = @Email,
                                                 country = @Country
-                                            WHERE salesrep_id = @Salesrep_id & company_id = @companyId" ;
- 
+                                            WHERE salesrep_id = @Salesrep_id & company_id = @companyId";
+
             SqlCommand insertCommand = new SqlCommand(update, conn);
             insertCommand.Parameters.Add(new SqlParameter("CompanyName", c.CompanyName));
             insertCommand.Parameters.Add(new SqlParameter("Street", c.Street));
@@ -219,15 +219,14 @@ namespace WpfCRMProject
         public List<Customer> SearchCompanyCustom(string s)
         {
             List<Customer> listCustomer = new List<Customer>();
-            string commandString = "select * from customers where salesrep_id = 1795661";
-            //string commandString = "SELECT * fROM (salesreps AS s LEFT JOIN customers AS c On s.username = c.salesrep_Id) LEFT JOIN v_Sales_LatestPurchase AS v ON c.customer_id = v.customer_id WHERE" + s;
+            string commandString = "SELECT * fROM (salesreps AS s LEFT JOIN customers AS c On s.username = c.salesrep_Id) LEFT JOIN v_Sales_LatestPurchase AS v ON c.customer_id = v.customer_id WHERE" + s;
             SqlCommand searchCommand = new SqlCommand(commandString, conn);
             using (SqlDataReader reader = searchCommand.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                   // string amt = (reader["amount"] == DBNull.Value ? "" : ((decimal)reader["amount"]).ToString("F02", CultureInfo.InvariantCulture));
-                   // string pd = reader["purchase_date"].ToString();
+                    string amt = (reader["amount"] == DBNull.Value ? "" : ((decimal)reader["amount"]).ToString("F02", CultureInfo.InvariantCulture));
+                    string pd = reader["purchase_date"].ToString();
                     Customer customer = new Customer
                     {
                         CustomerId = (int)reader["Customer_Id"],
@@ -242,15 +241,14 @@ namespace WpfCRMProject
                         CreateDate = (DateTime)reader["created_date"],
                         Status = (bool)reader["status"],
                         Email = (string)reader["email"],
-                        SalesRepId = (int)reader["salesrep_Id"]
-                     //  LastPurchaseDate = pd,
-                      // Amount = amt
+                        SalesRepId = (int)reader["salesrep_Id"],
+                        LastPurchaseDate = pd,
+                        Amount = amt
                     };
                     listCustomer.Add(customer);
-                   // MessageBox.Show("from db" + customer.CompanyName);
                 }
             }
-            
+
             return listCustomer;
         }
 
@@ -259,13 +257,13 @@ namespace WpfCRMProject
             string strRecord = @"INSERT INTO Messages (subject,  note, type, msg_date, customer_id) VALUES (@subject, @note, @type, @msg_date, @customerId)";
             try
             {
-            SqlCommand recordMsg = new SqlCommand(strRecord, conn);
-            recordMsg.Parameters.Add(new SqlParameter("subject", subject));
-            recordMsg.Parameters.Add(new SqlParameter("note", note));
-            recordMsg.Parameters.Add(new SqlParameter("type", type));
-            recordMsg.Parameters.Add(new SqlParameter("msg_date", DateTime.Now));
-            recordMsg.Parameters.Add(new SqlParameter("customerId", customerId));
-            recordMsg.ExecuteNonQuery();
+                SqlCommand recordMsg = new SqlCommand(strRecord, conn);
+                recordMsg.Parameters.Add(new SqlParameter("subject", subject));
+                recordMsg.Parameters.Add(new SqlParameter("note", note));
+                recordMsg.Parameters.Add(new SqlParameter("type", type));
+                recordMsg.Parameters.Add(new SqlParameter("msg_date", DateTime.Now));
+                recordMsg.Parameters.Add(new SqlParameter("customerId", customerId));
+                recordMsg.ExecuteNonQuery();
 
             }
             catch (SqlException ex)
@@ -285,17 +283,17 @@ namespace WpfCRMProject
             {
                 while (reader.Read())
                 {
-                    
+
                     Messages messages = new Messages
                     {
                         CustomerID = (int)reader["Customer_Id"],
                         CreatedDate = (DateTime)reader["msg_date"],
                         Type = (string)reader["type"],
                         Subject = (string)reader["subject"],
-                        Note = (string)reader["note"]                       
+                        Note = (string)reader["note"]
                     };
                     list.Add(messages);
-                   
+
                 }
             }
 

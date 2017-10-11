@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
@@ -25,7 +26,7 @@ namespace WpfCRMProject
         Repors db;
         
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
-        public SearchResultCompany()
+        public SearchResultCompany(string str)
         {
             try
             {
@@ -37,25 +38,11 @@ namespace WpfCRMProject
                 MessageBox.Show(ex.Message);
             }
             
-            //DisplayAddressBook();
+            DisplayAddressBook(str);
             InitializeComponent();
 
         }
-        //public SearchResultCompany(string s)
-        //{
-        //    try
-        //    {
-        //        db = new Database();
-        //        InitializeComponent();
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    DisplayAddressBook(s);
-
-
-        //}
+        
         private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (tbEmail.Text != "")
@@ -123,12 +110,12 @@ namespace WpfCRMProject
         {
             List<Customer> listCustomer = db.SearchCompanyCustom(s);
             lvAddress.Items.Clear();
+            string str = "";
             foreach (Customer c in listCustomer)
             {
                 lvAddress.Items.Add(c);
+                str += c.CompanyName;
             }
-            var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            mainWin.frTest.Refresh();
         }
         private void lvAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -160,7 +147,10 @@ namespace WpfCRMProject
 
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString() || Application.Current.Resources["role"].ToString() != "manager")
+            User user = new User();
+            MessageBox.Show("user is " + user.Role);
+            if (lblSalesRep.Content.ToString() != user.UserId.ToString() || user.Role.ToString() != "manager")
+               // if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString() || Application.Current.Resources["role"].ToString() != "manager")
             {
                 btnCompanyEditDetail.IsEnabled = false;
                 btnCompanySaveDetail.IsEnabled = false;
@@ -193,7 +183,6 @@ namespace WpfCRMProject
             tbFirstName.IsEnabled = toggle;
             tbLastName.IsEnabled = toggle;
             tbEmail.IsReadOnly = toggle;
-            MessageBox.Show(tbEmail.IsReadOnly.ToString());
             tbPhone1.IsEnabled = toggle;
             tbPhone2.IsEnabled = toggle;
             tbStreet.IsEnabled = toggle;

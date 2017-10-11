@@ -9,7 +9,7 @@
       Title="AddressBook">
 
     <Grid Margin="0,0,-494,-307">
-        <ListView Name="lvAddress" HorizontalAlignment="Left" Height="271" Margin="10,42,0,0" VerticalAlignment="Top" Width="755" SelectionChanged="lvAddress_SelectionChanged" SelectionMode="Single">
+        <ListView Name="lvAddress" HorizontalAlignment="Left" Height="271" Margin="10,42,0,0" VerticalAlignment="Top" Width="755" SelectionChanged="lvAddress_SelectionChanged" SelectionMode="Single" GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
             <ListView.ContextMenu>
                 <ContextMenu Name="ZoneIformationList" StaysOpen="true" Background="WhiteSmoke">
                     <ContextMenu.BitmapEffect>

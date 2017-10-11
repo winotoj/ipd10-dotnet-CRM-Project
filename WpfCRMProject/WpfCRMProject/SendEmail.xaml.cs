@@ -25,12 +25,12 @@ namespace WpfCRMProject
     {
         private string _Recipient;
         private int _CompanyId;
-        Repors db;
+       Database db;
         public SendEmail()
         {
             try
             {
-                db = new Repors();
+                db = new Database();
                 InitializeComponent();
             }
             catch (SqlException ex)

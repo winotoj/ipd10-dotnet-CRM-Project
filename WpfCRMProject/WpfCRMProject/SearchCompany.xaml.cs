@@ -21,25 +21,22 @@ namespace WpfCRMProject
     /// </summary>
     public partial class SearchCompany : Window
     {
-<<<<<<< HEAD
-        MainWindow mainWindowRef;
         Database db;
-        public SearchCompany(MainWindow main)
-=======
-        Repors db;
+        public string str;
+        
         public SearchCompany()
->>>>>>> 6c523018cd37dd7d70a2a04634be8e4e38a75e57
+
         {
             try
             {
-                db = new Repors();
+                db = new Database();
                 InitializeComponent();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            this.mainWindowRef = main;
+           
             List<User> listUser = db.GetAllUsers();
             cbSalesRep.Items.Clear();
             int count = 0;
@@ -117,20 +114,14 @@ namespace WpfCRMProject
             }
             if (dpLastPurchaseDate.SelectedDate != null)
             {
-                strquery += " and v.purchase_date < " + dpLastPurchaseDate.SelectedDate.Value.ToShortDateString();
+                strquery += " and v.purchase_date > " + dpLastPurchaseDate.SelectedDate.Value.ToShortDateString();
             }
            
             User cbUser = (User)cbSalesRep.SelectedItem;
             strquery += " and c.salesrep_Id = " + cbUser.UserId.ToString();
             MessageBox.Show(strquery);
-
-            SearchResultCompany searchResult = new SearchResultCompany();
-            
-            searchResult.DisplayAddressBook(strquery);
+            str = strquery;
             this.Close();
-            this.mainWindowRef.frTest.Refresh();
-            //var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            //mainWin.frTest.Refresh();
         }
     }
 }

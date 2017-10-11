@@ -19,12 +19,13 @@ namespace WpfCRMProject.Domain
         {
 
         }
-        public User(string firstName, string lastName, string username, string role )
+        public User(string firstName, string lastName, string username, string role, string email )
         {
             _FirstName = firstName;
             _LastName = lastName;
             _Username = username;
             _Role = role;
+            _Email = email;
         }
 
         public string FirstName

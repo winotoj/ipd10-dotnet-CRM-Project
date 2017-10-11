@@ -11,13 +11,142 @@ namespace WpfCRMProject.Domain
         private int _Schedule_id;
         private string _Type;
         private string _Note;
-        private bool _Completed;
+        private bool _State;
         private DateTime _ScheduleDate;
-        private DateTime _StartDate;
-        private DateTime _EndDate;
+        private String _StartTime;
+        private String _EndTime;
         private DateTime _CreatedDate;
         private string _Subject;
         private int _SalesRepId;
         private int _CompanyId;
+
+        //TODO: add validation
+        
+        public int Schedule_id { get; set; }
+
+        public string Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                _Type = value;
+            }
+
+        }
+
+        public string Note
+        {
+            get
+            {
+                return _Note;
+            }
+            set
+            {
+                _Note = value;
+            }
+
+        }
+
+        public bool State
+        {
+            get
+            {
+                return _State;
+            }
+            set
+            {
+                _State = value;
+            }
+        }
+
+        public DateTime ScheduleDate
+        {
+            get
+            {
+                return _ScheduleDate;
+            }
+            set
+            {
+                _ScheduleDate = value;
+            }
+        }
+
+        public DateTime CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                _CreatedDate = value;
+            }
+        }
+
+        public string StartTime
+        {
+            get
+            {
+                return _StartTime;
+            }
+            set
+            {
+                _StartTime = value;
+            }
+
+        }
+
+        public string EndTime
+        {
+            get
+            {
+                return _EndTime;
+            }
+            set
+            {
+                _EndTime = value;
+            }
+
+        }
+
+        public string Subject
+        {
+            get
+            {
+                return _Subject;
+            }
+            set
+            {
+                _Subject = value;
+            }
+
+        }
+
+        public int SalesRepId
+        {
+            get
+            {
+                return _SalesRepId;
+            }
+            set
+            {
+                _SalesRepId = value;
+            }
+        }
+
+        public int CompanyId
+        {
+            get
+            {
+                return _CompanyId;
+            }
+            set
+            {
+                _CompanyId = value;
+            }
+        }
     }
 }

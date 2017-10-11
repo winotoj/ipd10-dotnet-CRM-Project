@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
@@ -27,18 +28,43 @@ namespace WpfCRMProject
 
         private void tbSearch_Click(object sender, RoutedEventArgs e)
         {
-            Repors db;
+            Database db;
             try
             {
-                db = new Repors();
-                db.SearchCompanyName("'%" + tbCompanyName.Text + "%'");
-                //todo display result
+                db = new Database();               
+
+                List<Customer> companyName = db.SearchCompanyName( tbCompanyName.Text );
+                foreach (Customer c in companyName)
+                {
+                    lvCompanyName.Items.Add(c);
+                }
+
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+               
+private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            String type = cbType.SelectedValue.ToString();
+            String subject = tbSubject.Text;
+            String meetingDate = dateOfMetting.Text;
+            String startTime = cbstartTime.SelectedValue.ToString();
+            String endTime = cbEndTime.SelectedValue.ToString();
+            String note = tbNote.Text;
+
+            Schedule schedule = new Schedule();
+            schedule.Type = type;
+            schedule.Subject = subject;
+            schedule.ScheduleDate = DateTime.Parse(meetingDate);
+            schedule.StartTime = startTime;
+            schedule.EndTime = endTime;
+            schedule.Note = note;
+
         }
     }
 }

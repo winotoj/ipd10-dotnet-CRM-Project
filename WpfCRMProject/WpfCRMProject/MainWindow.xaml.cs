@@ -87,14 +87,13 @@ UriKind.RelativeOrAbsolute));
             windowAdd.ShowDialog();
         }
         
-
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            frTest.Navigate(new System.Uri("SearchResultCompany.xaml", UriKind.RelativeOrAbsolute));
-            SearchCompany searchCompany = new SearchCompany(this);
+            SearchCompany searchCompany = new SearchCompany();
             searchCompany.ShowDialog();
-            frTest.Refresh();
-            
+            string str = searchCompany.str;
+            frTest.NavigationService.Navigate(new SearchResultCompany(str));
+
         }
     }
 }

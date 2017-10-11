@@ -23,8 +23,12 @@ namespace WpfCRMProject
     /// </summary>
     public partial class AddressBook : Page
     {
+<<<<<<< HEAD
         Repors db;
         public static string lastHeaderAddress = string.Empty;
+=======
+        Database db;
+>>>>>>> 2ce173d385c5bb906ad830da84a39d283f59c1a4
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
 
         private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -89,7 +93,7 @@ namespace WpfCRMProject
         {
             try
             {
-                db = new Repors();
+                db = new Database();
                 InitializeComponent();
 
             }

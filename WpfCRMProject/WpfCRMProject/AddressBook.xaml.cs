@@ -24,6 +24,7 @@ namespace WpfCRMProject
     public partial class AddressBook : Page
     {
         Repors db;
+        public static string lastHeaderAddress = string.Empty;
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
 
         private void tbEmail_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -197,7 +198,7 @@ namespace WpfCRMProject
             tbPhone2.IsEnabled = toggle;
             tbStreet.IsEnabled = toggle;
         }
-        public static string lastHeaderAddress = "";
+        
         void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e)
         {
             string header = ((GridViewColumnHeader)e.OriginalSource).Column.Header.ToString();

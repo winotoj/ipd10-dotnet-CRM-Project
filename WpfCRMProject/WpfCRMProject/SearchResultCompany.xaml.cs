@@ -24,7 +24,7 @@ namespace WpfCRMProject
     public partial class SearchResultCompany : Page
     {
         Repors db;
-        
+        public static string lastHeaderAddress = string.Empty;
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
         public SearchResultCompany(string str)
         {
@@ -148,9 +148,9 @@ namespace WpfCRMProject
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
             User user = new User();
-            MessageBox.Show("user is " + user.Role);
+            MessageBox.Show("user role " + user.Role + " first" + Application.Current.Resources["UserName"]);
             if (lblSalesRep.Content.ToString() != user.UserId.ToString() || user.Role.ToString() != "manager")
-               // if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString() || Application.Current.Resources["role"].ToString() != "manager")
+            //if ((lblSalesRep.Content != (string)Application.Current.Resources["UserName"]) || ((string)Application.Current.Resources["Role"] != "manager"))
             {
                 btnCompanyEditDetail.IsEnabled = false;
                 btnCompanySaveDetail.IsEnabled = false;
@@ -187,5 +187,72 @@ namespace WpfCRMProject
             tbPhone2.IsEnabled = toggle;
             tbStreet.IsEnabled = toggle;
         }
+        void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e)
+        {
+            string header = ((GridViewColumnHeader)e.OriginalSource).Column.Header.ToString();
+            List<Customer> list = db.GetAllCustomers();
+            if (lastHeaderAddress == header)
+            {
+                switch (header)
+                {
+                    case "Customer Name":
+                        list.Sort((x, y) => -1 * x.CompanyName.CompareTo(y.CompanyName));
+                        break;
+                    case "Cust No":
+                        list.Sort((x, y) => -1 * x.CustomerId.CompareTo(y.CustomerId));
+                        break;
+                    case "Status":
+                        list.Sort((x, y) => -1 * x.Status.CompareTo(y.Status));
+                        break;
+                    case "Created on":
+                        list.Sort((x, y) => -1 * x.CreateDate.CompareTo(y.CreateDate));
+                        break;
+                    case "Last Purch Date":
+                        list.Sort((x, y) => -1 * x.LastPurchaseDate.CompareTo(y.LastPurchaseDate));
+                        break;
+                    case "Last Purch Amount":
+                        list.Sort((x, y) => -1 * x.Amount.CompareTo(y.Amount));
+                        break;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                switch (header)
+                {
+                    case "Customer Name":
+                        list.Sort((x, y) => x.CompanyName.CompareTo(y.CompanyName));
+                        break;
+                    case "Cust No":
+                        list.Sort((x, y) => x.CustomerId.CompareTo(y.CustomerId));
+                        break;
+                    case "Status":
+                        list.Sort((x, y) => x.Status.CompareTo(y.Status));
+                        break;
+                    case "Created on":
+                        list.Sort((x, y) => x.CreateDate.CompareTo(y.CreateDate));
+                        break;
+                    case "Last Purch Date":
+                        list.Sort((x, y) => x.LastPurchaseDate.CompareTo(y.LastPurchaseDate));
+                        break;
+                    case "Last Purch Amount":
+                        list.Sort((x, y) => x.Amount.CompareTo(y.Amount));
+                        break;
+                    default:
+                        return;
+                }
+                lastHeaderAddress = header;
+            }
+
+            lvAddress.Items.Clear();
+            foreach (Customer c in list)
+            {
+                lvAddress.Items.Add(c);
+            }
+
+        }
+
     }
 }
+

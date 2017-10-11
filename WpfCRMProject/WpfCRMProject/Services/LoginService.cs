@@ -30,7 +30,7 @@ namespace WpfCRMProject.Services
                 string role = dataSet.Tables[0].Rows[0]["role"].ToString();
                 string email = dataSet.Tables[0].Rows[0]["email"].ToString();
                 User user = new User(firstName, lastName, username, role, email);
-
+               
                 return user;
             }
 

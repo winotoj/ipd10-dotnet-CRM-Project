@@ -20,12 +20,12 @@ namespace WpfCRMProject
     /// </summary>
     public partial class AddCustomer : Window
     {
-        Repors db;
+        Database db;
         public AddCustomer()
         {
             try
             {
-                db = new Repors();
+                db = new Database();
                 InitializeComponent();
             }
             catch (SqlException ex)

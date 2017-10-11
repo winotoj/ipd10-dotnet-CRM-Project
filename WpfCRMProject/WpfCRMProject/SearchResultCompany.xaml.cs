@@ -23,14 +23,14 @@ namespace WpfCRMProject
     /// </summary>
     public partial class SearchResultCompany : Page
     {
-        Repors db;
+        Database db;
         
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
         public SearchResultCompany(string str)
         {
             try
             {
-                db = new Repors();
+                db = new Database();
                 InitializeComponent();
             }
             catch (SqlException ex)

@@ -11,12 +11,12 @@ using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
-    class Repors
+    class Database
     {
         private string connString = @"Server=tcp:vwdotnetproject.database.windows.net,1433;Initial Catalog=CrmProject;Persist Security Info=False;User ID=vajiwinoto;Password=VW@azure;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private SqlConnection conn;
 
-        public Repors()
+        public Database()
         {
             conn = new SqlConnection();
             conn.ConnectionString = connString;
@@ -58,6 +58,12 @@ namespace WpfCRMProject
                 }
             }
             return listCustomer;
+        }
+
+        public void AddAppointment(Schedule s)
+        {
+            //ToDo : create query to get data from Addschedule and insert in to message table
+            //add some field to related table
         }
 
         public void AddPerson(Customer c)
@@ -166,10 +172,10 @@ namespace WpfCRMProject
         public List<Customer> SearchCompanyName(String c)
         {
             List<Customer> listCompany = new List<Customer>();
-            string searchCN = "SELECT * FROM Customers WHERE salesrep_id=@Id AND company_name=@company";
+            string searchCN = "SELECT * FROM Customers WHERE salesrep_id=@Id AND company_name like '%" + c + "%'";
             SqlCommand searchCommand = new SqlCommand(searchCN, conn);
             searchCommand.Parameters.Add(new SqlParameter("Id", Application.Current.Resources["UserName"]));
-            searchCommand.Parameters.Add(new SqlParameter("company", c));
+            //searchCommand.Parameters.Add(new SqlParameter("company", c));
             using (SqlDataReader reader = searchCommand.ExecuteReader())
             {
                 while (reader.Read())

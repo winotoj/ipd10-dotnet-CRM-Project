@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -25,22 +26,28 @@ namespace WpfCRMProject
     {
         private string _Recipient;
         private int _CompanyId;
-       Database db;
+        private string _Sender;
+        private string _Email;
+        Database db;
         public SendEmail()
         {
             try
             {
                 db = new Database();
                 InitializeComponent();
+                
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            User user = new User();
-            tbFrom.Text = user.Email.ToString();
-           // tbTo.Text = _Recipient;
         }
+        public string GetEmail()
+        {
+            _Email = db.GetUserEmail(sender);
+            return _Email;
+        }
+
         public string recipient{
             get
             {
@@ -49,7 +56,17 @@ namespace WpfCRMProject
             set
             {
                 _Recipient = value;
-                tbTo.Text = _Recipient;
+            }
+        }
+        public string sender
+        {
+            get
+            {
+                return _Sender;
+            }
+            set
+            {
+                _Sender = value;
             }
         }
 
@@ -73,9 +90,7 @@ namespace WpfCRMProject
                 MessageBox.Show("Please make sure recipient and subject is not empty","message", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
-            {
-            
-                   
+            {                 
                     Outlook._Application _app;
                    
 
@@ -97,9 +112,9 @@ namespace WpfCRMProject
                         mail.Body = tbBody.Text;
                         mail.Importance = Outlook.OlImportance.olImportanceNormal;
                         ((Outlook._MailItem)mail).Send();
-
-                        MessageBox.Show("Your message has been successfully sent", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                        db.RecordMessage(tbSubject.Text, tbBody.Text, "Email", _CompanyId);
+                        db.RecordMessage(tbSubject.Text, tbBody.Text, "Email", _CompanyId, int.Parse(_Sender));
+                    tbSubject.Text = string.Empty;
+                    tbBody.Text = string.Empty;
                         this.Close();
                         
                         
@@ -115,6 +130,42 @@ namespace WpfCRMProject
             
             
         }
-       
+        void SendEmail_Closing(object sender, CancelEventArgs e)
+        {
+            if (tbSubject.Text != string.Empty || tbBody.Text != string.Empty)
+            {
+                e.Cancel = true;
+                MessageBoxResult result = MessageBox.Show("Are you sure want to cancel?", "Message", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
+
+            }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            if(tbSubject.Text != string.Empty || tbBody.Text != string.Empty)
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure want to cancel?", "Message", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if(result == MessageBoxResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+        }
     }
 }

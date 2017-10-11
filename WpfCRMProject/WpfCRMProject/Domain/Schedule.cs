@@ -18,7 +18,7 @@ namespace WpfCRMProject.Domain
         private DateTime _CreatedDate;
         private string _Subject;
         private int _SalesRepId;
-        private int _CompanyId;
+        private int _CustomerID;
 
         //TODO: add validation
         
@@ -137,16 +137,17 @@ namespace WpfCRMProject.Domain
             }
         }
 
-        public int CompanyId
+        public int CustomerID
         {
             get
             {
-                return _CompanyId;
+                return _CustomerID;
             }
             set
             {
-                _CompanyId = value;
+                _CustomerID = value;
             }
         }
+        
     }
 }

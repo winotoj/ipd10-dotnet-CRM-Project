@@ -60,13 +60,88 @@ namespace WpfCRMProject
             return listCustomer;
         }
 
-        public void AddAppointment(Schedule s)
+        //ToDo find the company name based on customer_id
+        public List<Schedule> GetAllAppointment()
         {
-            //ToDo : create query to get data from Addschedule and insert in to message table
-            //add some field to related table
+            List<Schedule> scheduleList = new List<Schedule>();
+            SqlCommand getCommand = new SqlCommand("SELECT * FROM Schedules WHERE salesrep_id = @SalesrepID");
+            getCommand.Parameters.Add(new SqlParameter("SalesrepID", Application.Current.Resources["UserName"]));
+            using (SqlDataReader reader = getCommand.ExecuteReader())
+            {
+                
+                while (reader.Read())
+                {
+                    Schedule schedule = new Schedule
+                    {
+                        Schedule_id = (int)reader["schedule_id"],
+                        Type = (string)reader["type"],
+                        Note = (string)reader["note"],
+                        //Todo selcte the status
+                        ScheduleDate = (DateTime)reader["scheduled_date"],
+                        CreatedDate = (DateTime)reader["created_date"],
+                        SalesRepId = (int)reader["salesrep_id"],
+                        Subject = (string)reader["subject"],
+                        StartTime = (string)reader["startTime"],
+                        EndTime = (string)reader["endTime"],
+                        CustomerID = (int)reader["customer_id"]
+
+                    };
+                    scheduleList.Add(schedule);
+
+                }
+            }
+            return scheduleList;
         }
 
-        public void AddPerson(Customer c)
+        public void AddAppointment(Schedule s)
+        {
+            
+            String query = @"INSERT INTO Schedules ([type], [note]
+                                                   ,[scheduled_date]                                                   
+                                                   ,[salesrep_id]
+                                                   ,[subject]
+                                                   ,[startTime]
+                                                   ,[endTime]
+                                                   ,[customer_id]
+                                                                )
+                                                    VALUES(@Type, @Note, @ScheduleDate, 
+                                                            @Salesrep_id, @Subject, @StartTime, @EndTime, @CustomerID )";
+            SqlCommand addAppointment = new SqlCommand(query, conn);
+            addAppointment.Parameters.Add(new SqlParameter("Type", s.Type));
+            addAppointment.Parameters.Add(new SqlParameter("Note", s.Note));
+            addAppointment.Parameters.Add(new SqlParameter("ScheduleDate", s.ScheduleDate));            
+            addAppointment.Parameters.Add(new SqlParameter("Salesrep_id", s.SalesRepId));
+            addAppointment.Parameters.Add(new SqlParameter("Subject", s.Subject));
+            addAppointment.Parameters.Add(new SqlParameter("StartTime", s.StartTime));
+            addAppointment.Parameters.Add(new SqlParameter("EndTime", s.EndTime));
+            addAppointment.Parameters.Add(new SqlParameter("CustomerID", s.CustomerID));
+            addAppointment.ExecuteNonQuery();
+        }
+
+        public Boolean CheckAppointment(Schedule s)
+        {
+            SqlCommand getCommand = new SqlCommand(@"SELECT * FROM Schedules WHERE salesrep_id = @Salesrep_ID AND scheduled_date = @ScheduleDate " +
+                                                           "AND (startTime = @StartTime OR endTime = @EndTime) ", conn);
+            getCommand.Parameters.Add(new SqlParameter("Salesrep_ID", s.SalesRepId));
+            getCommand.Parameters.Add(new SqlParameter("ScheduleDate", s.ScheduleDate));
+            getCommand.Parameters.Add(new SqlParameter("StartTime", s.StartTime));
+            getCommand.Parameters.Add(new SqlParameter("EndTime", s.EndTime));
+            using (SqlDataReader reader = getCommand.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    return true;
+
+                }
+
+                return false;
+
+            }
+        }
+
+        
+
+            public void AddPerson(Customer c)
         {
             String query = @"INSERT INTO CUSTOMERS (company_name, street, city 
                                                         , province, postal

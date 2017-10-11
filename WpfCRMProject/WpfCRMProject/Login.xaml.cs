@@ -81,9 +81,8 @@ namespace WpfCRMProject
                 }
 
                 if (currentuser != null)
-                {
-                    //MainWindow myworkday = new MainWindow();
-                    DataSet dataSet = new DataSet();
+                {                    
+                   // DataSet dataSet = new DataSet();
                     string welcome = "Welcome " + currentuser.FirstName + " " + currentuser.LastName;
                     //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.                   
                     

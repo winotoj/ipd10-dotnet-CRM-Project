@@ -12,8 +12,19 @@
         <StackPanel HorizontalAlignment="Left" Height="602" Margin="576,0,0,0" VerticalAlignment="Top" Width="188">
             <Button Content="Make New Appointment" Margin="0, 5" Click="Button_Click"/>
             <Calendar Margin="0,15"/>
-            
+
         </StackPanel>
+        <ListView x:Name="lvShowWorkDay" HorizontalAlignment="Left" Height="553" Margin="10,49,0,0" VerticalAlignment="Top" Width="561">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}" />
+                    <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=CompanyName}" />
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=CompanyName}" />
+                    <GridViewColumn Header="Start Time" DisplayMemberBinding="{Binding Path=CompanyName}" />
+                    <GridViewColumn Header="End Time" DisplayMemberBinding="{Binding Path=CompanyName}" />                    
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Page>

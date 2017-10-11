@@ -56,15 +56,15 @@ ex:
 4. I will research about the schedule and calendar
 
 
-2017/10-08
+2017/10-08  Winoto
 1. Added working send email
 2. Edit details: clr and model are done
 3. Started to work on adding schedule (model and clr)
 4. will continue on schedule (model)
 5. Will do query
 
-<<<<<<< HEAD
-2017/10/10
+
+2017/10/10  Winoto
 1. what have i done / not done sincce last scrum?
 * Completed send email and show in messages
 2. what will i do from now until next scrum?
@@ -72,13 +72,35 @@ ex:
 * will do sales in address book
 3. where do i need help from my teammate, teacher, or internet?
 * search company wont show in window (frame not refreshing?)
-=======
+
 2017/10/10 Vaji
 
-1.I made a mini project to work on export to excel
-2.I serached about print to pdf
-3.I Will add UI for reports
-4.I will add export to excel to project
+1. what have i done / not done sincce last scrum?
+*I made a mini project to work on export to excel and print to pdf 
+*I fix the error in page login
+*I searched about the control to make schedule
+*I changed the queries for page opportunities
+2. what will i do from now until next scrum?
+*I will serached about print to pdf
+*I will make UI for reports and make at least one report
+*I will add export to excel to project
+*I will add print to pdf to project
+*I will start working on page calendar
+3. where do i need help from my teammate, teacher, or internet?
+*search about how to add export to excel and print to pdf
 
->>>>>>> 6c523018cd37dd7d70a2a04634be8e4e38a75e57
+2017/10/11 Vaji
+1. what have i done / not done sincce last scrum?
+*I added export to excel and print to pdf
+*I made a UI for reports list and made one report
+*I made UI for calendar and UI for making appointment
+*I complete the query to search the company name
+
+2. what will i do from now until next scrum?
+*I will complete page calendar to make appointment and show work day for every user
+*I will make a page to edit work day and appointment by user
+
+3. where do i need help from my teammate, teacher, or internet?
+
+
 

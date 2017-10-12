@@ -101,6 +101,7 @@ ex:
 *I will make a page to edit work day and appointment by user
 
 3. where do i need help from my teammate, teacher, or internet?
+*how can I use time picker
 
 
 
@@ -115,6 +116,7 @@ ex:
 3. Help?
 * Found in internet about passing parameter to display frame  
 
+<<<<<<< HEAD
 2017/10/12 Winoto
 1.Done/not done
 * Query Sales per customer ytd y-1 and y-2 done
@@ -125,3 +127,16 @@ ex:
 * Create report sales per sales rep
 * Create graph for sales rep sales?
   
+=======
+2017/10/12 Vaji
+1. what have i done / not done sincce last scrum?
+*I completed UI for calendar to show all apointment of logined user 
+*I completed page making new appointment and Also edit appointment
+*I searched about how i can add timepicker by wpf toolkit
+2. what will i do from now until next scrum?
+*I will change the query of edit appointment to save data in to table message history in case of change the status of appointment
+*I will work on seperate the meetings of day(Today) by color
+*I will search on how I can add meetings in the calendar
+3. where do i need help from my teammate, teacher, or internet?
+*show meetings in calendar
+>>>>>>> fb8e087ea2d8f0b391f407d0f7b2e3c85cf9763d

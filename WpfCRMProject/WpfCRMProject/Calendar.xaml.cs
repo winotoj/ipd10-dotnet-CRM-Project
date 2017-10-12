@@ -36,6 +36,8 @@ namespace WpfCRMProject
                 MessageBox.Show(ex.Message);
             }
             DisplayWorkDay();
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,6 +68,9 @@ namespace WpfCRMProject
             addSchedule.tpStart.Text = scheduleList.StartTime;
             addSchedule.tpEnd.Text = scheduleList.EndTime;
             addSchedule.lblScheduleID.Content = scheduleList.Schedule_id;
+            addSchedule.cmbState.SelectedIndex = scheduleList.Status;
+            addSchedule.lblCustomerID.Content = scheduleList.CustomerID;
+            addSchedule.dpType.Text = scheduleList.Type;
             addSchedule.ShowDialog();
         }
     }

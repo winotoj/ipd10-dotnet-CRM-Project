@@ -35,9 +35,14 @@ namespace WpfCRMProject
             schedule.ScheduleDate = Convert.ToDateTime(dpDate.Text);
             schedule.StartTime = tpStart.Text;
             schedule.EndTime = tpEnd.Text;
+            schedule.Subject = tbSubject.Text;
+            schedule.SalesRepId = Convert.ToInt32( Application.Current.Resources["UserName"]);
+            schedule.CustomerID = Convert.ToInt32(lblCustomerID.Content);
+            ComboBoxItem comboType= (ComboBoxItem)dpType.SelectedItem;
+            schedule.Type = comboType.Content.ToString();
 
-            ComboBoxItem comboState= (ComboBoxItem)cmbState.SelectedItem;
-            schedule.Status = comboState.Content.ToString();
+            
+            schedule.Status = cmbState.SelectedIndex;
             schedule.Schedule_id = Convert.ToInt32(lblScheduleID.Content.ToString());
             try
             {

@@ -13,6 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+/* default show today task/schedule.
+ * right click contect menu to see the detail(note), change status, change date
+ * add button, to create new schedule, with the type (phone, visit, email), search company name textbox and search icon,
+ * --> display result, selected, OK copy the company_id
+ * --> task (to do related to company), appointment no email, meeting send invitation (app n meeting need start and end time)
+ * --> todo: create view to link schedule and message
+ * when status is completed copy to customer history
+ * (salesrep inner join schedule) inner join (customer inner join message)
+ */
+
 namespace WpfCRMProject
 {
     /// <summary>
@@ -26,3 +36,4 @@ namespace WpfCRMProject
         }
     }
 }
+

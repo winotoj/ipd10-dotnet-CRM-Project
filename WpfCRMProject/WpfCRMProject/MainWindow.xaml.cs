@@ -20,23 +20,25 @@ namespace WpfCRMProject
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+   public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            frTest.NavigationUIVisibility = NavigationUIVisibility.Hidden;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Login login = new Login();
             login.ShowDialog();
-                Login logs = new Login();
-                lbluserlogin.Content = Application.Current.Resources["FirstName"] + " " + Application.Current.Resources["LastName"];
-                lblDate.Content = DateTime.Now.ToLongDateString();
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Tick += timer_Tick;
-                timer.Start();
+            Login logs = new Login();
+            lbluserlogin.Content = Application.Current.Resources["FirstName"] + " " + Application.Current.Resources["LastName"];
+            lblDate.Content = DateTime.Now.ToLongDateString();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
 
         }
 
@@ -65,8 +67,9 @@ UriKind.RelativeOrAbsolute));
 
         private void btnAddressBook_Click(object sender, RoutedEventArgs e)
         {
-            frTest.Navigate(new System.Uri("AddressBook.xaml",
-UriKind.RelativeOrAbsolute));
+            AddressBook addressBook = new AddressBook();
+            addressBook.DisplayAddressBook();
+            frTest.NavigationService.Navigate(addressBook);
         }
 
         private void btnCalendar_Click(object sender, RoutedEventArgs e)
@@ -86,15 +89,18 @@ UriKind.RelativeOrAbsolute));
             AddCustomer windowAdd = new AddCustomer();
             windowAdd.ShowDialog();
         }
-        
+
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             SearchCompany searchCompany = new SearchCompany();
             searchCompany.ShowDialog();
             string str = searchCompany.str;
-            frTest.NavigationService.Navigate(new SearchResultCompany(str));
+            if (string.IsNullOrEmpty(str))
+            {
+                str = " c.salesrep_Id = " + Application.Current.Resources["UserName"].ToString();
+            }
+            frTest.NavigationService.Navigate(new AddressBook(str));
 
         }
     }
 }
-

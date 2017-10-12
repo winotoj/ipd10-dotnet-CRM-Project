@@ -16,7 +16,6 @@
             <sys:String>Visit</sys:String>
             <sys:String>Phone</sys:String>
             <sys:String>Meeting</sys:String>
-            <sys:String>Note</sys:String>
         </ComboBox>
         <TextBox Name="txtSubject" HorizontalAlignment="Left" Height="23" Margin="60,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323"/>
         <TextBox Name="txtNote" HorizontalAlignment="Left" Height="194" Margin="60,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323"/>

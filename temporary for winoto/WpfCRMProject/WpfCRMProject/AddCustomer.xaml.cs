@@ -19,66 +19,103 @@ namespace WpfCRMProject
     /// Interaction logic for AddCustomer.xaml
     /// </summary>
     public partial class AddCustomer : Window
-    { 
-    Database db;
+    {
+        Database db;
         public AddCustomer()
-    {
-        try
         {
-            db = new Database();
-            InitializeComponent();
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
-        catch (SqlException ex)
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(ex.Message);
-        }
+            String companyName = tbCompanyName.Text;
+            String firstName = tbFirstName.Text;
+            String lastName = tbLastName.Text;
+            String phoneNum = tbPhoneNum.Text;
+            String fax = tbFax.Text;
+            String Email = tbEmail.Text;
+            String webSite = tbWebsite.Text;
+            String street = tbStreet.Text;
+            String city = tbcity.Text;
+            String postalCode = tbPostalCode.Text;
+            String province = tbProvince.Text;
+            String country = tbCountry.Text;
+            Boolean status;
+            if (rbCustomer.IsChecked == true)
+            {
+                status = true;
+            }
+            else status = false;
 
-    }
+            Customer newCustomer = new Customer
+            {
 
-    private void btnSave_Click(object sender, RoutedEventArgs e)
-    {
-        String companyName = tbCompanyName.Text;
-        String firstName = tbFirstName.Text;
-        String lastName = tbLastName.Text;
-        String phoneNum = tbPhoneNum.Text;
-        String fax = tbFax.Text;
-        String Email = tbEmail.Text;
-        String webSite = tbWebsite.Text;
-        String street = tbStreet.Text;
-        String city = tbcity.Text;
-        String postalCode = tbPostalCode.Text;
-        String province = tbProvince.Text;
-        String country = tbCountry.Text;
+                CompanyName = companyName,
+                Street = street,
+                City = city,
+                Province = province,
+                Postal = postalCode,
+                Phone = phoneNum,
+                Fax = fax,
+                ContactFirstName = firstName,
+                ContactLastName = lastName,
+                Country = country,
+                CreateDate = DateTime.Today,
+                Status = status,
+                Email = Email
+            };
 
-        Customer newCustomer = new Customer
-        {
+            db.AddPerson(newCustomer);
 
-            CompanyName = companyName,
-            Street = street,
-            City = city,
-            Province = province,
-            Postal = postalCode,
-            Phone = phoneNum,
-            Fax = fax,
-            ContactFirstName = firstName,
-            ContactLastName = lastName,
-            Country = country,
-            CreateDate = DateTime.Now,
-            Status = true,
-            Email = Email
-        };
-
-        db.AddPerson(newCustomer);
-
-        MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-                    
+            //mainWin.btnOpportunity.Focus();
+            //mainWin.btnAddressBook.Focus();
+
             this.Close();
             AddressBook addressBook = new AddressBook();
-            addressBook.DisplayAddressBook();
+            //addressBook.DisplayAddressBook();
+
+            List<Customer> listCustomer = db.GetAllCustomers();
+            addressBook.lvAddress.Items.Clear();
+
+            foreach (Customer c in listCustomer)
+            {
+                addressBook.lvAddress.Items.Add(c);
+
+            }
+
             mainWin.frTest.Refresh();
 
+            //MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
 
+            //AddressBook addressBook = new AddressBook();
+            // addressBook.DisplayAddressBook();
+
+
+
+            this.Close();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result;
+            if ((result = MessageBox.Show("Are you sure want to cancel ?", "message", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
+    }
 }
-}
+           
+    
+    

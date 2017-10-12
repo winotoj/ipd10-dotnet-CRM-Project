@@ -23,7 +23,7 @@ namespace WpfCRMProject
     {
         Database db;
         public string str;
-
+        
         public SearchCompany()
 
         {
@@ -36,7 +36,7 @@ namespace WpfCRMProject
             {
                 MessageBox.Show(ex.Message);
             }
-
+           
             List<User> listUser = db.GetAllUsers();
             cbSalesRep.Items.Clear();
             int count = 0;
@@ -48,7 +48,7 @@ namespace WpfCRMProject
                     cbSalesRep.SelectedIndex = count;
                 }
                 count++;
-
+                
             }
             dpLastPurchaseDate.SelectedDate = DateTime.Today;
 
@@ -116,7 +116,7 @@ namespace WpfCRMProject
             {
                 strquery += " and v.purchase_date > " + dpLastPurchaseDate.SelectedDate.Value.ToShortDateString();
             }
-
+           
             User cbUser = (User)cbSalesRep.SelectedItem;
             strquery += " and c.salesrep_Id = " + cbUser.UserId.ToString();
             str = strquery;
@@ -125,8 +125,9 @@ namespace WpfCRMProject
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            str = string.Empty;
+            str = "";
             this.Close();
         }
     }
 }
+        

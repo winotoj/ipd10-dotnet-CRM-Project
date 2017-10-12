@@ -38,7 +38,8 @@ namespace WpfCRMProject
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
-
+            btnAddNewCustomer.Visibility = Visibility.Hidden;
+            btnSearch.Visibility = Visibility.Hidden;
 
         }
 
@@ -60,6 +61,8 @@ namespace WpfCRMProject
 
         private void btnOpportunity_Click(object sender, RoutedEventArgs e)
         {
+            btnAddNewCustomer.Visibility = Visibility.Visible;
+            btnSearch.Visibility = Visibility.Visible;
             frTest.Navigate(new System.Uri("Opportunity.xaml",
 UriKind.RelativeOrAbsolute));
 
@@ -67,6 +70,8 @@ UriKind.RelativeOrAbsolute));
 
         private void btnAddressBook_Click(object sender, RoutedEventArgs e)
         {
+            btnAddNewCustomer.Visibility = Visibility.Visible;
+            btnSearch.Visibility = Visibility.Visible;
             AddressBook addressBook = new AddressBook();
             addressBook.DisplayAddressBook();
             frTest.NavigationService.Navigate(addressBook);
@@ -74,12 +79,16 @@ UriKind.RelativeOrAbsolute));
 
         private void btnCalendar_Click(object sender, RoutedEventArgs e)
         {
+            btnAddNewCustomer.Visibility = Visibility.Hidden;
+            btnSearch.Visibility = Visibility.Hidden;
             frTest.Navigate(new System.Uri("Calendar.xaml",
 UriKind.RelativeOrAbsolute));
         }
 
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
+            btnAddNewCustomer.Visibility = Visibility.Hidden;
+            btnSearch.Visibility = Visibility.Hidden;
             frTest.Navigate(new System.Uri("ReportsList.xaml",
 UriKind.RelativeOrAbsolute));
         }

@@ -116,6 +116,18 @@ ex:
 3. Help?
 * Found in internet about passing parameter to display frame  
 
+<<<<<<< HEAD
+2017/10/12 Winoto
+1.Done/not done
+* Query Sales per customer ytd y-1 and y-2 done
+* add UI and code for adding messages manually done
+* Refactored Address book and Result query done
+2. will do? 
+* Add label for displaying address book and result (total record)
+* Create report sales per sales rep
+* Create graph for sales rep sales?
+  
+=======
 2017/10/12 Vaji
 1. what have i done / not done sincce last scrum?
 *I completed UI for calendar to show all apointment of logined user 
@@ -127,3 +139,4 @@ ex:
 *I will search on how I can add meetings in the calendar
 3. where do i need help from my teammate, teacher, or internet?
 *show meetings in calendar
+>>>>>>> fb8e087ea2d8f0b391f407d0f7b2e3c85cf9763d

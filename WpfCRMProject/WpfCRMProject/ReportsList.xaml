@@ -19,12 +19,12 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="50" Width="150" Margin="25,91,637,471" >
+        <Button Name="btnSalesReport" Height="50" Width="150" Margin="25,91,637,471" Click="btnSalesReport_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Canvas>
                         <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
-                        <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Report2" FontFamily="Arial" FontSize="18"/>
+                        <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Sales per Rep" FontFamily="Arial" FontSize="18"/>
                     </Canvas>
                 </ControlTemplate>
             </Button.Template>

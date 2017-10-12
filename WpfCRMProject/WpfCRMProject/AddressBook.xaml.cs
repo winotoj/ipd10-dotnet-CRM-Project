@@ -59,7 +59,8 @@ namespace WpfCRMProject
                     {
                         case 0:
                             {
-                                strGet = @"SELECT * FROM Sales WHERE  YEAR(purchase_date) = YEAR(GETDATE()) AND customer_id = " + customerSelected.CustomerId + " ORDER BY purchase_date DESC";
+                               
+                                strGet = @"SELECT * FROM Sales WHERE  YEAR(purchase_date) = YEAR(DATEADD(DD, -1, GETDATE())) AND customer_id = " + customerSelected.CustomerId + " ORDER BY purchase_date DESC";
                                 List<Sales> sales = db.GetSales(strGet);
                                 lvPurchased.Items.Clear();
                                 decimal total = 0;
@@ -199,7 +200,7 @@ namespace WpfCRMProject
         {
             List<Customer> listCustomer = db.GetAllCustomers();
             lvAddress.Items.Clear();
-            lblTitle.Content = "Address Book" + listCustomer.Count + "Record(s)";
+            lblTitle.Content = "Address Book " + listCustomer.Count + "Record(s)";
             foreach (Customer c in listCustomer)
             {
                 lvAddress.Items.Add(c);

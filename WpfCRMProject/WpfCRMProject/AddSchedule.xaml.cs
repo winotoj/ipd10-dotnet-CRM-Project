@@ -52,9 +52,6 @@ namespace WpfCRMProject
                
 private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
-            //String type = ((ComboBoxItem)(cbType.SelectedValue)).ToString();
-
             ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
             String type = typeItem.Content.ToString();
 
@@ -98,6 +95,16 @@ private void btnSave_Click(object sender, RoutedEventArgs e)
             MessageBox.Show("Your Appointment successfully registered!!", "Add Appointment", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
 
+            //refresh the list
+            var calendar = new Calendar();
+            List<Schedule> scheduleList = db.GetAllAppointment();
+            calendar.lvShowWorkDay.Items.Clear();
+            foreach (Schedule s in scheduleList)
+            {
+                calendar.lvShowWorkDay.Items.Add(s);
+            }
+            var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+            mainWin.frTest.Refresh();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

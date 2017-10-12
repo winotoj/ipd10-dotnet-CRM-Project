@@ -4,27 +4,37 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfCRMProject"
-      mc:Ignorable="d" 
-      d:DesignHeight="612" d:DesignWidth="770"
-      Title="Calendar">
+      mc:Ignorable="d" d:DesignWidth="770"
+      Title="Calendar" Height="555.6">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="602" Margin="576,0,0,0" VerticalAlignment="Top" Width="188">
+        <StackPanel HorizontalAlignment="Left" Height="544" Margin="576,0,0,0" VerticalAlignment="Top" Width="188">
             <Button Content="Make New Appointment" Margin="0, 5" Click="Button_Click"/>
             <Calendar Margin="0,15"/>
 
         </StackPanel>
-        <ListView x:Name="lvShowWorkDay" HorizontalAlignment="Left" Height="553" Margin="10,49,0,0" VerticalAlignment="Top" Width="561">
+        <ListView x:Name="lvShowWorkDay" HorizontalAlignment="Left" Height="495" Margin="10,49,0,0" VerticalAlignment="Top" Width="561" SelectionMode="Single">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}" />
-                    <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=CompanyName}" />
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=CompanyName}" />
-                    <GridViewColumn Header="Start Time" DisplayMemberBinding="{Binding Path=CompanyName}" />
-                    <GridViewColumn Header="End Time" DisplayMemberBinding="{Binding Path=CompanyName}" />                    
+                    <GridView.Columns>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem},Path=IsSelected}"
+/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CustomerName}"/>
+                        <!--<GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=Subject}" />-->
+                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=ScheduleDate, StringFormat=yyyy/MM/dd}" />
+                        <GridViewColumn Header="Start Time" DisplayMemberBinding="{Binding Path=StartTime}" />
+                        <GridViewColumn Header="End Time" DisplayMemberBinding="{Binding Path=EndTime}" />
+                    </GridView.Columns>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="28,19,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click"/>
 
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfCRMProject.Domain;
 
 namespace WpfCRMProject
 {
@@ -20,15 +22,51 @@ namespace WpfCRMProject
     /// </summary>
     public partial class Calendar : Page
     {
+        Database db;
         public Calendar()
-        {
-            InitializeComponent();
+        {          
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            DisplayWorkDay();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddSchedule schedule = new AddSchedule();
             schedule.ShowDialog();
+        }
+
+        public void DisplayWorkDay()
+        {
+            List<Schedule> listSchedule = db.GetAllAppointment();
+            lvShowWorkDay.Items.Clear();
+            foreach (Schedule c in listSchedule)
+            {
+                lvShowWorkDay.Items.Add(c);
+
+            }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {            
+            Schedule scheduleList = (Schedule)lvShowWorkDay.SelectedItem;
+
+            var addSchedule = new EditAppointment();
+            addSchedule.tbCustomerName.Text = scheduleList.CustomerName;
+            addSchedule.tbSubject.Text = scheduleList.Subject;
+            addSchedule.dpDate.Text = scheduleList.ScheduleDate.ToString();
+            addSchedule.tpStart.Text = scheduleList.StartTime;
+            addSchedule.tpEnd.Text = scheduleList.EndTime;
+            addSchedule.lblScheduleID.Content = scheduleList.Schedule_id;
+            addSchedule.ShowDialog();
         }
     }
 }

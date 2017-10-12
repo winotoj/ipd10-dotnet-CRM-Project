@@ -60,30 +60,32 @@ namespace WpfCRMProject
             return listCustomer;
         }
 
-        //ToDo find the company name based on customer_id
         public List<Schedule> GetAllAppointment()
         {
             List<Schedule> scheduleList = new List<Schedule>();
-            SqlCommand getCommand = new SqlCommand("SELECT * FROM Schedules WHERE salesrep_id = @SalesrepID");
+            SqlCommand getCommand = new SqlCommand(@"SELECT schedule_id, type, note, status, scheduled_date, created_date, salesrep_id, subject, startTime, endTime," +
+                                                    " (select company_name from customers c where s.customer_id = c.Customer_id) as customerName " +
+                                                    " FROM Schedules s WHERE salesrep_id = @SalesrepID", conn);
             getCommand.Parameters.Add(new SqlParameter("SalesrepID", Application.Current.Resources["UserName"]));
             using (SqlDataReader reader = getCommand.ExecuteReader())
             {
                 
                 while (reader.Read())
                 {
-                    Schedule schedule = new Schedule
+                    var schedule = new Schedule
                     {
                         Schedule_id = (int)reader["schedule_id"],
                         Type = (string)reader["type"],
                         Note = (string)reader["note"],
-                        //Todo selcte the status
+                        Status = (string)reader["status"],
                         ScheduleDate = (DateTime)reader["scheduled_date"],
                         CreatedDate = (DateTime)reader["created_date"],
                         SalesRepId = (int)reader["salesrep_id"],
                         Subject = (string)reader["subject"],
                         StartTime = (string)reader["startTime"],
                         EndTime = (string)reader["endTime"],
-                        CustomerID = (int)reader["customer_id"]
+                        //CustomerID = (int)reader["customer_id"],
+                        CustomerName = (string)reader["customerName"]
 
                     };
                     scheduleList.Add(schedule);
@@ -137,6 +139,26 @@ namespace WpfCRMProject
                 return false;
 
             }
+        }
+
+        public void UpdateAppointment(Schedule s)
+        {
+            string queryUpdate = @"UPDATE Schedules SET note = @Note,
+                                                       scheduled_date = @ScheduleDate,
+                                                       startTime = @StartTime,
+                                                       endTime = @EndTime,
+                                                       status = @Status
+                                                        WHERE schedule_id = @ScheduleID";
+
+            SqlCommand insertCommand = new SqlCommand(queryUpdate, conn);
+            insertCommand.Parameters.Add(new SqlParameter("Note", s.Note));
+            insertCommand.Parameters.Add(new SqlParameter("ScheduleDate", s.ScheduleDate));
+            insertCommand.Parameters.Add(new SqlParameter("StartTime", s.StartTime));
+            insertCommand.Parameters.Add(new SqlParameter("EndTime", s.EndTime));
+            insertCommand.Parameters.Add(new SqlParameter("Status", s.Status));
+            insertCommand.Parameters.Add(new SqlParameter("ScheduleID", s.Schedule_id));
+            insertCommand.ExecuteNonQuery();
+
         }
 
         

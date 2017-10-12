@@ -8,10 +8,9 @@ namespace WpfCRMProject.Domain
 {
     class Schedule
     {
-        private int _Schedule_id;
         private string _Type;
         private string _Note;
-        private bool _State;
+        private string _Status;
         private DateTime _ScheduleDate;
         private String _StartTime;
         private String _EndTime;
@@ -19,6 +18,8 @@ namespace WpfCRMProject.Domain
         private string _Subject;
         private int _SalesRepId;
         private int _CustomerID;
+        
+        public string CustomerName { get; set; }
 
         //TODO: add validation
         
@@ -50,15 +51,15 @@ namespace WpfCRMProject.Domain
 
         }
 
-        public bool State
+        public string Status
         {
             get
             {
-                return _State;
+                return _Status;
             }
             set
             {
-                _State = value;
+                _Status = value;
             }
         }
 

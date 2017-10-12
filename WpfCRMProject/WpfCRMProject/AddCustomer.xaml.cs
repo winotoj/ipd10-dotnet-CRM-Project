@@ -83,8 +83,7 @@ namespace WpfCRMProject
 
             this.Close();
             AddressBook addressBook = new AddressBook();
-            //addressBook.DisplayAddressBook();
-
+            
             List<Customer> listCustomer = db.GetAllCustomers();
             addressBook.lvAddress.Items.Clear();
 

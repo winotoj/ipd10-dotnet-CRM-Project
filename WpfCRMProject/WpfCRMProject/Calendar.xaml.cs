@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,21 @@ namespace WpfCRMProject
             DisplayWorkDay();
 
 
+            showMeetingOnCalendar();
+
+        }
+
+        private void showMeetingOnCalendar()
+        {
+
+            //calendar.SelectedDates.Add(new DateTime(2013, 02, 20));
+
+            DateTime today = DateTime.Today;
+            calendar.BlackoutDates.Add(
+                new CalendarDateRange(today.AddDays(-5), today.AddDays(-3)));
+
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,7 +71,16 @@ namespace WpfCRMProject
                 lvShowWorkDay.Items.Add(c);
 
             }
+           
         }
+
+        //private List GetAllDateMeetings()
+        //{
+        //    //List<Schedule> listSchedule = db.GetAllAppointment();
+        //    lvShowWorkDay.
+
+
+        //}
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {            

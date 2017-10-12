@@ -114,3 +114,14 @@ ex:
 * add UI and code for adding messages manually
 3. Help?
 * Found in internet about passing parameter to display frame  
+
+2017/10/12 Winoto
+1.Done/not done
+* Query Sales per customer ytd y-1 and y-2 done
+* add UI and code for adding messages manually done
+* Refactored Address book and Result query done
+2. will do? 
+* Add label for displaying address book and result (total record)
+* Create report sales per sales rep
+* Create graph for sales rep sales?
+  

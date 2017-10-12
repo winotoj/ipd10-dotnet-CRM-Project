@@ -63,7 +63,7 @@
             <Grid>
                 <Frame Name="frTest" Margin="0,55,10,-18.4" Background="#FFEDF4F4"></Frame>
                 <ToolBarPanel HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="790" Orientation="Horizontal" Background="#FFBEC6C6">
-                    <Button Name="btnAddNewCustomer" Height="40" Width="36" Margin="10,10,10,0" Click="btnAddNewCustomer_Click" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Button Name="btnAddNewCustomer" Height="40" Width="36" Margin="10,10,10,0" Click="btnAddNewCustomer_Click" HorizontalAlignment="Left" VerticalAlignment="Top" >
                         <Button.Template>
                             <ControlTemplate>
                                 <Canvas>

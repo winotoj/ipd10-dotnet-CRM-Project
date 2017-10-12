@@ -10,30 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfCRMProject
 {
     /// <summary>
-    /// Interaction logic for ReportsList.xaml
+    /// Interaction logic for ReportSalesPerRep.xaml
     /// </summary>
-    public partial class ReportsList : Page
+    public partial class ReportSalesPerRep : Window
     {
-        public ReportsList()
+        public ReportSalesPerRep()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Report1 report1 = new Report1();
-            report1.ShowDialog();
-        }
-
-        private void btnSalesReport_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

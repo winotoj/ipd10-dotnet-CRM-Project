@@ -4,11 +4,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfCRMProject"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="WorkDay">
+      mc:Ignorable="d"
+      Title="WorkDay" Height="331.5" Width="295.5">
 
     <Grid>
+        <Label Content="Show: " HorizontalAlignment="Left" Margin="12,8,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="59,10,0,0" VerticalAlignment="Top" Width="85">
+            <ComboBoxItem IsSelected="True">Today</ComboBoxItem>
+            <ComboBoxItem>Upcoming</ComboBoxItem>
+            <ComboBoxItem>Overdue</ComboBoxItem>
+            <ComboBoxItem>All</ComboBoxItem>
+        </ComboBox>
+        <ListView Name="lvSchedule" HorizontalAlignment="Left" Height="271" Margin="10,42,0,-13" VerticalAlignment="Top" Width="243" >
+            <ListView.ContextMenu>
+                <ContextMenu>                 
+                    <MenuItem Header="Mark as Complete"/>
+                    <MenuItem Header="Note"/>
+                    <MenuItem Header="Change Date"/>          
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Path=CompanyName}"/>
+                    <GridViewColumn Header="Date and Time" DisplayMemberBinding="{Binding Path=CustomerId}"/>
+                    <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=CreateDate}"/>
+                    <GridViewColumn Header="Created Date" DisplayMemberBinding="{Binding Path=Status}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         
+
     </Grid>
 </Page>

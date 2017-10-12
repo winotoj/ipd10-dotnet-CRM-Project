@@ -16,13 +16,19 @@ using System.Windows.Shapes;
 namespace WpfCRMProject
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for ReportsList.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class ReportsList : Page
     {
-        public Page1()
+        public ReportsList()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Report1 report1 = new Report1();
+            report1.ShowDialog();
         }
     }
 }

@@ -1,0 +1,44 @@
+﻿<Page x:Class="WpfCRMProject.ReportsList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfCRMProject"
+      mc:Ignorable="d" 
+      d:DesignHeight="612" d:DesignWidth="811.5"
+      Title="ReportsList">
+
+    <Grid>
+        <Button Height="50" Width="150" Margin="25,166,637,396" >
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
+                        <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Report3" FontFamily="Arial" FontSize="18"/>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Height="50" Width="150" Margin="25,91,637,471" >
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
+                        <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Report2" FontFamily="Arial" FontSize="18"/>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Height="50" Width="150" Margin="25,21,637,541" Click="Button_Click" >
+            <Button.Template>
+                <ControlTemplate>
+                    <Canvas>
+                        <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
+                        <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Number of Sales per customer" FontFamily="Arial" FontSize="18"/>
+                    </Canvas>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</Page>

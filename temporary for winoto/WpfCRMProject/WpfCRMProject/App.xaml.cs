@@ -19,10 +19,8 @@ namespace WpfCRMProject
             Login myDialogWindow = new Login();
             //if user doesnt press cancel != null
             myDialogWindow.ShowDialog();
-            if (Login.OpenApp)
-            {
-                myMainWindow.Show();
-            }
+            myMainWindow.Show();
+           
         }
     }
 }

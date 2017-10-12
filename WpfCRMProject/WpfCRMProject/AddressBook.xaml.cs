@@ -24,12 +24,12 @@ namespace WpfCRMProject
     public partial class AddressBook : Page
     {
 
-   
+
         public static string lastHeaderAddress = string.Empty;
 
         Database db;
 
-        string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web;
+        string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web, strquery;
 
         public AddressBook()
         {
@@ -45,6 +45,85 @@ namespace WpfCRMProject
             }
             DisplayAddressBook();
         }
+
+        public void DisplaySales()
+        {
+            lvPurchased.Items.Clear();
+            if (lvAddress.SelectedItem != null)
+            {
+                Customer customerSelected = (Customer)lvAddress.SelectedItem;
+                string strGet = string.Empty;
+                for (int i = 0; i < 3; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            {
+                                strGet = @"SELECT * FROM Sales WHERE  YEAR(purchase_date) = YEAR(GETDATE()) AND customer_id = " + customerSelected.CustomerId + " ORDER BY purchase_date DESC";
+                                List<Sales> sales = db.GetSales(strGet);
+                                lvPurchased.Items.Clear();
+                                decimal total = 0;
+                                foreach (Sales m in sales)
+                                {
+                                    lvPurchased.Items.Add(m);
+                                    total += m.Amount;
+                                }
+                                lblYtd.Content = "This year Sales is $ " + String.Format("{0:0.00}", total);
+                                break;
+                            }
+                        case 1:
+                            {
+                                strGet = @"SELECT * FROM Sales WHERE  YEAR(purchase_date) = YEAR(GETDATE())-1 AND customer_id = " + customerSelected.CustomerId + " ORDER BY purchase_date DESC";
+                                List<Sales> sales = db.GetSales(strGet);
+                                lvPurchased1.Items.Clear();
+                                decimal total = 0;
+                                foreach (Sales m in sales)
+                                {
+                                    lvPurchased1.Items.Add(m);
+                                    total += m.Amount;
+                                }
+                                lblY1.Content = "Sales Last year $ " + String.Format("{0:0.00}", total);
+                                break;
+                            }
+                        case 2:
+                            {
+                                strGet = @"SELECT * FROM Sales WHERE  YEAR(purchase_date) = YEAR(GETDATE())-2 AND customer_id = " + customerSelected.CustomerId + " ORDER BY purchase_date DESC";
+                                List<Sales> sales = db.GetSales(strGet);
+                                lvPurchased2.Items.Clear();
+                                decimal total = 0;
+                                foreach (Sales m in sales)
+                                {
+                                    lvPurchased2.Items.Add(m);
+                                    total += m.Amount;
+                                }
+                                lblY2.Content = "Sales 2 years ago was $ " + String.Format("{0:0.00}", total);
+                                break;
+                            }
+                        default:
+                            break;
+
+                    }
+                }
+
+            }
+
+        }
+
+        public AddressBook(string s)
+        {
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+                strquery = s;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            DisplayAddressBook(strquery);
+        }
+
 
         private void btnAddMessage_Click(object sender, RoutedEventArgs e)
         {
@@ -116,20 +195,25 @@ namespace WpfCRMProject
                 MessageBox.Show("test, nothing change");
             }
         }
-
-        
-        public void ClearItem()
-        {
-            lvAddress.Items.Clear();
-        }
         public void DisplayAddressBook()
         {
             List<Customer> listCustomer = db.GetAllCustomers();
             lvAddress.Items.Clear();
+            lblTitle.Content = "Address Book" + listCustomer.Count + "Record(s)";
             foreach (Customer c in listCustomer)
             {
                 lvAddress.Items.Add(c);
 
+            }
+        }
+        public void DisplayAddressBook(string s)
+        {
+            List<Customer> listCustomer = db.SearchCompanyCustom(s);
+            lblTitle.Content = "Search Result: " + listCustomer.Count + " Record(s)";
+            lvAddress.Items.Clear();
+            foreach (Customer c in listCustomer)
+            {
+                lvAddress.Items.Add(c);
             }
         }
 
@@ -137,6 +221,7 @@ namespace WpfCRMProject
         {
             DisplayDetail();
             DisplayHistory();
+            DisplaySales();
         }
 
         public void DisplayDetail()
@@ -173,32 +258,56 @@ namespace WpfCRMProject
                 {
                     lvHistory.Items.Add(m);
                 }
-                
+
             }
         }
 
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString() || Application.Current.Resources["role"].ToString() != "manager")
+            //if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString() || Application.Current.Resources["role"].ToString() != "manager")
+            //{
+            //    btnCompanyEditDetail.IsEnabled = false;
+            //    btnCompanySaveDetail.IsEnabled = false;
+            //}
+            //else
+            //{
+            //    DisableEnableTextBox(true);
+            //    firstName = tbFirstName.Text;
+            //    lastName = tbLastName.Text;
+            //    company = tbCompanyName.Text;
+            //    city = tbCity.Text;
+            //    street = tbStreet.Text;
+            //    city = tbCity.Text;
+            //    province = tbProvince.Text;
+            //    postalCode = tbPostal.Text;
+            //    country = tbCountry.Text;
+            //    phone1 = tbPhone1.Text;
+            //    phone2 = tbPhone2.Text;
+            //    email = tbEmail.Text;
+            //}
+            firstName = tbFirstName.Text;
+            lastName = tbLastName.Text;
+            company = tbCompanyName.Text;
+            city = tbCity.Text;
+            street = tbStreet.Text;
+            city = tbCity.Text;
+            province = tbProvince.Text;
+            postalCode = tbPostal.Text;
+            country = tbCountry.Text;
+            phone1 = tbPhone1.Text;
+            phone2 = tbPhone2.Text;
+            email = tbEmail.Text;
+            if (Application.Current.Resources["Role"].ToString() == "manager" || lblSalesRep.Content.ToString() == Application.Current.Resources["UserName"].ToString())
             {
-                btnCompanyEditDetail.IsEnabled = false;
-                btnCompanySaveDetail.IsEnabled = false;
+                btnCompanyEditDetail.IsEnabled = true;
+                btnCompanySaveDetail.IsEnabled = true;
+                DisableEnableTextBox(true);
             }
             else
             {
-                DisableEnableTextBox(true);
-                firstName = tbFirstName.Text;
-                lastName = tbLastName.Text;
-                company = tbCompanyName.Text;
-                city = tbCity.Text;
-                street = tbStreet.Text;
-                city = tbCity.Text;
-                province = tbProvince.Text;
-                postalCode = tbPostal.Text;
-                country = tbCountry.Text;
-                phone1 = tbPhone1.Text;
-                phone2 = tbPhone2.Text;
-                email = tbEmail.Text;
+                btnCompanyEditDetail.IsEnabled = false;
+                btnCompanySaveDetail.IsEnabled = false;
+                DisableEnableTextBox(false);
             }
         }
 
@@ -216,7 +325,7 @@ namespace WpfCRMProject
             tbPhone2.IsEnabled = toggle;
             tbStreet.IsEnabled = toggle;
         }
-        
+
         void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e)
         {
             string header = ((GridViewColumnHeader)e.OriginalSource).Column.Header.ToString();
@@ -276,13 +385,13 @@ namespace WpfCRMProject
                 lastHeaderAddress = header;
             }
 
-                lvAddress.Items.Clear();
-                foreach (Customer c in list)
-                {
-                    lvAddress.Items.Add(c);
-                }
-
+            lvAddress.Items.Clear();
+            foreach (Customer c in list)
+            {
+                lvAddress.Items.Add(c);
             }
-      
+
+        }
+
     }
 }

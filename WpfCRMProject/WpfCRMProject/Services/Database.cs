@@ -439,5 +439,27 @@ namespace WpfCRMProject
             }
         }
 
+        public List<Sales> GetSales(string s)
+        {
+            List<Sales> list = new List<Sales>();
+            SqlCommand getCmd = new SqlCommand(s, conn);
+            using (SqlDataReader reader = getCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+
+                    Sales sales = new Sales
+                    {
+                        Amount = (decimal)reader["amount"],
+                        TDate = ((DateTime)reader["purchase_date"]).ToString("yyyy'-'MM'-'dd")
+
+                };
+                    list.Add(sales);
+                }
+            }
+
+            return list;
+        }
+
     }
 }

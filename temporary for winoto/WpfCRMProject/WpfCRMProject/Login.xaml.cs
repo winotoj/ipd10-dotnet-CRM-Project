@@ -26,7 +26,6 @@ namespace WpfCRMProject
     /// </summary>
     public partial class Login : Window
     {
-        public static bool OpenApp = false;
         private const int GWL_STYLE = -16;
         private const int WS_SYSMENU = 0x80000;
         [DllImport("user32.dll", SetLastError = true)]
@@ -36,30 +35,25 @@ namespace WpfCRMProject
         public Login()
         {
             InitializeComponent();
-
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var hwnd = new WindowInteropHelper(this).Handle;
-            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);          
         }
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-            //System.Windows.Application.Current.Shutdown();
-            System.Windows.Application.Current.MainWindow.Close();
+            Environment.Exit(0);
         }
-        //void Login_Closing(object sender, CancelEventArgs e)
-        //{
-        //    //needed otherwise when click OK will not open main window
-        //    if (!OpenApp)
-        //    {
-        //        e.Cancel = true;
-
-        //    }
-        //}
-
+        
+        void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.System && e.SystemKey == Key.F4)
+            {
+                e.Handled = true;
+            }
+        }
+        
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             if (tbUserName.Text.Length == 0)
@@ -87,20 +81,18 @@ namespace WpfCRMProject
                 }
 
                 if (currentuser != null)
-                {
-                    //MainWindow myworkday = new MainWindow();
-                    DataSet dataSet = new DataSet();
+                {                    
+                   // DataSet dataSet = new DataSet();
                     string welcome = "Welcome " + currentuser.FirstName + " " + currentuser.LastName;
-                    //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.
-                    
+                    //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.                   
                     
                     Application.Current.Resources.Add("UserName", username);
                     Application.Current.Resources.Add("FirstName", currentuser.FirstName);
                     Application.Current.Resources.Add("LastName", currentuser.LastName);
+                    Application.Current.Resources.Add("Role", currentuser.Role);
+                    Application.Current.Resources.Add("Email", currentuser.Email);
                     //myworkday.Show();
                     this.Close();
-                    
-
                 }
                 else
                 {

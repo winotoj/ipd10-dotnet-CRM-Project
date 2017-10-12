@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,46 @@ namespace WpfCRMProject
     /// </summary>
     public partial class Opportunity : Page
     {
+        Database db;
         public Opportunity()
         {
-            InitializeComponent();
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            DisplayOpportunities();
         }
+
+        public void DisplayOpportunities()
+        {
+            List<Customer> listOpportunities = db.GetOpportunities();
+            lvAddress.Items.Clear();
+            foreach (Customer c in listOpportunities)
+            {
+                lvAddress.Items.Add(c);
+
+            }
+        }
+
+        //to be fixed because cannot open main window
+        //void Opportunities_Closing(object sender, CancelEventArgs e)
+        //{
+
+        //    e.Cancel = true;
+        //    App.Current.MainWindow.Show();
+        //    //this.Close();
+        //}
+
+        //private void btnAddnewCustomer_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AddCustomer windowAdd = new AddCustomer();
+        //    windowAdd.ShowDialog();
+
+        //}
     }
 }

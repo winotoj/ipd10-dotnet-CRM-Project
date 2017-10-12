@@ -64,8 +64,8 @@ namespace WpfCRMProject
         {
             List<Schedule> scheduleList = new List<Schedule>();
             SqlCommand getCommand = new SqlCommand(@"SELECT schedule_id, type, note, status, scheduled_date, created_date, salesrep_id, subject, startTime, endTime," +
-                                                    " (select company_name from customers c where s.customer_id = c.Customer_id) as customerName " +
-                                                    " FROM Schedules s WHERE salesrep_id = @SalesrepID", conn);
+                                                    " customer_id, (select company_name from customers c where s.customer_id = c.Customer_id) as customerName " +
+                                                    " FROM Schedules s WHERE salesrep_id = @SalesrepID AND status = 0", conn);
             getCommand.Parameters.Add(new SqlParameter("SalesrepID", Application.Current.Resources["UserName"]));
             using (SqlDataReader reader = getCommand.ExecuteReader())
             {
@@ -77,14 +77,14 @@ namespace WpfCRMProject
                         Schedule_id = (int)reader["schedule_id"],
                         Type = (string)reader["type"],
                         Note = (string)reader["note"],
-                        Status = (string)reader["status"],
+                        Status = (int)reader["status"],
                         ScheduleDate = (DateTime)reader["scheduled_date"],
                         CreatedDate = (DateTime)reader["created_date"],
                         SalesRepId = (int)reader["salesrep_id"],
                         Subject = (string)reader["subject"],
                         StartTime = (string)reader["startTime"],
                         EndTime = (string)reader["endTime"],
-                        //CustomerID = (int)reader["customer_id"],
+                        CustomerID = (int)reader["customer_id"],
                         CustomerName = (string)reader["customerName"]
 
                     };
@@ -142,7 +142,7 @@ namespace WpfCRMProject
         }
 
         public void UpdateAppointment(Schedule s)
-        {
+        {            
             string queryUpdate = @"UPDATE Schedules SET note = @Note,
                                                        scheduled_date = @ScheduleDate,
                                                        startTime = @StartTime,
@@ -159,11 +159,36 @@ namespace WpfCRMProject
             insertCommand.Parameters.Add(new SqlParameter("ScheduleID", s.Schedule_id));
             insertCommand.ExecuteNonQuery();
 
+            if (s.Status != 0)
+            {
+                AddMeetingsToHistory(s);               
+            }
+        }
+
+        public void AddMeetingsToHistory(Schedule s)
+        {
+            string queryUpdate = @"INSERT INTO Messages ([customer_id], [subject]
+                                                   ,[note]
+                                                   ,[type],[msg_date]
+                                                   ,[user_id]   
+                                                         )
+                                                    VALUES(@CustomerID, @Subject, @Note, 
+                                                            @Type, @MSG_Date, @User_ID )";
+
+            SqlCommand insertCommand = new SqlCommand(queryUpdate, conn);
+            insertCommand.Parameters.Add(new SqlParameter("CustomerID", s.CustomerID));
+            insertCommand.Parameters.Add(new SqlParameter("Subject", s.Subject));
+            insertCommand.Parameters.Add(new SqlParameter("Note", s.Note));
+            insertCommand.Parameters.Add(new SqlParameter("Type", s.Type));
+            insertCommand.Parameters.Add(new SqlParameter("MSG_Date", s.ScheduleDate));
+            insertCommand.Parameters.Add(new SqlParameter("User_ID", s.SalesRepId));
+            insertCommand.ExecuteNonQuery();
+
         }
 
         
 
-            public void AddPerson(Customer c)
+         public void AddPerson(Customer c)
         {
             String query = @"INSERT INTO CUSTOMERS (company_name, street, city 
                                                         , province, postal

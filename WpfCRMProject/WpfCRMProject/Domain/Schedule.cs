@@ -10,7 +10,7 @@ namespace WpfCRMProject.Domain
     {
         private string _Type;
         private string _Note;
-        private string _Status;
+        private int _Status;
         private DateTime _ScheduleDate;
         private String _StartTime;
         private String _EndTime;
@@ -51,7 +51,7 @@ namespace WpfCRMProject.Domain
 
         }
 
-        public string Status
+        public int Status
         {
             get
             {

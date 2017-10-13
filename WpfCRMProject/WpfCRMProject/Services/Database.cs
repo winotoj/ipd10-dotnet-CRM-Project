@@ -50,6 +50,7 @@ namespace WpfCRMProject
                         CreateDate = (DateTime)reader["created_date"],
                         Status = (bool)reader["status"],
                         Email = (string)reader["email"],
+                        Country = (string)reader["country"],
                         SalesRepId = (int)reader["salesrep_Id"],
                         LastPurchaseDate = pd,
                         Amount = amt
@@ -248,6 +249,7 @@ namespace WpfCRMProject
                         CreateDate = (DateTime)reader["created_date"],
                         Status = (bool)reader["status"],
                         Email = (string)reader["email"],
+                        Country = (string)reader["country"]
                     };
                     listOpportunities.Add(customer);
                 }
@@ -259,7 +261,7 @@ namespace WpfCRMProject
 
         public void UpdateCustomer(Customer c)
         {
-            String update = @"UPDATE CUSTOMERS  SET company_name =@CompanyName,
+            String update = @"UPDATE CUSTOMERS  SET company_name = @CompanyName,
                                                 street = @Street,
                                                 city = @City,
                                                 province = @Province, 
@@ -269,8 +271,9 @@ namespace WpfCRMProject
                                                 contact_lastname = @LastName,
                                                 status = @Status,
                                                 email = @Email,
-                                                country = @Country
-                                            WHERE salesrep_id = @Salesrep_id & company_id = @companyId";
+                                                country = @Country,
+                                                fax = @Fax
+                                            WHERE salesrep_id = @Salesrep_id And Customer_id = @CustomerId";
 
             SqlCommand insertCommand = new SqlCommand(update, conn);
             insertCommand.Parameters.Add(new SqlParameter("CompanyName", c.CompanyName));
@@ -282,10 +285,11 @@ namespace WpfCRMProject
             insertCommand.Parameters.Add(new SqlParameter("FirstName", c.ContactFirstName));
             insertCommand.Parameters.Add(new SqlParameter("LastName", c.ContactLastName));
             insertCommand.Parameters.Add(new SqlParameter("Status", c.Status));
-            insertCommand.Parameters.Add(new SqlParameter("Salesrep_id", Application.Current.Resources["UserName"]));
             insertCommand.Parameters.Add(new SqlParameter("Email", c.Email));
             insertCommand.Parameters.Add(new SqlParameter("Country", c.Country));
-            insertCommand.Parameters.Add(new SqlParameter("Customer_id", c.CustomerId));
+            insertCommand.Parameters.Add(new SqlParameter("Fax", c.Fax));
+            insertCommand.Parameters.Add(new SqlParameter("Salesrep_id", Application.Current.Resources["UserName"]));          
+            insertCommand.Parameters.Add(new SqlParameter("CustomerId", c.CustomerId));
             insertCommand.ExecuteNonQuery();
         }
         //to be added: try catch

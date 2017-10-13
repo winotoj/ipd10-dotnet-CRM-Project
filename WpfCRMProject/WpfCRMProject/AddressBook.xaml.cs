@@ -180,10 +180,12 @@ namespace WpfCRMProject
                         Country = tbCountry.Text,
                         Phone = tbPhone1.Text,
                         Fax = tbPhone2.Text,
-                        Email = tbEmail.Text
+                        Email = tbEmail.Text,
+                        CustomerId = Convert.ToInt32(lblCustomerId.Content)
                     };
 
                     db.UpdateCustomer(customer);
+                    MessageBox.Show("Information successfully updated.");
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
@@ -193,7 +195,7 @@ namespace WpfCRMProject
 
             else
             {
-                MessageBox.Show("test, nothing change");
+                MessageBox.Show("Nothing change");
             }
         }
         public void DisplayAddressBook()
@@ -243,7 +245,8 @@ namespace WpfCRMProject
                 tbPhone2.Text = customerSelected.Fax;
                 tbEmail.Text = customerSelected.Email;
                 lblSalesRep.Content = customerSelected.SalesRepId;
-                lblCustomerId.Content = customerSelected.CustomerId;
+                lblCustomerId.Content = customerSelected.CustomerId.ToString();
+
 
             }
         }

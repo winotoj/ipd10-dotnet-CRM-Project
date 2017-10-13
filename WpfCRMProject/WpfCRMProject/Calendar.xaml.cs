@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -51,7 +52,7 @@ namespace WpfCRMProject
             DateTime today = DateTime.Today;
             calendar.BlackoutDates.Add(
                 new CalendarDateRange(today.AddDays(-5), today.AddDays(-3)));
-
+           
 
 
         }

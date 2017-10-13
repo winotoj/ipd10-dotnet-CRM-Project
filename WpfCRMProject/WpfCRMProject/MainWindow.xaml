@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="740" Width="1000" Closing="MainWindow_Closing" Loaded="Window_Loaded">
+        Title="MainWindow" Height="780" Width="1000" Closing="MainWindow_Closing" Loaded="Window_Loaded">
     <DockPanel Background="#FFEDF4F4">
 
         <ToolBarPanel  DockPanel.Dock="Top" Height="80" Margin="0,0,0.4,0" Background="#FF444545" Orientation="Horizontal">
@@ -17,7 +17,7 @@
 
         </ToolBarPanel>
 
-        <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="633" Background="#FFBEC6C6" Margin="0,0,0,-0.2">
+        <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="669" Background="#FFBEC6C6">
             <Button Name="btnAddressBook" Height="50" Width="150" Click="btnAddressBook_Click" Margin="0,55,0,0" BorderThickness="1" BorderBrush="#FF707070" >
                 <Button.Template>
                     <ControlTemplate>

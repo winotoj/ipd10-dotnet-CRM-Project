@@ -140,3 +140,14 @@ ex:
 3. where do i need help from my teammate, teacher, or internet?
 *show meetings in calendar
 >>>>>>> fb8e087ea2d8f0b391f407d0f7b2e3c85cf9763d
+
+2017/10/13 Winoto
+1. what have i done / not done sincce last scrum?
+* label done
+* report, query is done
+* graph, need to push it to key value
+2. what will i do until next scrum?
+* continue on graph.
+* work on validation
+3. Where do i need help?
+* How to insert data in key-value

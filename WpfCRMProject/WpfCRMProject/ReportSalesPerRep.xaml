@@ -4,9 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="ReportSalesPerRep" Height="300" Width="300">
+        Title="Report Sales Per Rep" Height="800" Width="600">
     <Grid>
-        
+        <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="mcChart" Width="600" Height="550" Background="LightSteelBlue">
+            <DVC:Chart.Series>
+                <DVC:LineSeries Title=" Monthly Count" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+                    </DVC:LineSeries>
+            </DVC:Chart.Series>
+            </DVC:Chart>
+
     </Grid>
 </Window>

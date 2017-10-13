@@ -69,7 +69,7 @@ namespace WpfCRMProject
             getCommand.Parameters.Add(new SqlParameter("SalesrepID", Application.Current.Resources["UserName"]));
             using (SqlDataReader reader = getCommand.ExecuteReader())
             {
-                
+
                 while (reader.Read())
                 {
                     var schedule = new Schedule
@@ -97,7 +97,7 @@ namespace WpfCRMProject
 
         public void AddAppointment(Schedule s)
         {
-            
+
             String query = @"INSERT INTO Schedules ([type], [note]
                                                    ,[scheduled_date]                                                   
                                                    ,[salesrep_id]
@@ -111,7 +111,7 @@ namespace WpfCRMProject
             SqlCommand addAppointment = new SqlCommand(query, conn);
             addAppointment.Parameters.Add(new SqlParameter("Type", s.Type));
             addAppointment.Parameters.Add(new SqlParameter("Note", s.Note));
-            addAppointment.Parameters.Add(new SqlParameter("ScheduleDate", s.ScheduleDate));            
+            addAppointment.Parameters.Add(new SqlParameter("ScheduleDate", s.ScheduleDate));
             addAppointment.Parameters.Add(new SqlParameter("Salesrep_id", s.SalesRepId));
             addAppointment.Parameters.Add(new SqlParameter("Subject", s.Subject));
             addAppointment.Parameters.Add(new SqlParameter("StartTime", s.StartTime));
@@ -142,7 +142,7 @@ namespace WpfCRMProject
         }
 
         public void UpdateAppointment(Schedule s)
-        {            
+        {
             string queryUpdate = @"UPDATE Schedules SET note = @Note,
                                                        scheduled_date = @ScheduleDate,
                                                        startTime = @StartTime,
@@ -161,7 +161,7 @@ namespace WpfCRMProject
 
             if (s.Status != 0)
             {
-                AddMeetingsToHistory(s);               
+                AddMeetingsToHistory(s);
             }
         }
 
@@ -186,9 +186,9 @@ namespace WpfCRMProject
 
         }
 
-        
 
-         public void AddPerson(Customer c)
+
+        public void AddPerson(Customer c)
         {
             String query = @"INSERT INTO CUSTOMERS (company_name, street, city 
                                                         , province, postal
@@ -388,7 +388,7 @@ namespace WpfCRMProject
             {
                 while (reader.Read())
                 {
-                    email = (string)reader["email"];  
+                    email = (string)reader["email"];
                 }
             }
             return email;
@@ -458,7 +458,7 @@ namespace WpfCRMProject
                 addCommand.Parameters.Add(new SqlParameter("user_id", user_id));
                 addCommand.ExecuteNonQuery();
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show("Error adding message: " + ex.Message);
             }
@@ -478,13 +478,119 @@ namespace WpfCRMProject
                         Amount = (decimal)reader["amount"],
                         TDate = ((DateTime)reader["purchase_date"]).ToString("yyyy'-'MM'-'dd")
 
-                };
+                    };
                     list.Add(sales);
                 }
             }
+            return list;
+        }
+        public List<SalesPerRep> GetSalesYTD()
+        {
+            bool lastRecord = false;
+            int counter = 0;
+            List<SalesPerRep> list = new List<SalesPerRep>();
+            SqlCommand getCmd = new SqlCommand("SELECT u.firstname, u.lastname, u.username, s.amount, MONTH(s.purchase_date) AS mth FROM(Salesreps AS u INNER JOIN Customers AS c ON u.username = c.salesrep_id) LEFT JOIN Sales AS s ON c.customer_id = s.customer_id WHERE YEAR(purchase_date) = YEAR(GETDATE()) ORDER BY  MONTH(s.purchase_date), u.username", conn);
 
+            using (SqlDataReader reader = getCmd.ExecuteReader())
+            {
+                int id = 0;
+                int mth = -1;
+                decimal amt = 0;
+                string firstname = string.Empty;
+                string lastname = string.Empty;
+
+                do
+                {
+                    if (reader.Read())
+                    {
+                        if (mth == ((int)reader["mth"]) && id == (int)reader["username"])
+                        {
+                            amt += (decimal)reader["amount"];
+                            counter++;
+                        }
+                        else if (mth == ((int)reader["mth"]) && id != (int)reader["username"])
+                        {
+
+                            SalesPerRep salesPerRep = new SalesPerRep
+                            {
+                                FirstName = firstname,
+                                LastName = lastname,
+                                RepId = id,
+                                Mth = mth,
+                                Total = decimal.Floor(amt),
+                            };
+                            list.Add(salesPerRep);
+                            firstname = (string)reader["firstname"];
+                            lastname = (string)reader["lastname"];
+                            id = (int)reader["username"];
+                            amt = (decimal)reader["amount"];
+                            mth = (int)reader["mth"];
+                            counter++;
+                        }
+                        else if (mth != ((int)reader["mth"]) && id == (int)reader["username"])
+                        {
+                            firstname = (string)reader["firstname"];
+                            lastname = (string)reader["lastname"];
+                            id = (int)reader["username"];
+                            amt = (decimal)reader["amount"];
+                            mth = (int)reader["mth"];
+                            counter++;
+                        }
+                        else if (mth != ((int)reader["mth"]) && id != (int)reader["username"])
+                        {
+                            if (counter == 0)
+                            {
+                                SalesPerRep salesPerRep = new SalesPerRep
+                                {
+                                    FirstName = (string)reader["firstname"],
+                                    LastName = (string)reader["lastname"],
+                                    RepId = (int)reader["username"],
+                                    Mth = (int)reader["mth"],
+                                    Total = (decimal)reader["amount"]                                };
+                            }
+                            else
+                            {
+                                SalesPerRep salesPerRep = new SalesPerRep
+                                {
+                                    FirstName = firstname,
+                                    LastName = lastname,
+                                    RepId = id,
+                                    Mth = mth,
+                                    Total = decimal.Floor(amt),
+                                };
+                                list.Add(salesPerRep);
+                            }                          
+                            firstname = (string)reader["firstname"];
+                            lastname = (string)reader["lastname"];
+                            id = (int)reader["username"];
+                            mth = (int)reader["mth"];
+                            amt = (decimal)reader["amount"];
+                            counter++;
+                        }
+                    }
+                    else
+                    {
+                        // assume more than 1 record
+                        lastRecord = true;
+                        if (counter > 1)
+                        {
+                            SalesPerRep salesPerRep = new SalesPerRep
+                            {
+                                FirstName = firstname,
+                                LastName = lastname,
+                                RepId = id,
+                                Mth = mth,
+                                Total = amt
+                            };
+                            list.Add(salesPerRep);
+                        }
+                    }
+
+                } while (!lastRecord);
+            }
             return list;
         }
 
     }
+
 }

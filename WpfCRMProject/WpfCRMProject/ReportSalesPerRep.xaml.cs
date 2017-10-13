@@ -22,6 +22,7 @@ namespace WpfCRMProject
     /// </summary>
     public partial class ReportSalesPerRep : Window
     {
+      
         Database db;
         public ReportSalesPerRep()
         {
@@ -29,7 +30,6 @@ namespace WpfCRMProject
             {
                 db = new Database();
                 InitializeComponent();
-
             }
             catch (SqlException ex)
             {
@@ -42,28 +42,34 @@ namespace WpfCRMProject
         private void LoadLineChartData()
         {
             List<SalesPerRep> list = db.GetSalesYTD();
-            string str = "";
+            list.Sort((a, b) => string.Compare(a.RepId.ToString(), b.RepId.ToString()));
+            string FullName = "";
             int id = 0;
             int count = 0;
-            for (int i = 0; i < list.Count; i++)
+           
+
+            foreach (SalesPerRep s in list)
             {
-                if (id == list[i].RepId || id== 0)
+                if (id != s.RepId)
                 {
-                    id = list[i].RepId;
-                    ((LineSeries)mcChart.Series[count]).ItemsSource =
-            new KeyValuePair<int, decimal>[]{
- new KeyValuePair<int,decimal>(list[i].Mth, list[i].Total)};
-                   
+                    id = s.RepId;
+                    List<SalesPerRep> result = (from l in list where l.RepId == id select l).ToList();
+                    Dictionary<int, decimal> salesrep = new Dictionary<int, decimal>();
+
+                    foreach (SalesPerRep r in result)
+                    {
+                        salesrep.Add(r.Mth, r.Total);
+                    }
+
+                    ((LineSeries)mcChart.Series[count]).ItemsSource = salesrep;
+                    FullName = s.FirstName + " " + s.LastName;
+                    ((LineSeries)mcChart.Series[count]).Title = FullName;
+                    count++;
                 }
             }
-             
- //           ((LineSeries)mcChart.Series[0]).ItemsSource =
- //           new KeyValuePair<DateTime, int>[]{
- //new KeyValuePair<DateTime,int>(DateTime.Now, 100),
- //new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(1), 130),
- //new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(2), 150),
- //new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(3), 125),
- //new KeyValuePair<DateTime,int>(DateTime.Now.AddMonths(4),155) };
+
+
         }
     }
+    
 }

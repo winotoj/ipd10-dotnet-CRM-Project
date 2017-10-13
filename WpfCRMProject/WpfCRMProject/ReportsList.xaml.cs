@@ -33,7 +33,8 @@ namespace WpfCRMProject
 
         private void btnSalesReport_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportSalesPerRep reportSalesPerRep = new ReportSalesPerRep();
+            reportSalesPerRep.ShowDialog();
         }
     }
 }

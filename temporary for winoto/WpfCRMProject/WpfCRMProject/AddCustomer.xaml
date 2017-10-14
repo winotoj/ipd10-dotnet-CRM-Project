@@ -14,7 +14,16 @@
             <ColumnDefinition Width="155*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Basic Info" HorizontalAlignment="Left" Margin="6,8,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="24,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <!--<TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="24,34,0,0" TextWrapping="Wrap" Text="{Binding Path=companyName, UpdateSourceTrigger=Explicit,  ValidatesOnExceptions=True}" VerticalAlignment="Top" Width="462" Grid.ColumnSpan="3" Grid.Column="1"/>-->
+        <local:CLRObjectBoundTextBox x:Name="tbCompanyName" 
+
+                          Margin="5" 
+
+                          TextBoxTypeToUse="LettersOnly" 
+
+                          UpdateDataSourceTrigger="PropertyChanged" 
+
+                          BoundPropertyName="FirstName"
         <Label Content="Company Name" HorizontalAlignment="Left" Margin="13,31,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="First Name" HorizontalAlignment="Left" Margin="13,61,0,0" VerticalAlignment="Top"/>
         <Label Content="Last Name" HorizontalAlignment="Left" Margin="185.578,63,0,0" VerticalAlignment="Top" Grid.Column="2"/>

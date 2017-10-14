@@ -60,9 +60,13 @@ namespace WpfCRMProject
             {
                 strquery += " c.status = 1";
             }
-            else
+            else if(rbOpportunity.IsChecked == true)
             {
                 strquery += " c.status = 0";
+            }
+            else
+            {
+                strquery += " c.status IS NOT NULL";
             }
             if (tbCompanyName.Text != "")
             {
@@ -116,9 +120,14 @@ namespace WpfCRMProject
             {
                 strquery += " and v.purchase_date > " + dpLastPurchaseDate.SelectedDate.Value.ToShortDateString();
             }
-
             User cbUser = (User)cbSalesRep.SelectedItem;
-            strquery += " and c.salesrep_Id = " + cbUser.UserId.ToString();
+            if (cbReps.IsChecked == false)
+            {
+                strquery += " and c.salesrep_Id = " + cbUser.UserId.ToString();
+            }
+           
+
+            
             str = strquery;
             this.Close();
         }
@@ -127,6 +136,16 @@ namespace WpfCRMProject
         {
             str = string.Empty;
             this.Close();
+        }
+
+        private void cbReps_Checked(object sender, RoutedEventArgs e)
+        {
+            cbSalesRep.IsEnabled = false;
+        }
+
+        private void cbReps_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cbSalesRep.IsEnabled = true;
         }
     }
 }

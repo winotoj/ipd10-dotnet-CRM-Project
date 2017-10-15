@@ -18,7 +18,17 @@
         </ToolBarPanel>
 
         <ToolBarPanel DockPanel.Dock="Left" VerticalAlignment="Top" Width="188" Height="669" Background="#FFBEC6C6">
-            <Button Name="btnAddressBook" Height="50" Width="150" Click="btnAddressBook_Click" Margin="0,55,0,0" BorderThickness="1" BorderBrush="#FF707070" >
+            <Button Height="50" Width="150" Margin="0,55,0,0"  Click="btnCalendar_Click" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <Canvas>
+                            <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
+                            <TextBlock Canvas.Left="40" Canvas.Top="14" Text="MyWorksDay" FontFamily="Arial" FontSize="18"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Name="btnAddressBook" Height="50" Width="150" Margin="0,15,0,0" Click="btnAddressBook_Click" BorderThickness="1" BorderBrush="#FF707070" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
@@ -28,22 +38,13 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="150" Margin="0,15,0,0" Click="btnCalendar_Click" >
-                <Button.Template>
-                    <ControlTemplate>
-                        <Canvas>
-                            <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
-                            <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Calendar" FontFamily="Arial" FontSize="18"/>
-                        </Canvas>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+            
             <Button Height="50" Width="150" Click="btnOpportunity_Click" Margin="0,15,0,0" >
                 <Button.Template>
                     <ControlTemplate>
                         <Canvas>
                             <Image Source="pack://siteoforigin:,,,/Images/Opportunities.png" Height="40" Width="36"/>
-                            <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Opportunites" FontFamily="Arial" FontSize="18"/>
+                            <TextBlock Canvas.Left="40" Canvas.Top="12" Text="Opportunites" FontFamily="Arial" FontSize="18"/>
                         </Canvas>
                     </ControlTemplate>
                 </Button.Template>
@@ -53,7 +54,7 @@
                     <ControlTemplate>
                         <Canvas>
                             <Image Source="pack://siteoforigin:,,,/Images/Charts.png" Height="40" Width="36"/>
-                            <TextBlock Canvas.Left="40" Canvas.Top="8" Text="Reports" FontFamily="Arial" FontSize="18"/>
+                            <TextBlock Canvas.Left="40" Canvas.Top="14" Text="Reports" FontFamily="Arial" FontSize="18"/>
                         </Canvas>
                     </ControlTemplate>
                 </Button.Template>

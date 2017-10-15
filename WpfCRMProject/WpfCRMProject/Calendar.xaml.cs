@@ -37,32 +37,29 @@ namespace WpfCRMProject
             {
                 MessageBox.Show(ex.Message);
             }
-            DisplayWorkDay();
-
-
-            showMeetingOnCalendar();
-
+            DisplayWorkDay();            
         }
 
-        private void showMeetingOnCalendar()
-        {
-
-            //calendar.SelectedDates.Add(new DateTime(2013, 02, 20));
-
-            DateTime today = DateTime.Today;
-            calendar.BlackoutDates.Add(
-                new CalendarDateRange(today.AddDays(-5), today.AddDays(-3)));
-           
-
-
+        //Get all dates of Meetings from List
+        public List<DateTime> showMeetingOnCalendar()
+        { 
+            List<DateTime> date = new List<DateTime>();
+            for (int i = 0; i < lvShowWorkDay.Items.Count; i++)
+            {
+                Schedule datelist = (Schedule)lvShowWorkDay.Items[i];
+                date.Add(datelist.ScheduleDate);                
+            }
+            return date;
         }
 
+        //Make a New Appointment
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddSchedule schedule = new AddSchedule();
             schedule.ShowDialog();
         }
 
+        //Show All appointment based on userID
         public void DisplayWorkDay()
         {
             List<Schedule> listSchedule = db.GetAllAppointment();
@@ -75,14 +72,7 @@ namespace WpfCRMProject
            
         }
 
-        //private List GetAllDateMeetings()
-        //{
-        //    //List<Schedule> listSchedule = db.GetAllAppointment();
-        //    lvShowWorkDay.
-
-
-        //}
-
+        //Edit Selected appointment
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {            
             Schedule scheduleList = (Schedule)lvShowWorkDay.SelectedItem;

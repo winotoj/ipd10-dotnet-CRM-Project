@@ -166,6 +166,21 @@ namespace WpfCRMProject
                 email != tbEmail.Text)
                 )
             {
+                if(tbFirstName.Text == string.IsNullOrEmpty || tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 51)
+                {
+                    MessageBox.Show("Please enter 2-50 chars");
+                    return;
+                }
+                if (tbLastName.Text == string.IsNullOrEmpty || tbLastName.Text.Length < 2 || tbLastName.Text.Length > 51)
+                {
+                    MessageBox.Show("Please enter 2-50 chars");
+                    return;
+                }
+                if (tbCompanyName.Text == string.IsNullOrEmpty || tbCompanyName.Text.Length < 2 || tbCompanyName.Text.Length > 51)
+                {
+                    MessageBox.Show("Please enter 2-50 chars");
+                    return;
+                }
                 try
                 {
                     Customer customer = new Customer
@@ -267,27 +282,6 @@ namespace WpfCRMProject
 
         private void btnCompanyEditDetail_Click(object sender, RoutedEventArgs e)
         {
-            //if (lblSalesRep.Content.ToString() != Application.Current.Resources["UserName"].ToString() || Application.Current.Resources["role"].ToString() != "manager")
-            //{
-            //    btnCompanyEditDetail.IsEnabled = false;
-            //    btnCompanySaveDetail.IsEnabled = false;
-            //}
-            //else
-            //{
-            //    DisableEnableTextBox(true);
-            //    firstName = tbFirstName.Text;
-            //    lastName = tbLastName.Text;
-            //    company = tbCompanyName.Text;
-            //    city = tbCity.Text;
-            //    street = tbStreet.Text;
-            //    city = tbCity.Text;
-            //    province = tbProvince.Text;
-            //    postalCode = tbPostal.Text;
-            //    country = tbCountry.Text;
-            //    phone1 = tbPhone1.Text;
-            //    phone2 = tbPhone2.Text;
-            //    email = tbEmail.Text;
-            //}
             firstName = tbFirstName.Text;
             lastName = tbLastName.Text;
             company = tbCompanyName.Text;

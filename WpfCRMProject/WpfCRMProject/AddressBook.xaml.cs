@@ -152,7 +152,7 @@ namespace WpfCRMProject
 
         private void btnCompanySaveDetail_Click(object sender, RoutedEventArgs e)
         {
-            if ((tbFirstName.IsEnabled == true) && (
+            if ((tbFirstName.IsEnabled) && (
                 firstName != tbFirstName.Text ||
                 lastName != tbLastName.Text ||
                 company != tbCompanyName.Text ||
@@ -166,17 +166,17 @@ namespace WpfCRMProject
                 email != tbEmail.Text)
                 )
             {
-                if(tbFirstName.Text == string.IsNullOrEmpty || tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 51)
+                if(tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 51)
                 {
                     MessageBox.Show("Please enter 2-50 chars");
                     return;
                 }
-                if (tbLastName.Text == string.IsNullOrEmpty || tbLastName.Text.Length < 2 || tbLastName.Text.Length > 51)
+                if (tbLastName.Text.Length < 2 || tbLastName.Text.Length > 51)
                 {
                     MessageBox.Show("Please enter 2-50 chars");
                     return;
                 }
-                if (tbCompanyName.Text == string.IsNullOrEmpty || tbCompanyName.Text.Length < 2 || tbCompanyName.Text.Length > 51)
+                if (tbCompanyName.Text.Length < 2 || tbCompanyName.Text.Length > 51)
                 {
                     MessageBox.Show("Please enter 2-50 chars");
                     return;

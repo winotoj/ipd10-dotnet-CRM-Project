@@ -23,6 +23,7 @@ namespace WpfCRMProject
     public partial class AddSchedule : Window
     {
         Database db;
+        private int _errors = 0;
         public AddSchedule()
         {
             InitializeComponent();
@@ -108,6 +109,13 @@ private void btnSave_Click(object sender, RoutedEventArgs e)
             }
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
             mainWin.frTest.Refresh();
+        }
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                _errors++;
+            else
+                _errors--;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

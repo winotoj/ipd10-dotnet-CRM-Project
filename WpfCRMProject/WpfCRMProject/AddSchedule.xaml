@@ -7,6 +7,32 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="WpfCRMProject.AddSchedule"
         mc:Ignorable="d"
         Title="AddSchedule" Height="647.204" Width="650.995" Background="#FFEDF4F4">
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,2,40,2" />
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="OrangeRed" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="5"
+                                    ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white" />
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                <Border BorderBrush="Red" BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Label Content="Company Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="97"/>
         <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="112,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -24,8 +50,10 @@
             <ComboBoxItem Content="By Phone"/>
             <ComboBoxItem Content="Face To Face"/>
         </ComboBox>
-        <Label Content="Subject" HorizontalAlignment="Left" Margin="25,340,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSubject" HorizontalAlignment="Left" Height="23" Margin="149,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="477"/>
+        <Label Target="{Binding ElementName=tbCompanyName}" Content="Subject" HorizontalAlignment="Left" Margin="25,340,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbSubject" HorizontalAlignment="Left" Height="23" Margin="149,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+              Validation.Error="Validation_Error"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=CompanyName,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  Width="477"/>
         <Label Content="Date Of Metting" HorizontalAlignment="Left" Margin="25,383,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="dateOfMetting" HorizontalAlignment="Left" Margin="149,385,0,0" VerticalAlignment="Top"/>
         <Label Content="Start Time" HorizontalAlignment="Left" Margin="295,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.021,0.491"/>

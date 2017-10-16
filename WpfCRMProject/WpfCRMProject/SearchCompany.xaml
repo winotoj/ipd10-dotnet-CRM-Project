@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="SearchCompany" Height="609.746" Width="745.868">
+        Title="SearchCompany" Height="609.746" Width="745.868" Background="#FFEDF4F4">
     <Grid Margin="0,0,0.2,0" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="92*"/>

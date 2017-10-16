@@ -76,18 +76,24 @@ namespace WpfCRMProject
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {            
             Schedule scheduleList = (Schedule)lvShowWorkDay.SelectedItem;
-
-            var addSchedule = new EditAppointment();
-            addSchedule.tbCustomerName.Text = scheduleList.CustomerName;
-            addSchedule.tbSubject.Text = scheduleList.Subject;
-            addSchedule.dpDate.Text = scheduleList.ScheduleDate.ToString();
-            addSchedule.tpStart.Text = scheduleList.StartTime;
-            addSchedule.tpEnd.Text = scheduleList.EndTime;
-            addSchedule.lblScheduleID.Content = scheduleList.Schedule_id;
-            addSchedule.cmbState.SelectedIndex = scheduleList.Status;
-            addSchedule.lblCustomerID.Content = scheduleList.CustomerID;
-            addSchedule.dpType.Text = scheduleList.Type;
-            addSchedule.ShowDialog();
+            if (scheduleList != null)
+            {
+                var addSchedule = new EditAppointment();
+                addSchedule.tbCustomerName.Text = scheduleList.CustomerName;
+                addSchedule.tbSubject.Text = scheduleList.Subject;
+                addSchedule.dpDate.Text = scheduleList.ScheduleDate.ToString();
+                addSchedule.tpStart.Text = scheduleList.StartTime;
+                addSchedule.tpEnd.Text = scheduleList.EndTime;
+                addSchedule.lblScheduleID.Content = scheduleList.Schedule_id;
+                addSchedule.cmbState.SelectedIndex = scheduleList.Status;
+                addSchedule.lblCustomerID.Content = scheduleList.CustomerID;
+                addSchedule.dpType.Text = scheduleList.Type;
+                addSchedule.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select one customer", "Edit Customer", MessageBoxButton.OK, MessageBoxImage.None);
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="Report1" Height="600" Width="500">
+        Title="Report1" Height="600" Width="500" Background="#FFEDF4F4">
     <Grid>
         <Button Name="btnExportToExcel" Content="Export Excel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnExportToExcel_Click"/>
         <ListView Name="lvAddress" HorizontalAlignment="Left" Height="449" Margin="10,42,0,0" VerticalAlignment="Top" Width="424" SelectionMode="Single">

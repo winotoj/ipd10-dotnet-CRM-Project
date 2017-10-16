@@ -53,8 +53,11 @@ namespace WpfCRMProject
 private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
-            String type = typeItem.Content.ToString();
-
+            String type = "";
+            if (cbType.SelectedIndex != -1)
+            {
+                type = typeItem.Content.ToString();
+            }
             String subject = tbSubject.Text;
             String meetingDate = dateOfMetting.Text;
             String startTime = cbStartTime.Text;

@@ -143,6 +143,16 @@ namespace WpfCRMProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SignOut {
+            get {
+                object obj = ResourceManager.GetObject("SignOut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap unlock_icon {
             get {
                 object obj = ResourceManager.GetObject("unlock_icon", resourceCulture);

@@ -26,6 +26,7 @@ namespace WpfCRMProject
         {
             InitializeComponent();
             frTest.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -40,6 +41,8 @@ namespace WpfCRMProject
             timer.Start();
             btnAddNewCustomer.Visibility = Visibility.Hidden;
             btnSearch.Visibility = Visibility.Hidden;
+            Calendar calendar = new Calendar();
+            frTest.Navigate(new System.Uri("Calendar.xaml", UriKind.RelativeOrAbsolute));
 
         }
 

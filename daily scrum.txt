@@ -161,3 +161,13 @@ ex:
 * I will change the background color for appointment dates on calendar
 3. Where do i need help?
 *how to change background color of special day on calendar
+
+2017/10/15
+1. what have i done / not done sincce last scrum?
+* Graph done
+* change validation to client side (with binding), done
+2. what will i do until next scrum?
+* change the validation in edit customer
+* cleanup some code
+3. Where do i need help?
+* Binding the textbox, radio button

@@ -166,21 +166,69 @@ namespace WpfCRMProject
                 email != tbEmail.Text)
                 )
             {
+
                 if(tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 51)
+
+                if(tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 41)
+
                 {
-                    MessageBox.Show("Please enter 2-50 chars");
+                    MessageBox.Show("Please enter 2-40 chars for First Name");
                     return;
                 }
+
                 if (tbLastName.Text.Length < 2 || tbLastName.Text.Length > 51)
+
+                if (tbLastName.Text.Length < 2 || tbLastName.Text.Length > 41)
+
                 {
-                    MessageBox.Show("Please enter 2-50 chars");
+                    MessageBox.Show("Please enter 2-40 chars for Last Name");
                     return;
                 }
+
                 if (tbCompanyName.Text.Length < 2 || tbCompanyName.Text.Length > 51)
+
+                if (tbCompanyName.Text.Length < 2 || tbCompanyName.Text.Length > 81)
+
                 {
-                    MessageBox.Show("Please enter 2-50 chars");
+                    MessageBox.Show("Please enter 2-80 chars for Company Name");
                     return;
                 }
+                if (tbStreet.Text.Length < 2 || tbStreet.Text.Length > 51)
+                {
+                    MessageBox.Show("Please enter 2-50 chars for Street Name");
+                    return;
+                }
+                if (tbCity.Text.Length < 2 || tbCity.Text.Length > 51)
+                {
+                    MessageBox.Show("Please enter 2-50 chars for City Name");
+                    return;
+                }
+                if (tbProvince.Text.Length != 2)
+                {
+                    MessageBox.Show("Please enter 2 chars for Province");
+                    return;
+                }
+                if (tbPostal.Text.Length < 5 || tbPostal.Text.Length > 10)
+                {
+                    MessageBox.Show("Please enter 5-10 chars for Postal Code");
+                    return;
+                }
+                if (tbCountry.Text.Length < 2 || tbCountry.Text.Length > 21)
+                {
+                    MessageBox.Show("Please enter 2-20 chars for Country Name");
+                    return;
+                }
+                if (tbPhone1.Text.Length < 9 || tbPhone1.Text.Length > 21)
+                {
+                    MessageBox.Show("Please enter like this format 514-514-1234");
+                    return;
+                }
+                if (tbEmail.Text.Length < 6 || tbEmail.Text.Length > 81)
+                {
+                    MessageBox.Show("Please enter the right email");
+                    return;
+                }
+
                 try
                 {
                     Customer customer = new Customer

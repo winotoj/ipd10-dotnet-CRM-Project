@@ -247,7 +247,6 @@ namespace WpfCRMProject
                 lblSalesRep.Content = customerSelected.SalesRepId;
                 lblCustomerId.Content = customerSelected.CustomerId.ToString();
 
-
             }
         }
 

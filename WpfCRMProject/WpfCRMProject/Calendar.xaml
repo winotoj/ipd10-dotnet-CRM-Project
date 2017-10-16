@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="544" Margin="576,0,0,0" VerticalAlignment="Top" Width="188">
             <Button Content="Make New Appointment" Margin="0, 5" Click="Button_Click"/>
-            <Calendar x:Name="calendar" Margin="0,15"/>
+            <Calendar HorizontalAlignment="Left" Margin="0,15" VerticalAlignment="Top" x:Name="cal1" />
 
         </StackPanel>
         <ListView x:Name="lvShowWorkDay" HorizontalAlignment="Left" Height="495" Margin="10,49,0,0" VerticalAlignment="Top" Width="561" SelectionMode="Single">

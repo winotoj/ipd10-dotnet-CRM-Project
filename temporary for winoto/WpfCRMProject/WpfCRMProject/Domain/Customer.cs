@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WpfCRMProject
 {
-    class Customer
+    public class Customer : IDataErrorInfo
     {
         private string _CompanyName;
         private string _Street;
@@ -29,23 +30,30 @@ namespace WpfCRMProject
         //combobox for province?
         public int CustomerId { get; set; }
         public string CompanyName
+        { get; set; }
+        
+        public string Country
         {
-            get
-            {
-                return _CompanyName;
-            }
-            set
-            {
-                if (value.Length > 1 && value.Length < 81)
-                {
-                    _CompanyName = value;
-                }
-                else
-                    
-                    throw new ArgumentOutOfRangeException("Company Name must be between 2 and 80 char", value);
-
-            }
+            get; set;
         }
+        //public string CompanyName
+        //{
+        //    get
+        //    {
+        //        return _CompanyName;
+        //    }
+        //    set
+        //    {
+        //        if (value.Length > 1 && value.Length < 81)
+        //        {
+        //            _CompanyName = value;
+        //        }
+        //        else
+
+        //            throw new ArgumentOutOfRangeException("Company Name must be between 2 and 80 char", value);
+
+        //    }
+        //}
         public string Street
         {
             get
@@ -100,24 +108,24 @@ namespace WpfCRMProject
                 }
             }
         }
-        public string Country
-        {
-            get
-            {
-                return _Country;
-            }
-            set
-            {
-                if (value.Length > 1 && value.Length < 51)
-                {
-                    _Country = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Country must be between 2 and 50 char", value);
-                }
-            }
-        }
+        //public string Country
+        //{
+        //    get
+        //    {
+        //        return _Country;
+        //    }
+        //    set
+        //    {
+        //        if (value.Length > 1 && value.Length < 51)
+        //        {
+        //            _Country = value;
+        //        }
+        //        else
+        //        {
+        //            throw new ArgumentOutOfRangeException("Country must be between 2 and 50 char", value);
+        //        }
+        //    }
+        //}
         public string Postal
         {
             get
@@ -283,6 +291,40 @@ namespace WpfCRMProject
                 }
             }
         }
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+        public string this[string column]
+        {
+
+            get
+            {
+                string result = null;
+                if (column == "CompanyName")
+                {
+                    if (this.CompanyName == string.Empty ||
+                        this.CompanyName == "TEST")
+                    {
+                        result = "cant be empty or TEST";
+                    }
+                }
+                if (column == "Country")
+                {
+                    if (this.Country == string.Empty ||
+                        this.Country == "COUNTRY")
+                    {
+                        result = "cant be empty or COUNTRY";
+                    }
+                }
+
+                return result;
+            }
+        }
+
 
     }
 

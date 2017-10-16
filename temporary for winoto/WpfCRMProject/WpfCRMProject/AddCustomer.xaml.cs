@@ -38,6 +38,8 @@ namespace WpfCRMProject
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             String companyName = tbCompanyName.Text;
+            if (companyName.Length < 2)
+                throw new ApplicationException(" must be greater than 2");
             String firstName = tbFirstName.Text;
             String lastName = tbLastName.Text;
             String phoneNum = tbPhoneNum.Text;
@@ -55,6 +57,11 @@ namespace WpfCRMProject
                 status = true;
             }
             else status = false;
+            BindingExpression be = tbCompanyName.GetBindingExpression(TextBox.TextProperty);
+            if (be.HasValidationError)
+            {
+                tbCompanyName.BorderBrush = Brushes.Red;
+            }
 
             Customer newCustomer = new Customer
             {
@@ -72,10 +79,10 @@ namespace WpfCRMProject
                 CreateDate = DateTime.Today,
                 Status = status,
                 Email = Email
+
             };
-
             db.AddPerson(newCustomer);
-
+      
             MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
             //mainWin.btnOpportunity.Focus();

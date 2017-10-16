@@ -44,6 +44,14 @@ namespace WpfCRMProject
             Calendar calendar = new Calendar();
             frTest.Navigate(new System.Uri("Calendar.xaml", UriKind.RelativeOrAbsolute));
 
+            btnSignOut.Visibility = Visibility.Visible;            
+            btnAddressBook.Visibility = Visibility.Visible;
+            btnReport.Visibility = Visibility.Visible;
+            btnCalendar.Visibility = Visibility.Visible;
+            btnOpportunities.Visibility = Visibility.Visible;            
+            imgProfile.Visibility = Visibility.Visible;
+
+
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -113,6 +121,11 @@ UriKind.RelativeOrAbsolute));
             }
             frTest.NavigationService.Navigate(new AddressBook(str));
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -316,6 +316,9 @@
     <None Include="Images\multimedia.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\SignOut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\unlock-icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

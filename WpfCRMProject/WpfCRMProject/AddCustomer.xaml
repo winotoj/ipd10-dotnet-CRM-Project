@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
+<<<<<<< HEAD
         Title="AddCustomer" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="469.284" Width="658.815">
+=======
+        Title="AddCustomer" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="471.284" Width="605.815" Background="#FFEDF4F4">
+
+
+>>>>>>> cf1e928da5a5de3fab1f28f81550ea6a7a2ecb81
     <Window.Resources>
 
         <Style TargetType="{x:Type Label}">
@@ -33,6 +39,7 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,0.2,0" Name="gridCustomer" >
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />

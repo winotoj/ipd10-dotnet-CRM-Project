@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCRMProject"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="WpfCRMProject.AddSchedule"
         mc:Ignorable="d"
-        Title="AddSchedule" Height="647.204" Width="650.995" BorderBrush="#FF726E6E">
+        Title="AddSchedule" Height="647.204" Width="650.995" Background="#FFEDF4F4">
     <Grid>
         <Label Content="Company Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="97"/>
         <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="112,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>

@@ -31,7 +31,7 @@ namespace WpfCRMProject
         {
             Login login = new Login();
             login.ShowDialog();
-            Login logs = new Login();
+            //Login logs = new Login();
             lbluserlogin.Content = Application.Current.Resources["FirstName"] + " " + Application.Current.Resources["LastName"];
             lblDate.Content = DateTime.Now.ToLongDateString();
             DispatcherTimer timer = new DispatcherTimer();

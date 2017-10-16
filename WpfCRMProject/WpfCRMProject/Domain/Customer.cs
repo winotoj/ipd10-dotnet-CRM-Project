@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace WpfCRMProject
 {
-    class Customer
+    class Customer : IDataErrorInfo
     {
         private string _CompanyName;
         private string _Street;
@@ -25,8 +27,7 @@ namespace WpfCRMProject
         private string _LastPurchaseDate;
         private string _Amount;
 
-        //need to change validation using regex
-        //combobox for province?
+
         public int CustomerId { get; set; }
         public string CompanyName
         {
@@ -36,14 +37,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 1 && value.Length < 81)
-                {
-                    _CompanyName = value;
-                }
-                else
-                    
-                    throw new ArgumentOutOfRangeException("Company Name must be between 2 and 80 char", value);
-
+                _CompanyName = value;
             }
         }
         public string Street
@@ -54,15 +48,9 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 1 && value.Length < 51)
-                {
-                    _Street = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Street must be between 2 and 50 char", value);
-                }
+                _Street = value;
             }
+
         }
         public string City
         {
@@ -72,14 +60,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 1 && value.Length < 51)
-                {
-                    _City = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("City must be between 2 and 50 char", value);
-                }
+                _City = value;
             }
         }
         public string Province
@@ -90,14 +71,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length == 2)
-                {
-                    _Province = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Province must be 2 char", value);
-                }
+                _Province = value;
             }
         }
         public string Country
@@ -108,14 +82,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 1 && value.Length < 51)
-                {
-                    _Country = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Country must be between 2 and 50 char", value);
-                }
+                _Country = value;
             }
         }
         public string Postal
@@ -126,14 +93,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 5 && value.Length < 11)
-                {
-                    _Postal = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Postal Code must be between 6 and 10 char", value);
-                }
+                _Postal = value;
             }
         }
         public string Phone
@@ -144,14 +104,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 9 && value.Length < 16)
-                {
-                    _Phone = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Phone must be between 9 and 16 char", value);
-                }
+                _Phone = value;
             }
         }
         public string Fax
@@ -162,14 +115,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 9 && value.Length < 16)
-                {
-                    _Fax = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Fax must be between 9 and 16 char", value);
-                }
+                _Fax = value;
             }
         }
         public string Amount
@@ -193,14 +139,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 1 && value.Length < 41)
-                {
-                    _ContactFirstName = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("First name must be between 2 and 40 char", value);
-                }
+                _ContactFirstName = value;
             }
         }
         public string ContactLastName
@@ -211,14 +150,7 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 1 && value.Length < 41)
-                {
-                    _ContactLastName = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Last name must be between 2 and 40 char", value);
-                }
+                _ContactLastName = value;
             }
         }
         public DateTime CreateDate
@@ -273,17 +205,93 @@ namespace WpfCRMProject
             }
             set
             {
-                if (value.Length > 5 && value.Length < 81)
-                {
-                    _Email = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Email must be between 2 and 80 char", value);
-                }
+                _Email = value;
             }
         }
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "CompanyName")
+                {
+                    if (string.IsNullOrEmpty(CompanyName) || CompanyName.Length < 2 || CompanyName.Length > 50)
+                        result = "Please enter a Name (2-50 Chars)";
+                }
+                if (columnName == "Street")
+                {
+                    if (string.IsNullOrEmpty(Street) || Street.Length < 2 || Street.Length > 50)
+                        result = "Please enter Street (2-50 chars)";
+                }
+                if (columnName == "City")
+                {
+                    if (string.IsNullOrEmpty(City) || City.Length < 2 || City.Length > 50)
+                        result = "Please enter a Street (2-50 chars)";
+                }
+                if (columnName == "Province")
+                {
+                    if (string.IsNullOrEmpty(Province) || Province.Length != 2)
+                        result = "Please enter a Province (2 chars)";
+                }
+                if (columnName == "Country")
+                {
+                    if (string.IsNullOrEmpty(Country) || Country.Length < 2 || Country.Length > 20)
+                        result = "Please enter a Country (2-20 chars)";
+                }
+                if (columnName == "Postal")
+                {
+                    if (string.IsNullOrEmpty(Postal) || Postal.Length < 6 || Postal.Length > 10)
+                        result = "Please enter a Postal Code (6-10 chars)";
+                }
 
+                if (columnName == "Phone")
+                {
+                    Regex regex = new Regex(@"\d{3}[- ]?\d{3}[- ]?\d{4}( x\d{4})?|x\d{4}$");
+                    if (string.IsNullOrEmpty(Phone))
+                    {
+                        result = "Please enter a Phone Number (514-123-1234 x1234)";
+                    }
+                    else if (!regex.Match(Phone).Success)
+                    {
+                        result = "Please enter a Phone Number (514-123-1234 x1234)";
+                    }
+                }
+                if (columnName == "Fax")
+                {
+                    if (!(string.IsNullOrEmpty(Fax)))
+                    {
+                        if (Fax.Length < 9 || Fax.Length > 16)
+                            result = "Please enter a Fax Number (9-16 chars)";
+                    }
+
+                }
+                if (columnName == "ContactFirstName")
+                {
+                    if (string.IsNullOrEmpty(ContactFirstName) || ContactFirstName.Length < 2 || ContactFirstName.Length > 50)
+                        result = "Please enter a Name (2-50 Chars)";
+                }
+                if (columnName == "ContactLastName")
+                {
+                    if (string.IsNullOrEmpty(ContactLastName) || ContactLastName.Length < 2 || ContactLastName.Length > 50)
+                        result = "Please enter a Name (2-50 Chars)";
+                }
+                if (columnName == "Email")
+                {
+                    Regex regex = new Regex(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*" + "@" + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
+                    if (string.IsNullOrEmpty(Email))
+                        result = "Please enter an Email";
+                    else if(!regex.Match(Email).Success)
+                    {
+                        result = "Please enter a valid Email";
+                    }
+                }
+
+                return result;
+            }
+        }
     }
-
 }

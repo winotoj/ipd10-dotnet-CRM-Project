@@ -21,61 +21,43 @@ namespace WpfCRMProject
     public partial class AddCustomer : Window
     {
         Database db;
+        private int _errors = 0;
+        private Customer _Customer = new Customer();
         public AddCustomer()
         {
             try
             {
                 db = new Database();
                 InitializeComponent();
+
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
+            gridCustomer.DataContext = _Customer;
+        }
+        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = _errors == 0;
+            e.Handled = true;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            String companyName = tbCompanyName.Text;
-            String firstName = tbFirstName.Text;
-            String lastName = tbLastName.Text;
-            String phoneNum = tbPhoneNum.Text;
-            String fax = tbFax.Text;
-            String Email = tbEmail.Text;
-            String webSite = tbWebsite.Text;
-            String street = tbStreet.Text;
-            String city = tbcity.Text;
-            String postalCode = tbPostalCode.Text;
-            String province = tbProvince.Text;
-            String country = tbCountry.Text;
+
+
+            e.Handled = true;
             Boolean status;
             if (rbCustomer.IsChecked == true)
             {
                 status = true;
             }
             else status = false;
+            _Customer.Status = status;
+            _Customer.CreateDate = DateTime.Today;
 
-            Customer newCustomer = new Customer
-            {
-
-                CompanyName = companyName,
-                Street = street,
-                City = city,
-                Province = province,
-                Postal = postalCode,
-                Phone = phoneNum,
-                Fax = fax,
-                ContactFirstName = firstName,
-                ContactLastName = lastName,
-                Country = country,
-                CreateDate = DateTime.Today,
-                Status = status,
-                Email = Email
-            };
-
-            db.AddPerson(newCustomer);
-
+            db.AddPerson(_Customer);
             MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
             //mainWin.btnOpportunity.Focus();
@@ -83,7 +65,7 @@ namespace WpfCRMProject
 
             this.Close();
             AddressBook addressBook = new AddressBook();
-            
+
             List<Customer> listCustomer = db.GetAllCustomers();
             addressBook.lvAddress.Items.Clear();
 
@@ -95,14 +77,14 @@ namespace WpfCRMProject
 
             mainWin.frTest.Refresh();
 
-            //MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
-            //AddressBook addressBook = new AddressBook();
-            // addressBook.DisplayAddressBook();
-
-
-
-            this.Close();
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                _errors++;
+            else
+                _errors--;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -115,6 +97,6 @@ namespace WpfCRMProject
         }
     }
 }
-           
-    
-    
+
+
+

@@ -6,48 +6,91 @@
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
         Title="AddCustomer" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="471.284" Width="605.815">
-    <Grid Margin="0,0,0.2,0" >
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,2,40,2" />
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="true">
+                            <Border Background="OrangeRed" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="5"
+                                    ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                                <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white" />
+                            </Border>
+                            <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                                <Border BorderBrush="Red" BorderThickness="1" />
+                            </AdornedElementPlaceholder>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,0.2,0" Name="gridCustomer" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="92*"/>
-            <ColumnDefinition Width="32*"/>
-            <ColumnDefinition Width="322*"/>
-            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.CommandBindings>
+            <CommandBinding Command="New" CanExecute="Save_CanExecute" Executed="Save_Executed" />
+        </Grid.CommandBindings>
         <Label Content="Basic Info" HorizontalAlignment="Left" Margin="6,8,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="24,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462" Grid.ColumnSpan="3" Grid.Column="1"/>
-        <Label Content="Company Name" HorizontalAlignment="Left" Margin="13,31,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label Content="First Name" HorizontalAlignment="Left" Margin="13,61,0,0" VerticalAlignment="Top"/>
-        <Label Content="Last Name" HorizontalAlignment="Left" Margin="185.578,63,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-        <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="24,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="255.578,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Grid.ColumnSpan="2" Grid.Column="2"/>
+        <Label Target="{Binding ElementName=tb_Company}" Content="Company Name" Grid.Column="0" Grid.Row="0" Margin="10,31,0,338" Grid.ColumnSpan="2" Width="101" />
+        <TextBox x:Name="tb_Company" Grid.Row="0" Grid.Column="1" Validation.Error="Validation_Error"
+                 Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=CompanyName,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" Margin="24,31,21,386" Height="23" />
+        <Label Target="{Binding ElementName=tbFirstName}" Content="First Name" HorizontalAlignment="Left" Margin="13,61,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="24,63,0,0" TextWrapping="Wrap" Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=ContactFirstName,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Target="{Binding ElementName=tbLastName}" Content="Last Name" HorizontalAlignment="Left" Margin="223,63,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="293,63,0,0" TextWrapping="Wrap" Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=ContactLastName,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="198" Grid.Column="1"/>
         <Label Content="Phone Number" HorizontalAlignment="Left" Margin="7,130,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2"/>
-        <Label Content="Main" HorizontalAlignment="Left" Margin="13,157,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPhoneNum" HorizontalAlignment="Left" Height="23" Margin="24,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Label Content="Fax" HorizontalAlignment="Left" Margin="13,189,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFax" HorizontalAlignment="Left" Height="23" Margin="24,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Label Content="Email Address and WebSite" HorizontalAlignment="Left" Margin="180,130,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="2"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="184,157,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-        <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Height="23" Margin="256,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Grid.ColumnSpan="2" Grid.Column="2"/>
-        <Label Content="WebSite" HorizontalAlignment="Left" Margin="184,189,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-        <TextBox x:Name="tbWebsite" HorizontalAlignment="Left" Height="23" Margin="256,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Grid.ColumnSpan="2" Grid.Column="2"/>
+        <Label Target="{Binding ElementName=tbPhoneNum}" Content="Main" HorizontalAlignment="Left" Margin="13,157,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPhoneNum" HorizontalAlignment="Left" Height="23" Margin="24,160,0,0" TextWrapping="Wrap" Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Phone,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Target="{Binding ElementName=tbFax}" Content="Fax" HorizontalAlignment="Left" Margin="13,189,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbFax" HorizontalAlignment="Left" Height="23" Margin="24,192,0,0" TextWrapping="Wrap" Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Fax,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Email Address and WebSite" HorizontalAlignment="Left" Margin="217,130,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="1"/>
+        <Label Target="{Binding ElementName=tbEmail}" Content="Email" HorizontalAlignment="Left" Margin="221,157,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Height="23" Margin="293,160,0,0" TextWrapping="Wrap"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Email,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="198" Grid.Column="1"/>
+        <Label Target="{Binding ElementName=tbWebsite}" Content="WebSite" HorizontalAlignment="Left" Margin="221,189,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="tbWebsite" HorizontalAlignment="Left" Height="23" Margin="293,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198" Grid.Column="1"/>
         <Label Content="Address" HorizontalAlignment="Left" Margin="13,236,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Street" HorizontalAlignment="Left" Margin="13,263,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbStreet" HorizontalAlignment="Left" Height="23" Margin="24,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Grid.ColumnSpan="3" Grid.Column="1"/>
-        <Label Content="City" HorizontalAlignment="Left" Margin="13,291,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbcity" HorizontalAlignment="Left" Height="23" Margin="24,294,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Label Content="Province" HorizontalAlignment="Left" Margin="186,291,0,0" VerticalAlignment="Top" Width="66" Grid.Column="2"/>
-        <TextBox x:Name="tbProvince" HorizontalAlignment="Left" Height="23" Margin="259,294,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2" Grid.Column="2" >
-            
-        </TextBox>
-        <Label Content="Postal Code" HorizontalAlignment="Left" Margin="13,319,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPostalCode" HorizontalAlignment="Left" Height="23" Margin="24,322,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="97" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Label Content="Country" HorizontalAlignment="Left" Margin="186,319,0,0" VerticalAlignment="Top" Width="66" Grid.Column="2"/>
-        <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="259,322,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="98" Grid.ColumnSpan="2" Grid.Column="2"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="82,373,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click" Grid.Column="2"/>
+        <Label Target="{Binding ElementName=tbStreet}" Content="Street" HorizontalAlignment="Left" Margin="13,263,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbStreet" HorizontalAlignment="Left" Height="23" Margin="24,266,0,0" TextWrapping="Wrap"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Street,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="365" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <Label Target="{Binding ElementName=tbcity}" Content="City" HorizontalAlignment="Left" Margin="13,291,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbcity" HorizontalAlignment="Left" Height="23" Margin="24,294,0,0" TextWrapping="Wrap"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=City,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="167" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Target="{Binding ElementName=tbProvince}" Content="Province" HorizontalAlignment="Left" Margin="223,291,0,0" VerticalAlignment="Top" Width="66" Grid.Column="1"/>
+        <TextBox x:Name="tbProvince" HorizontalAlignment="Left" Height="23" Margin="296,294,0,0" TextWrapping="Wrap"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Province,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="70" Grid.Column="1" />
+        <Label Target="{Binding ElementName=tbPostalCode}" Content="Postal Code" HorizontalAlignment="Left" Margin="13,319,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPostalCode" HorizontalAlignment="Left" Height="23" Margin="24,322,0,0" TextWrapping="Wrap"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Postal,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="97" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Target="{Binding ElementName=tbCountry}" Content="Country" HorizontalAlignment="Left" Margin="223,319,0,0" VerticalAlignment="Top" Width="66" Grid.Column="1"/>
+        <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="296,322,0,0" TextWrapping="Wrap"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Country,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="82,373,0,0" VerticalAlignment="Top" Width="75" Command="New" Grid.Column="2"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="178,373,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Click="btnCancel_Click" />
-        <RadioButton x:Name="rbCustomer" GroupName="type"  Content="Real Customer" Grid.Column="1" HorizontalAlignment="Left" Margin="24,101,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="rbCustomer" GroupName="type"  Content="Customer" Grid.Column="1" HorizontalAlignment="Left" Margin="24,101,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="13,95,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="rbOpportunity" GroupName="type" Content="Opportunity" Grid.Column="2" HorizontalAlignment="Left" Margin="116,101,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rbOpportunity" GroupName="type" Content="Prospect" Grid.Column="1" HorizontalAlignment="Left" Margin="122,101,0,0" VerticalAlignment="Top" IsChecked="True"/>
 
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfCRMProject"
         mc:Ignorable="d"
-        Title="AddCustomer" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="471.284" Width="605.815">
+        Title="AddCustomer" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="469.284" Width="658.815">
     <Window.Resources>
 
         <Style TargetType="{x:Type Label}">
@@ -86,8 +86,8 @@
         <Label Target="{Binding ElementName=tbCountry}" Content="Country" HorizontalAlignment="Left" Margin="223,319,0,0" VerticalAlignment="Top" Width="66" Grid.Column="1"/>
         <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="296,322,0,0" TextWrapping="Wrap"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Country,
                         ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="82,373,0,0" VerticalAlignment="Top" Width="75" Command="New" Grid.Column="2"/>
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="178,373,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Click="btnCancel_Click" />
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="140,373,0,0" VerticalAlignment="Top" Width="75" Command="New" Grid.Column="1"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="236,373,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="btnCancel_Click" />
         <RadioButton x:Name="rbCustomer" GroupName="type"  Content="Customer" Grid.Column="1" HorizontalAlignment="Left" Margin="24,101,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <Label Content="Type" HorizontalAlignment="Left" Margin="13,95,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="rbOpportunity" GroupName="type" Content="Prospect" Grid.Column="1" HorizontalAlignment="Left" Margin="122,101,0,0" VerticalAlignment="Top" IsChecked="True"/>

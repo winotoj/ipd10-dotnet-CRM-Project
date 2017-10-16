@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfCRMProject.Domain;
-
+using Outlook = Microsoft.Office.Interop.Outlook;
+using System.Runtime.InteropServices;
 
 namespace WpfCRMProject
 {
@@ -54,15 +55,13 @@ private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             ComboBoxItem typeItem = (ComboBoxItem)cbType.SelectedItem;
             String type = typeItem.Content.ToString();
-
             String subject = tbSubject.Text;
             String meetingDate = dateOfMetting.Text;
             String startTime = cbStartTime.Text;
             String endTime = cbEndTime.Text;
             String note = tbNote.Text;
             Customer customer = (Customer)lvCompanyName.SelectedItem;
-
-
+            
             Schedule schedule = new Schedule();
             schedule.CustomerID = customer.CustomerId;
             schedule.Type = type;
@@ -73,6 +72,43 @@ private void btnSave_Click(object sender, RoutedEventArgs e)
             schedule.Note = note;
             schedule.SalesRepId = Convert.ToInt32(Application.Current.Resources["UserName"]);
 
+            Outlook._Application _app;
+            try
+            {
+                _app = (Outlook.Application)Marshal.GetActiveObject("Outlook.Application");
+            }
+            // catch (System.Runtime.InteropServices.COMException ex)
+            catch (Exception)
+            {
+                //MessageBox.Show("Outlook is not opened under Administrator, close OUtlook and click OK." + ex.Message, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                _app = new Outlook.Application();
+            }
+            try
+            {
+                Outlook.AppointmentItem oAppointment = (Outlook.AppointmentItem)_app.CreateItem(Outlook.OlItemType.olAppointmentItem);
+                oAppointment.Subject = subject;
+                oAppointment.Body = note;
+                oAppointment.Start = Convert.ToDateTime(meetingDate + " " + startTime);
+                oAppointment.End = Convert.ToDateTime(meetingDate + " " + endTime);
+                oAppointment.Importance = Outlook.OlImportance.olImportanceHigh;
+                oAppointment.ReminderSet = true;
+                oAppointment.ReminderMinutesBeforeStart = 30;
+                oAppointment.BusyStatus = Outlook.OlBusyStatus.olBusy;
+                oAppointment.Save();
+                if (type== "Face To Face")
+                {
+                    Outlook.MailItem mailItem = oAppointment.ForwardAsVcal();
+                    mailItem.To = customer.Email;
+                    mailItem.Send();
+                }
+                
+
+
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                MessageBox.Show("Error sending email" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             try
             {
                 db = new Database();

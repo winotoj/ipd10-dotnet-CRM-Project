@@ -55,7 +55,7 @@ namespace WpfCRMProject
             }
             else status = false;
             _Customer.Status = status;
-            _Customer.CreateDate = DateTime.Today;
+            _Customer.CreateDate = DateTime.Now;
 
             db.AddPerson(_Customer);
             MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);

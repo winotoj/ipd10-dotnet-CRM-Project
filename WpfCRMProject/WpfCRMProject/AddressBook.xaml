@@ -66,7 +66,7 @@
                     </Canvas>
                     <Canvas HorizontalAlignment="Left" Height="170" Margin="416,0,0,0" VerticalAlignment="Top" Width="247" Grid.Column="2">
                         <Label Content="Email Address" Canvas.Left="10" Canvas.Top="63" Height="30" Width="227"/>
-                        <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="93" Height="56" Width="227" TextDecorations="Underline" Foreground="#FF2775C3" MouseDoubleClick="tbEmail_MouseDoubleClick">
+                        <TextBox Name="tbEmail" Text="" Canvas.Left="10" Canvas.Top="93" Height="27" Width="227" TextDecorations="Underline" Foreground="#FF2775C3" MouseDoubleClick="tbEmail_MouseDoubleClick">
                         </TextBox>
                     </Canvas>
                     <Label Name="lblSalesRep" Content="-" Margin="560,202,16,56" Grid.Column="2"/>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfCRMProject"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="WpfCRMProject.AddSchedule"
         mc:Ignorable="d"
-        Title="AddSchedule" Height="647.204" Width="650.995" Background="#FFEDF4F4">
+        Title="AddSchedule" Height="651.928" Width="731.305" Background="#FFEDF4F4">
     <Window.Resources>
 
         <Style TargetType="{x:Type Label}">
@@ -33,7 +33,10 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid Name="gridSchedule">
+        <Grid.CommandBindings>
+            <CommandBinding Command="New" CanExecute="Save_CanExecute" Executed="Save_Executed" />
+        </Grid.CommandBindings>
         <Label Content="Company Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="97"/>
         <TextBox x:Name="tbCompanyName" HorizontalAlignment="Left" Height="23" Margin="112,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="tbSearch" Content="Search" HorizontalAlignment="Left" Margin="237,13,0,0" VerticalAlignment="Top" Width="45" Click="tbSearch_Click"/>
@@ -51,19 +54,18 @@
             <ComboBoxItem Content="Face To Face"/>
         </ComboBox>
         <Label Target="{Binding ElementName=tbCompanyName}" Content="Subject" HorizontalAlignment="Left" Margin="25,340,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSubject" HorizontalAlignment="Left" Height="23" Margin="149,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
-              Validation.Error="Validation_Error"  Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=CompanyName,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  Width="477"/>
+        <TextBox x:Name="tbSubject" HorizontalAlignment="Left" Height="23" Margin="149,344,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Validation.Error="Validation_Error" Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Subject, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  Width="477"/>
         <Label Content="Date Of Metting" HorizontalAlignment="Left" Margin="25,383,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dateOfMetting" HorizontalAlignment="Left" Margin="149,385,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateOfMetting" HorizontalAlignment="Left" Margin="149,385,0,0" VerticalAlignment="Top" Loaded="dateOfMetting_Loaded"/>
         <Label Content="Start Time" HorizontalAlignment="Left" Margin="295,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.021,0.491"/>
         <Label Content="End Time" HorizontalAlignment="Left" Margin="476,387,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.021,0.491"/>
         <Label Content="Description" HorizontalAlignment="Left" Margin="25,427,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="227,579,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
-        <TextBox x:Name="tbNote" HorizontalAlignment="Left" Height="125" Margin="149,433,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="477"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="227,579,0,0" VerticalAlignment="Top" Width="75" Command="New"/>
+        <TextBox x:Name="tbNote" HorizontalAlignment="Left" Height="125" Margin="149,433,0,0" TextWrapping="Wrap" Validation.Error="Validation_Error" Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=Note,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}" VerticalAlignment="Top" Width="477"/>
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="339,579,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click" />
-        <xctk:TimePicker x:Name="cbStartTime" HorizontalAlignment="Left" Margin="363,389,0,0" VerticalAlignment="Top" Width="91"/>
-        <xctk:TimePicker x:Name="cbEndTime" HorizontalAlignment="Left" Margin="540,389,0,0" VerticalAlignment="Top" Width="84"/>
+        <xctk:TimePicker x:Name="cbStartTime" HorizontalAlignment="Left" Margin="363,389,0,0" VerticalAlignment="Top" Width="91" Loaded="cbStartTime_Loaded"/>
+        <xctk:TimePicker x:Name="cbEndTime" HorizontalAlignment="Left" Margin="540,389,0,0" VerticalAlignment="Top" Width="84" Loaded="cbEndTime_Loaded"/>
 
     </Grid>
 </Window>

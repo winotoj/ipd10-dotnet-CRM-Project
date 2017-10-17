@@ -5,8 +5,7 @@
              StartupUri="MainWindow.xaml" >
     <Application.Resources>
         <local:AppointmentDayConverter x:Key="conv" />       
-        <Style TargetType="CalendarDayButton"
-       x:Key="CalendarDayButtonStyle">
+        <Style TargetType="CalendarDayButton" x:Key="CalendarDayButtonStyle">
             <Setter Property="MinWidth" Value="5" />
             <Setter Property="MinHeight" Value="5" />
             <Setter Property="FontSize"  Value="10" />

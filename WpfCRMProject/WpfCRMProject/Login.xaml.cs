@@ -77,7 +77,8 @@ namespace WpfCRMProject
 
                 {
                     errormessage.Text = "Problem in connecting to database!!";
-                    return;
+                    
+                   return;
                 }
 
                 if (currentuser != null)

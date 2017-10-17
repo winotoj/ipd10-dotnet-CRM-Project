@@ -16,15 +16,17 @@ namespace WpfCRMProject
         public static Dictionary<DateTime, string> Dict
         {
             get { return dict; }
-        }
+        }      
 
-        static AppointmentDayConverter()
-        {
-            Calendar calendar = new Calendar();
-            List<DateTime> date = calendar.showMeetingOnCalendar();
+        public static void LoadAppointments(List<DateTime> date)
+        {            
             foreach (DateTime d in date)
             {
-                dict.Add(new DateTime(d.Year, d.Month, d.Day), "New aPPointment");
+                var key = new DateTime(d.Year, d.Month, d.Day);
+                if (!dict.ContainsKey(key))
+                {
+                    dict.Add(key, "New Appointment");
+                }
             }
         }
 

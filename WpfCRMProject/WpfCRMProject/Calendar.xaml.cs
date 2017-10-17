@@ -64,12 +64,15 @@ namespace WpfCRMProject
         {
             List<Schedule> listSchedule = db.GetAllAppointment();
             lvShowWorkDay.Items.Clear();
+
+            List<DateTime> dates = new List<DateTime>();
             foreach (Schedule c in listSchedule)
             {
                 lvShowWorkDay.Items.Add(c);
-
+                dates.Add(c.ScheduleDate);
             }
            
+            AppointmentDayConverter.LoadAppointments(dates);
         }
 
         //Edit Selected appointment
@@ -94,6 +97,10 @@ namespace WpfCRMProject
             {
                 MessageBox.Show("Please select one customer", "Edit Customer", MessageBoxButton.OK, MessageBoxImage.None);
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {            
         }
     }
 }

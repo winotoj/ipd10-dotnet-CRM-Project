@@ -160,36 +160,16 @@ namespace WpfCRMProject.Domain
             get
             {
                 string result = null;
-                if (columnName == "CustomerName")
-                {
-                    if (string.IsNullOrEmpty(CustomerName) || CustomerName.Length < 2 || CustomerName.Length > 50)
-                        result = "Please enter a Name (2-50 Chars)";
-                }
-                if (columnName == "Type")
-                {
-                    if (string.IsNullOrEmpty(Type) || Type.Length < 2 || Type.Length > 50)
-                        result = "Please Select an appointment type.";
-                }
-
-                if (columnName == "ScheduleDate")
-                {
-                    if (string.IsNullOrEmpty(ScheduleDate.ToShortDateString()))
-                        result = "Please select an appointment date";
-                }
-                if (columnName == "StartTime")
-                {
-                    if (string.IsNullOrEmpty(StartTime))
-                        result = "Please select start time";
-                }
-                if (columnName == "EndTime")
-                {
-                    if (string.IsNullOrEmpty(EndTime))
-                        result = "Please select End Time";
-                }
+                
                 if (columnName == "Subject")
                 {
                     if (string.IsNullOrEmpty(Subject) || Subject.Length < 2)
                         result = "Please enter a Subject (at least 2 Chars)";
+                }
+                if (string.IsNullOrEmpty(Subject) || columnName == "Note")
+                {
+                    if (string.IsNullOrEmpty(Note) || Note.Length < 2)
+                        result = "Please enter the Note";
                 }
 
 

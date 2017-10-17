@@ -131,7 +131,6 @@
     <Compile Include="Domain\CreateExcelFile.cs" />
     <Compile Include="Domain\Customer.cs" />
     <Compile Include="Domain\Messages.cs" />
-    <Compile Include="Domain\Purchase.cs" />
     <Compile Include="Domain\Sales.cs" />
     <Compile Include="Domain\SalesPerRep.cs" />
     <Compile Include="Domain\Schedule.cs" />

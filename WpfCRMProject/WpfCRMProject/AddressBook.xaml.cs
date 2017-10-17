@@ -29,8 +29,7 @@ namespace WpfCRMProject
 
         Database db;
 
-        string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web, strquery;
-
+        string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, strquery;
         public AddressBook()
         {
             try

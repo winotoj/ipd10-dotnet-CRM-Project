@@ -81,17 +81,12 @@ namespace WpfCRMProject
                 }
 
                 if (currentuser != null)
-                {                    
-                   // DataSet dataSet = new DataSet();
-                    string welcome = "Welcome " + currentuser.FirstName + " " + currentuser.LastName;
-                    //myworkday.lbluserlogin.Content = welcome;//Sending value from one form to another form.                   
-                    
+                {                   
                     Application.Current.Resources.Add("UserName", username);
                     Application.Current.Resources.Add("FirstName", currentuser.FirstName);
                     Application.Current.Resources.Add("LastName", currentuser.LastName);
                     Application.Current.Resources.Add("Role", currentuser.Role);
                     Application.Current.Resources.Add("Email", currentuser.Email);
-                    //myworkday.Show();
                     this.Close();
                 }
                 else

@@ -31,8 +31,7 @@ namespace WpfCRMProject
     {
         Reports rp;
         public Report1()
-        {
-            
+        {            
             try
             {
                 rp = new Reports();
@@ -52,10 +51,8 @@ namespace WpfCRMProject
             foreach (Customer c in customerList)
             {
                 lvAddress.Items.Add(c);
-
             }
         }
-
 
         private void btnExportToExcel_Click(object sender, RoutedEventArgs e)
         {
@@ -64,11 +61,9 @@ namespace WpfCRMProject
             foreach (Customer c in customerList)
             {
                 lvAddress.Items.Add(c);
-
             }
             var reducedList = customerList.Select(c => new { CompanyName = c.CompanyName , NumberOfBuys = c.SalesRepId }).ToList();
             
-
             var datatable = CreateExcelFile.ListToDataTable(reducedList);
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel file (*.xls)|*.xlsx";
@@ -86,7 +81,6 @@ namespace WpfCRMProject
             foreach (Customer c in customerList)
             {
                 lvAddress.Items.Add(c);
-
             }
             var reducedList = customerList.Select(c => new { CompanyName = c.CompanyName, NumberOfBuys = c.SalesRepId }).ToList();
 

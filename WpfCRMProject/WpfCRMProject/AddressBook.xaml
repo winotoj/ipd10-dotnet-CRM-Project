@@ -20,7 +20,7 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}" />
+                    <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding Path=CompanyName}" Width="250"/>
                     <GridViewColumn Header="Cust No" DisplayMemberBinding="{Binding Path=CustomerId}"/>
                     <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}"/>
                     <GridViewColumn Header="Created on" DisplayMemberBinding="{Binding Path=CreateDate}"/>
@@ -28,7 +28,7 @@
                     <GridViewColumn Header="Last Purch Amount">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path=Amount}" TextAlignment="Right" Width="100"/>
+                                <TextBlock Text="{Binding Path=Amount}" TextAlignment="Right" Width="120"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

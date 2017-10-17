@@ -28,7 +28,7 @@ namespace WpfCRMProject
         public static string lastHeaderAddress = string.Empty;
 
         Database db;
-
+        bool search = false;
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, strquery;
         public AddressBook()
         {
@@ -263,20 +263,41 @@ namespace WpfCRMProject
         public void DisplayAddressBook()
         {
             List<Customer> listCustomer = db.GetAllCustomers();
+            search = false;
             lvAddress.Items.Clear();
             lblTitle.Content = "Address Book " + listCustomer.Count + "Record(s)";
+            foreach (Customer l in listCustomer)
+            {
+                if (string.IsNullOrEmpty(l.Amount))
+                {
+                    l.Amount = "0";
+                    l.LastPurchaseDate = "01/01/1900";
+                }
+            }
             foreach (Customer c in listCustomer)
             {
                 lvAddress.Items.Add(c);
 
             }
         }
+        List<Customer> list;
+        string qry;
         public void DisplayAddressBook(string s)
         {
-            List<Customer> listCustomer = db.SearchCompanyCustom(s);
-            lblTitle.Content = "Search Result: " + listCustomer.Count + " Record(s)";
+            qry = s;
+            list = db.SearchCompanyCustom(qry);
+            foreach (Customer l in list)
+            {
+                if (string.IsNullOrEmpty(l.Amount))
+                {
+                    l.Amount = "0";
+                    l.LastPurchaseDate = "1900/12/31";
+                }
+            }
+            lblTitle.Content = "Search Result: " + list.Count + " Record(s)";
+            search = true;
             lvAddress.Items.Clear();
-            foreach (Customer c in listCustomer)
+            foreach (Customer c in list)
             {
                 lvAddress.Items.Add(c);
             }
@@ -373,68 +394,83 @@ namespace WpfCRMProject
         void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e)
         {
             string header = ((GridViewColumnHeader)e.OriginalSource).Column.Header.ToString();
-            List<Customer> list = db.GetAllCustomers();
-            if (lastHeaderAddress == header)
+            if (search)
             {
-                switch (header)
-                {
-                    case "Customer Name":
-                        list.Sort((x, y) => -1 * x.CompanyName.CompareTo(y.CompanyName));
-                        break;
-                    case "Cust No":
-                        list.Sort((x, y) => -1 * x.CustomerId.CompareTo(y.CustomerId));
-                        break;
-                    case "Status":
-                        list.Sort((x, y) => -1 * x.Status.CompareTo(y.Status));
-                        break;
-                    case "Created on":
-                        list.Sort((x, y) => -1 * x.CreateDate.CompareTo(y.CreateDate));
-                        break;
-                    case "Last Purch Date":
-                        list.Sort((x, y) => -1 * x.LastPurchaseDate.CompareTo(y.LastPurchaseDate));
-                        break;
-                    case "Last Purch Amount":
-                        list.Sort((x, y) => -1 * x.Amount.CompareTo(y.Amount));
-                        break;
-                    default:
-                        return;
-                }
-                lastHeaderAddress = string.Empty;
+                list = db.SearchCompanyCustom(qry);
             }
             else
             {
-                switch (header)
-                {
-                    case "Customer Name":
-                        list.Sort((x, y) => x.CompanyName.CompareTo(y.CompanyName));
-                        break;
-                    case "Cust No":
-                        list.Sort((x, y) => x.CustomerId.CompareTo(y.CustomerId));
-                        break;
-                    case "Status":
-                        list.Sort((x, y) => x.Status.CompareTo(y.Status));
-                        break;
-                    case "Created on":
-                        list.Sort((x, y) => x.CreateDate.CompareTo(y.CreateDate));
-                        break;
-                    case "Last Purch Date":
-                        list.Sort((x, y) => x.LastPurchaseDate.CompareTo(y.LastPurchaseDate));
-                        break;
-                    case "Last Purch Amount":
-                        list.Sort((x, y) => x.Amount.CompareTo(y.Amount));
-                        break;
-                    default:
-                        return;
-                }
-                lastHeaderAddress = header;
+                list = db.GetAllCustomers();
             }
-
-            lvAddress.Items.Clear();
-            foreach (Customer c in list)
+            foreach (Customer l in list)
             {
-                lvAddress.Items.Add(c);
+                if (string.IsNullOrEmpty(l.Amount))
+                {
+                    l.Amount = "0";
+                    l.LastPurchaseDate = "01/01/1900";
+                }
             }
 
+            if (lastHeaderAddress == header)
+                {
+                    switch (header)
+                    {
+                        case "Customer Name":
+                            list.Sort((x, y) => -1 * x.CompanyName.CompareTo(y.CompanyName));
+                            break;
+                        case "Cust No":
+                            list.Sort((x, y) => -1 * x.CustomerId.CompareTo(y.CustomerId));
+                            break;
+                        case "Status":
+                            list.Sort((x, y) => -1 * x.Status.CompareTo(y.Status));
+                            break;
+                        case "Created on":
+                            list.Sort((x, y) => -1 * x.CreateDate.CompareTo(y.CreateDate));
+                            break;
+                        case "Last Purch Date":
+                            list.Sort((x, y) => -1 * x.LastPurchaseDate.CompareTo(y.LastPurchaseDate));
+                            break;
+                        case "Last Purch Amount":
+                            list.Sort((x, y) => -1 * (decimal.Parse(x.Amount)).CompareTo(decimal.Parse(y.Amount)));
+                        break;
+                        default:
+                            break;
+                    }
+                    lastHeaderAddress = string.Empty;
+                }
+                else
+                {
+                    switch (header)
+                    {
+                        case "Customer Name":
+                            list.Sort((x, y) => x.CompanyName.CompareTo(y.CompanyName));
+                            break;
+                        case "Cust No":
+                            list.Sort((x, y) => x.CustomerId.CompareTo(y.CustomerId));
+                            break;
+                        case "Status":
+                            list.Sort((x, y) => x.Status.CompareTo(y.Status));
+                            break;
+                        case "Created on":
+                            list.Sort((x, y) => x.CreateDate.CompareTo(y.CreateDate));
+                            break;
+                        case "Last Purch Date":
+                            list.Sort((x, y) => x.LastPurchaseDate.CompareTo(y.LastPurchaseDate));
+                            break;
+                        case "Last Purch Amount":                            
+                            list.Sort((x, y) => (decimal.Parse(x.Amount)).CompareTo(decimal.Parse(y.Amount)));
+                            break;
+                        default:
+                            return;
+                    }
+                    lastHeaderAddress = header;
+                }
+
+                lvAddress.Items.Clear();
+                foreach (Customer c in list)
+                {
+                    lvAddress.Items.Add(c);
+                } 
         }
 
     }

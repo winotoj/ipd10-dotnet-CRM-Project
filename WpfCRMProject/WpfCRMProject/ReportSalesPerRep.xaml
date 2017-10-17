@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Report Sales Per Rep" Height="818" Width="1111.5" Background="#FFEDF4F4">
     <Grid>
-        <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="mcChart" Height="550" Background="LightSteelBlue" Margin="10,126,10,125">
+        <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="mcChart" Background="LightSteelBlue" Margin="10,126,0,33">
             <DVC:Chart.Series>
                 <DVC:LineSeries Title="{Binding Path=FullName}" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
                 </DVC:LineSeries>

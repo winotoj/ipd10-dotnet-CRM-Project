@@ -93,15 +93,12 @@ namespace WpfCRMProject
             {                 
                     Outlook._Application _app;
                    
-
                     try
                     {
                         _app = (Outlook.Application)Marshal.GetActiveObject("Outlook.Application");
                     }
-                   // catch (System.Runtime.InteropServices.COMException ex)
-                   catch(Exception)
+                    catch(Exception)
                     {
-                     //MessageBox.Show("Outlook is not opened under Administrator, close OUtlook and click OK." + ex.Message, "Message", MessageBoxButton.OK, MessageBoxImage.Information);
                         _app = new Outlook.Application();
                     }
                     try

@@ -60,8 +60,7 @@ namespace WpfCRMProject
             db.AddPerson(_Customer);
             MessageBox.Show("New Customer is added", "Successfully message", MessageBoxButton.OK, MessageBoxImage.Information);
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
-            //mainWin.btnOpportunity.Focus();
-            //mainWin.btnAddressBook.Focus();
+            
 
             this.Close();
             AddressBook addressBook = new AddressBook();

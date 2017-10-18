@@ -53,6 +53,7 @@ namespace WpfCRMProject
             dpLastPurchaseDate.SelectedDate = DateTime.Today;
 
         }
+
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             string strquery = "";

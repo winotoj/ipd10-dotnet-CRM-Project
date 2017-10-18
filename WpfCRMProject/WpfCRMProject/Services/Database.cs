@@ -250,7 +250,8 @@ namespace WpfCRMProject
                         CreateDate = (DateTime)reader["created_date"],
                         Status = (bool)reader["status"],
                         Email = (string)reader["email"],
-                        Country = (string)reader["country"]
+                        Country = (string)reader["country"],
+                        SalesRepId = (int)reader["salesrep_id"]
                     };
                     listOpportunities.Add(customer);
                 }

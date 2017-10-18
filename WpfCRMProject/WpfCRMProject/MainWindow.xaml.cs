@@ -22,6 +22,7 @@ namespace WpfCRMProject
     /// </summary>
    public partial class MainWindow : Window
     {
+        bool opportunities = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -76,6 +77,7 @@ namespace WpfCRMProject
             btnSearch.Visibility = Visibility.Visible;
             frTest.Navigate(new System.Uri("Opportunity.xaml",
 UriKind.RelativeOrAbsolute));
+            opportunities = true;
 
         }
 
@@ -86,6 +88,7 @@ UriKind.RelativeOrAbsolute));
             AddressBook addressBook = new AddressBook();
             addressBook.DisplayAddressBook();
             frTest.NavigationService.Navigate(addressBook);
+            opportunities = false;
         }
 
         private void btnCalendar_Click(object sender, RoutedEventArgs e)
@@ -119,8 +122,14 @@ UriKind.RelativeOrAbsolute));
             {
                 str = " c.salesrep_Id = " + Application.Current.Resources["UserName"].ToString();
             }
-            frTest.NavigationService.Navigate(new AddressBook(str));
-
+            if (opportunities)
+            {
+                frTest.NavigationService.Navigate(new Opportunity(str));               
+            }
+            else
+            {
+                frTest.NavigationService.Navigate(new AddressBook(str));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

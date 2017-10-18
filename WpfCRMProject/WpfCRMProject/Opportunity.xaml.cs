@@ -24,6 +24,7 @@ namespace WpfCRMProject
     {
         Database db;
         string firstName, lastName, company, street, city, province, postalCode, country, phone1, phone2, email, web, strquery;
+        bool search = false;
         public Opportunity()
         {
             try
@@ -38,6 +39,22 @@ namespace WpfCRMProject
             DisplayOpportunities();
         }
 
+        //For serach Result
+        public Opportunity(string s)
+        {
+            try
+            {
+                db = new Database();
+                InitializeComponent();
+                strquery = s;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            DisplayOpportunities(strquery);
+        }
+
         private void lvAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DisplayDetail();
@@ -48,11 +65,36 @@ namespace WpfCRMProject
         public void DisplayOpportunities()
         {
             List<Customer> listOpportunities = db.GetOpportunities();
+            search = false;
             lvAddress.Items.Clear();
             foreach (Customer c in listOpportunities)
             {
                 lvAddress.Items.Add(c);
 
+            }
+        }
+
+        List<Customer> list;
+        string qry;
+
+        public void DisplayOpportunities(string s)
+        {
+            qry = s;
+            list = db.SearchCompanyCustom(qry);
+            foreach (Customer l in list)
+            {
+                if (string.IsNullOrEmpty(l.Amount))
+                {
+                    l.Amount = "0";
+                    l.LastPurchaseDate = "1900/12/31";
+                }
+            }
+            //lblTitle.Content = "Search Result: " + list.Count + " Record(s)";
+            search = true;
+            lvAddress.Items.Clear();
+            foreach (Customer c in list)
+            {
+                lvAddress.Items.Add(c);
             }
         }
 
@@ -73,7 +115,7 @@ namespace WpfCRMProject
                 tbPhone1.Text = customerSelected.Phone;
                 tbPhone2.Text = customerSelected.Fax;
                 tbEmail.Text = customerSelected.Email;
-                lblSalesRep.Content = customerSelected.SalesRepId;
+                lblSalesRep.Content = customerSelected.SalesRepId.ToString();
                 lblCustomerId.Content = customerSelected.CustomerId;
 
             }
@@ -144,6 +186,20 @@ namespace WpfCRMProject
                     };
 
                     db.UpdateCustomer(customer);
+                    MessageBox.Show("Information successfully updated.");
+                    DisableEnableTextBox(false);
+                    if (!search)
+                    {
+                        DisplayOpportunities();
+                        DisplayDetail();
+                        DisplayHistory();                        
+                    }
+                    else
+                    {
+                        DisplayOpportunities();
+
+                    }
+
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {

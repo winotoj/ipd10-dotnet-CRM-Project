@@ -108,7 +108,7 @@ namespace WpfCRMProject
             }
 
         }
-
+        //for the search
         public AddressBook(string s)
         {
             try
@@ -166,16 +166,13 @@ namespace WpfCRMProject
                 )
             {
 
-               // if(tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 51)
-
-                if(tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 41)
+             if(tbFirstName.Text.Length < 2 || tbFirstName.Text.Length > 41)
 
                 {
                     MessageBox.Show("Please enter 2-40 chars for First Name");
                     return;
                 }
 
-               // if (tbLastName.Text.Length < 2 || tbLastName.Text.Length > 51)
 
                 if (tbLastName.Text.Length < 2 || tbLastName.Text.Length > 41)
 
@@ -184,8 +181,7 @@ namespace WpfCRMProject
                     return;
                 }
 
-               // if (tbCompanyName.Text.Length < 2 || tbCompanyName.Text.Length > 51)
-
+    
                 if (tbCompanyName.Text.Length < 2 || tbCompanyName.Text.Length > 81)
 
                 {
@@ -249,6 +245,17 @@ namespace WpfCRMProject
                     db.UpdateCustomer(customer);
                     MessageBox.Show("Information successfully updated.");
                     DisableEnableTextBox(false);
+                    if (!search)
+                    {
+                        DisplayAddressBook();
+                        DisplayDetail();
+                        DisplayHistory();
+                        DisplaySales();
+                    }
+                    else {
+                        DisplayAddressBook(strquery);
+                        
+                    }
 
                 }
                 catch (ArgumentOutOfRangeException ex)
@@ -329,7 +336,7 @@ namespace WpfCRMProject
                 tbPhone1.Text = customerSelected.Phone;
                 tbPhone2.Text = customerSelected.Fax;
                 tbEmail.Text = customerSelected.Email;
-                lblSalesRep.Content = customerSelected.SalesRepId;
+                lblSalesRep.Content = customerSelected.SalesRepId.ToString();
                 lblCustomerId.Content = customerSelected.CustomerId.ToString();
 
             }

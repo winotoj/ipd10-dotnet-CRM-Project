@@ -13,25 +13,7 @@ using DocumentFormat.OpenXml;
 
 namespace ExportToExcel
 {
-    //
-    //  November 2013
-    //  http://www.mikesknowledgebase.com
-    //
-    //  Note: if you plan to use this in an ASP.Net application, remember to add a reference to "System.Web", and to uncomment
-    //  the "INCLUDE_WEB_FUNCTIONS" definition at the top of this file.
-    //
-    //  Release history
-    //   - Nov 2013: 
-    //        Changed "CreateExcelDocument(DataTable dt, string xlsxFilePath)" to remove the DataTable from the DataSet after creating the Excel file.
-    //        You can now create an Excel file via a Stream (making it more ASP.Net friendly)
-    //   - Jan 2013: Fix: Couldn't open .xlsx files using OLEDB  (was missing "WorkbookStylesPart" part)
-    //   - Nov 2012: 
-    //        List<>s with Nullable columns weren't be handled properly.
-    //        If a value in a numeric column doesn't have any data, don't write anything to the Excel file (previously, it'd write a '0')
-    //   - Jul 2012: Fix: Some worksheets weren't exporting their numeric data properly, causing "Excel found unreadable content in '___.xslx'" errors.
-    //   - Mar 2012: Fixed issue, where Microsoft.ACE.OLEDB.12.0 wasn't able to connect to the Excel files created using this class.
-    //
-
+   
     public class CreateExcelFile
     {
         public static bool CreateExcelDocument<T>(List<T> list, string xlsxFilePath)
@@ -42,8 +24,7 @@ namespace ExportToExcel
             return CreateExcelDocument(ds, xlsxFilePath);
         }
 #region HELPER_FUNCTIONS
-        //  This function is adapated from: http://www.codeguru.com/forum/showthread.php?t=450171
-        //  My thanks to Carl Quirion, for making it "nullable-friendly".
+       
         public static DataTable ListToDataTable<T>(List<T> list)
         {
             DataTable dt = new DataTable();

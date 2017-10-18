@@ -19,7 +19,8 @@ namespace WpfCRMProject
         }      
 
         public static void LoadAppointments(List<DateTime> date)
-        {            
+        {
+            dict.Clear();        
             foreach (DateTime d in date)
             {
                 var key = new DateTime(d.Year, d.Month, d.Day);
@@ -27,6 +28,7 @@ namespace WpfCRMProject
                 {
                     dict.Add(key, "New Appointment");
                 }
+                
             }
         }
 

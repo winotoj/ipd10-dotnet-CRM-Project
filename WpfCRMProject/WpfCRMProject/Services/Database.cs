@@ -45,6 +45,7 @@ namespace WpfCRMProject
                         Province = (string)reader["province"],
                         Postal = (string)reader["postal"],
                         Phone = (string)reader["phone"],
+                        Fax = (string)reader["fax"],
                         ContactFirstName = (string)reader["contact_firstname"],
                         ContactLastName = (string)reader["contact_lastname"],
                         CreateDate = (DateTime)reader["created_date"],
@@ -66,7 +67,7 @@ namespace WpfCRMProject
             List<Schedule> scheduleList = new List<Schedule>();
             SqlCommand getCommand = new SqlCommand(@"SELECT schedule_id, type, note, status, scheduled_date, created_date, salesrep_id, subject, startTime, endTime," +
                                                     " customer_id, (select company_name from customers c where s.customer_id = c.Customer_id) as customerName " +
-                                                    " FROM Schedules s WHERE salesrep_id = @SalesrepID AND status = 0", conn);
+                                                    " FROM Schedules s WHERE salesrep_id = @SalesrepID AND status = 0 ORDER BY scheduled_date", conn);
             getCommand.Parameters.Add(new SqlParameter("SalesrepID", Application.Current.Resources["UserName"]));
             using (SqlDataReader reader = getCommand.ExecuteReader())
             {
@@ -269,7 +270,6 @@ namespace WpfCRMProject
                                                 phone = @Phone,
                                                 contact_firstname = @FirstName,
                                                 contact_lastname = @LastName,
-                                                status = @Status,
                                                 email = @Email,
                                                 country = @Country,
                                                 fax = @Fax
@@ -284,7 +284,7 @@ namespace WpfCRMProject
             insertCommand.Parameters.Add(new SqlParameter("Phone", c.Phone));
             insertCommand.Parameters.Add(new SqlParameter("FirstName", c.ContactFirstName));
             insertCommand.Parameters.Add(new SqlParameter("LastName", c.ContactLastName));
-            insertCommand.Parameters.Add(new SqlParameter("Status", c.Status));
+           // insertCommand.Parameters.Add(new SqlParameter("Status", c.Status));
             insertCommand.Parameters.Add(new SqlParameter("Email", c.Email));
             insertCommand.Parameters.Add(new SqlParameter("Country", c.Country));
             insertCommand.Parameters.Add(new SqlParameter("Fax", c.Fax));

@@ -41,16 +41,16 @@ namespace WpfCRMProject
         }
 
         //Get all dates of Meetings from List
-        public List<DateTime> showMeetingOnCalendar()
-        { 
-            List<DateTime> date = new List<DateTime>();
-            for (int i = 0; i < lvShowWorkDay.Items.Count; i++)
-            {
-                Schedule datelist = (Schedule)lvShowWorkDay.Items[i];
-                date.Add(datelist.ScheduleDate);                
-            }
-            return date;
-        }
+        //public List<DateTime> showMeetingOnCalendar()
+        //{ 
+        //    List<DateTime> date = new List<DateTime>();
+        //    for (int i = 0; i < lvShowWorkDay.Items.Count; i++)
+        //    {
+        //        Schedule datelist = (Schedule)lvShowWorkDay.Items[i];
+        //        date.Add(datelist.ScheduleDate);                
+        //    }
+        //    return date;
+        //}
 
         //Make a New Appointment
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -70,8 +70,7 @@ namespace WpfCRMProject
             {
                 lvShowWorkDay.Items.Add(c);
                 dates.Add(c.ScheduleDate);
-            }
-           
+            }           
             AppointmentDayConverter.LoadAppointments(dates);
         }
 
@@ -99,8 +98,6 @@ namespace WpfCRMProject
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {            
-        }
+        
     }
 }

@@ -76,7 +76,7 @@ namespace WpfCRMProject
                 catch (SqlException)
 
                 {
-                    errormessage.Text = "Problem in connecting to database!!";
+                    errormessage.Text = "Please enter correct username and Password";
                     
                    return;
                 }

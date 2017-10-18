@@ -56,17 +56,21 @@ namespace WpfCRMProject
             }
             
             this.Close();
+
             //refresh the list
             var calendar = new Calendar();
             List<Schedule> scheduleList = db.GetAllAppointment();
+            List<DateTime> dates = new List<DateTime>();
             calendar.lvShowWorkDay.Items.Clear();
             foreach (Schedule s in scheduleList)
             {
                 calendar.lvShowWorkDay.Items.Add(s);
+                dates.Add(s.ScheduleDate);
             }
             var mainWin = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;
+            
+            AppointmentDayConverter.LoadAppointments(dates);
             mainWin.frTest.Refresh();
-
         }
     }
 }
